@@ -26,6 +26,6 @@ set(SOURCE_FILES
         src/thread/Message.cpp
         src/thread/Message.h
         src/thread/MessageQueue.cpp
-        src/thread/MessageQueue.h src/net/UdpSocket.cpp src/net/UdpSocket.h)
+        src/thread/MessageQueue.h src/net/UdpSocket.cpp src/net/UdpSocket.h src/net/UdpConnectedSocket.cpp src/net/UdpConnectedSocket.h)
 add_executable(trafficer ${SOURCE_FILES})
 target_link_libraries(trafficer pthread)

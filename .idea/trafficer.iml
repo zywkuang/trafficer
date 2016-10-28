@@ -18,8 +18,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src/net/TcpSocket.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/net/UdpSocket.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/net/Socket.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/net/UdpConnectedSocket.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/net/TcpSocket.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/net/UdpSocket.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/net/UdpConnectedSocket.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/base/Copyable.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/base/NonCopyable.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/base/Json.h" isTestSource="false" />

@@ -5,15 +5,14 @@
 #ifndef TRAFFICER_INETADDRESS_H
 #define TRAFFICER_INETADDRESS_H
 
-#include <string>
 #include <netinet/in.h>
 #include <netinet/tcp.h>
 #include "../base/Copyable.h"
 
 class InetAddress : public Copyable {
 public:
-    explicit InetAddress(uint16_t portNumber, bool bIpv6 = false);
-    InetAddress(const char *ipAddress, uint16_t portNumber, bool bIpv6 = false);
+    explicit InetAddress(uint16_t portNumber = 1024, bool bIpv6 = false);
+    InetAddress(const char *ipAddress, uint16_t portNumber = 1024, bool bIpv6 = false);
 
     explicit InetAddress(const struct sockaddr_in  &sockaddr4);
     explicit InetAddress(const struct sockaddr_in6 &sockaddr6);
@@ -27,13 +26,10 @@ public:
     uint32_t ipNetEndian() const;
     uint16_t portNetEndian() const;
 
-    std::string toIpString() const;
-    std::string toIpPortString() const;
+    const char* toIpString() const;
+    const char* toIpPortString() const;
 
-    /**
-     * Resolve hostname to IP address, not changing port or sin_family
-     * ThreadSafe
-     */
+    // Resolve hostname to IP address, not changing port or sin_family
     static bool resolveHostName(const char *hostname, InetAddress *result);
 
 private:

@@ -78,7 +78,7 @@ uint16_t InetAddress::portNetEndian() const {
     return this->sa4Struct.sin_port;
 }
 
-std::string InetAddress::toIpString() const {
+const char* InetAddress::toIpString() const {
     char buf[64] = "";
     size_t size = sizeof(buf);
     if (this->getAddressFamily() == AF_INET) {
@@ -92,8 +92,7 @@ std::string InetAddress::toIpString() const {
     return buf;
 }
 
-std::string InetAddress::toIpPortString() const {
-
+const char* InetAddress::toIpPortString() const {
     char buf[64] = "";
     size_t size = sizeof(buf);
     if (this->getAddressFamily() == AF_INET) {
@@ -111,8 +110,6 @@ std::string InetAddress::toIpPortString() const {
 
     return buf;
 }
-
-
 
 static __thread char resolveBuffer[64 * 1024];
 
