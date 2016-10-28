@@ -8,6 +8,8 @@ void *thr_fn(void *arg) {
 
     printf("Hello Wrold, %d.\n", pthread_self());
 
+    pthread_join(pthread_self(), 0);
+
     sleep(2);
 
     printf("Detach Thread.\n");
@@ -25,7 +27,7 @@ void thread_test() {
     pthread_create(&tid, NULL, thr_fn, NULL);
 
     //pthread_join(tid, 0);
-    pthread_detach(tid);
+    //pthread_detach(tid);
 
     while(true) {
         sleep(1);

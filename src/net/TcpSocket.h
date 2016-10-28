@@ -5,7 +5,7 @@
 #ifndef TRAFFICER_TCPSOCKET_H
 #define TRAFFICER_TCPSOCKET_H
 
-#include "net/Socket.h"
+#include "Socket.h"
 
 class TcpSocket : public Socket{
 

@@ -11,8 +11,8 @@ set(SOURCE_FILES
         src/net/InetAddress.h
         src/net/Socket.cpp
         src/net/Socket.h
-        src/TcpSocket.cpp
-        src/TcpSocket.h
+        src/net/TcpSocket.cpp
+        src/net/TcpSocket.h
         src/base/Json.h
         src/base/Json.cpp
         src/thread/Thread.cpp
@@ -26,6 +26,6 @@ set(SOURCE_FILES
         src/thread/Message.cpp
         src/thread/Message.h
         src/thread/MessageQueue.cpp
-        src/thread/MessageQueue.h)
+        src/thread/MessageQueue.h src/net/UdpSocket.cpp src/net/UdpSocket.h)
 add_executable(trafficer ${SOURCE_FILES})
 target_link_libraries(trafficer pthread)

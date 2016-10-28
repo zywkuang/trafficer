@@ -11,7 +11,7 @@
 class Socket : public NonCopyable{
 public:
     Socket(bool bipv6 = false, int proto = SOCK_STREAM);
-    ~Socket();
+    virtual ~Socket();
 
     void socketConnect(InetAddress &remoteAddr);
     void socketBind(InetAddress &localAddr);
