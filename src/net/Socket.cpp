@@ -125,7 +125,7 @@ ssize_t Socket::socketRecv(char *buffer, size_t length, int flag) {
     return bytesRcvd;
 }
 
-ssize_t Socket::socketSendTo(const char *payload, size_t length, int flag, InetAddress &remoteAddr) {
+ssize_t Socket::socketSendTo(const char *payload, size_t length, InetAddress &remoteAddr, int flag) {
     ssize_t bytesSent = 0;
     socklen_t addrlen = static_cast<socklen_t>(sizeof(struct sockaddr_in6));
 
@@ -138,14 +138,14 @@ ssize_t Socket::socketSendTo(const char *payload, size_t length, int flag, InetA
     return bytesSent;
 }
 
-ssize_t Socket::socketRecvFrom(char *buffer, size_t length, int flag, InetAddress &peerAddr) {
+ssize_t Socket::socketRecvFrom(char *buffer, size_t length, InetAddress &peerAddr, int flag) {
     ssize_t bytesRcvd = 0;
 
     struct sockaddr_in6 peeraddr;
     memset(&peeraddr, 0, sizeof(struct sockaddr_in6));
     socklen_t addrlen = static_cast<socklen_t>(sizeof(struct sockaddr_in6));
 
-    bytesRcvd = recvfrom(this->sockfd, buffer, length, flag, static_cast<sockaddr *>(static_cast<void *>(&peeraddr), &addrlen);
+    bytesRcvd = recvfrom(this->sockfd, buffer, length, flag, static_cast<struct sockaddr *>(static_cast<void *>(&peeraddr)), &addrlen);
     if (bytesRcvd < 0) {
         printf("LOG ERROR: Cannot recv data from peer host.\n");
         throw Exception(ESOCKREAD, "Read Data Exception");

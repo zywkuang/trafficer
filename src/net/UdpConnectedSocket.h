@@ -20,7 +20,7 @@ public:
     void connectServer(InetAddress &remoteAddr);
 
     // Server Function
-    void listenServer(InetAddress &localAddr)
+    void listenServer(InetAddress &localAddr);
     UdpConnectedSocket* acceptClient();
 
 private:

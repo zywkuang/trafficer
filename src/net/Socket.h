@@ -11,7 +11,7 @@
 class Socket : public NonCopyable{
 public:
     Socket(bool bipv6 = false, int proto = SOCK_STREAM);
-    Socket(int sockfd = 0, bool bipv6 = false, int proto = SOCK_STREAM);
+    Socket(int sockfd, bool bipv6 = false, int proto = SOCK_STREAM);
     virtual ~Socket();
 
     void socketConnect(InetAddress &remoteAddr);
@@ -31,8 +31,8 @@ public:
     ssize_t socketSend(const char *payload, size_t length, int flag = 0);
     ssize_t socketRecv(char *buffer, size_t length, int flag = 0);
 
-    ssize_t socketSendTo(const char *payload, size_t length, int flag = 0, InetAddress &remoteAddr);
-    ssize_t socketRecvFrom(char *buffer, size_t length, int flag = 0, InetAddress &peerAddr);
+    ssize_t socketSendTo(const char *payload, size_t length, InetAddress &remoteAddr, int flag = 0);
+    ssize_t socketRecvFrom(char *buffer, size_t length, InetAddress &peerAddr, int flag = 0);
 
     int getSockFd() {
         return this->sockfd;

@@ -4,7 +4,8 @@
 
 #include "UdpConnectedSocket.h"
 
-UdpConnectedSocket::UdpConnectedSocket(bool bIpv6) {
+UdpConnectedSocket::UdpConnectedSocket(bool bIpv6)
+    : Socket(bIpv6, SOCK_DGRAM){
 
 }
 
