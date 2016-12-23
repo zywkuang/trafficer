@@ -8,7 +8,7 @@
 #include "InetAddress.h"
 #include "../base/NonCopyable.h"
 
-class Socket : public NonCopyable{
+class Socket : public NonCopyable {
 public:
     Socket(bool bipv6 = false, int proto = SOCK_STREAM);
     Socket(int sockfd, bool bipv6 = false, int proto = SOCK_STREAM);

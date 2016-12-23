@@ -6,12 +6,13 @@
 #define TRAFFICER_NONCOPYABLE_H
 
 class NonCopyable {
-protected:
-    NonCopyable() { }
+public:
+    NonCopyable() {}
+    virtual ~NonCopyable() {}
 
 private:
-    NonCopyable(const NonCopyable &) = delete;
-    void operator = (const NonCopyable &) = delete;
+    NonCopyable(const NonCopyable &);
+    void operator = (const NonCopyable &);
 };
 
 

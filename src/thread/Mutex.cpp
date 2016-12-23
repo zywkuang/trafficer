@@ -9,7 +9,7 @@
 MutexLock::MutexLock() {
     int ret = pthread_mutex_init(&this->mutex, 0);
     if (ret != 0)
-        throw Exception(EMUTEXINIT, "Mutex Creation Exception");
+        throw Exception(EMUTEXINIT, "Mutex Init Exception");
 }
 
 MutexLock::~MutexLock() {

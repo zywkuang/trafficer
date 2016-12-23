@@ -8,6 +8,9 @@
 #include <exception>
 #include <string>
 
+// File Exception
+#define EFILEOPEN           00001
+
 // Socket Exception
 #define ESOCKCREATE         10001
 #define ESOCKCONNECT        10002

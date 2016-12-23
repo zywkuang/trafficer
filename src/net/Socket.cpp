@@ -13,7 +13,6 @@ Socket::Socket(bool bipv6, int proto)
     this->sockfd = socket((bipv6) ? AF_INET6 : AF_INET, proto, 0);
 
     if (this->sockfd < 0) {
-        printf("LOG ERROR: Cannot create new socket.\n");
         throw Exception(ESOCKCREATE, "Create Socket Exception");
     }
 }
@@ -31,7 +30,6 @@ void Socket::socketConnect(InetAddress &remoteAddr) {
 
     int ret = connect(this->sockfd, remoteAddr.getSockAddr(), static_cast<socklen_t>(sizeof(struct sockaddr_in6)));
     if (ret < 0) {
-        printf("LOG ERROR: Cannot connect to remote socket.\n");
         switch (errno) {
             case EISCONN:
                 throw Exception(EISCONN, "Already Connected Exception");
@@ -53,7 +51,6 @@ void Socket::socketBind(InetAddress &localAddr) {
 
     int ret = bind(this->sockfd, localAddr.getSockAddr(), static_cast<socklen_t>(sizeof(struct sockaddr_in6)));
     if (ret < 0) {
-        printf("LOG ERROR: Cannot bind to specific address.\n");
         switch (errno) {
             case EINVAL:
                 throw Exception(EINVAL, "Already Bound Exception");
@@ -69,7 +66,6 @@ void Socket::socketListen() {
 
     int ret = listen(this->sockfd, SOMAXCONN);
     if (ret < 0) {
-        printf("LOG ERROR: Cannot listen on socket.\n");
         throw Exception(ESOCKLISTEN, "Listen Failure Exception");
     }
 }

@@ -12,7 +12,7 @@
 class InetAddress : public Copyable {
 public:
     explicit InetAddress(uint16_t portNumber = 1024, bool bIpv6 = false);
-    InetAddress(const char *ipAddress, uint16_t portNumber = 1024, bool bIpv6 = false);
+    explicit InetAddress(const char *ipAddress, uint16_t portNumber = 1024, bool bIpv6 = false);
 
     explicit InetAddress(const struct sockaddr_in  &sockaddr4);
     explicit InetAddress(const struct sockaddr_in6 &sockaddr6);

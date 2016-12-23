@@ -6,7 +6,9 @@
 #define TRAFFICER_COPYABLE_H
 
 class Copyable {
-
+public:
+    Copyable() {}
+    virtual ~Copyable() {}
 };
 
 
