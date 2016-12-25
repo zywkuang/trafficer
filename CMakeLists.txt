@@ -5,27 +5,27 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SOURCE_FILES
         main.cpp
-        src/base/Exception.cpp
-        src/base/Exception.h
         src/net/InetAddress.cpp
         src/net/InetAddress.h
         src/net/Socket.cpp
         src/net/Socket.h
         src/net/TcpSocket.cpp
         src/net/TcpSocket.h
+        src/base/Exception.cpp
+        src/base/Exception.h
         src/base/Json.h
         src/base/Json.cpp
-        src/thread/Thread.cpp
-        src/thread/Thread.h
-        src/thread/Mutex.cpp
-        src/thread/Mutex.h
+        src/base/Thread.cpp
+        src/base/Thread.h
+        src/base/Mutex.cpp
+        src/base/Mutex.h
         src/base/Copyable.h
         src/base/NonCopyable.h
-        src/thread/Event.cpp
-        src/thread/Event.h
-        src/thread/Message.cpp
-        src/thread/Message.h
-        src/thread/MessageQueue.cpp
-        src/thread/MessageQueue.h src/net/UdpSocket.cpp src/net/UdpSocket.h src/net/UdpConnectedSocket.cpp src/net/UdpConnectedSocket.h src/base/Logger.h src/base/Logger.cpp src/config.h src/base/TimeStamp.cpp src/base/TimeStamp.h)
+        src/base/Event.cpp
+        src/base/Event.h
+        src/base/Message.cpp
+        src/base/Message.h
+        src/base/MessageQueue.cpp
+        src/base/MessageQueue.h src/net/UdpSocket.cpp src/net/UdpSocket.h src/net/UdpConnectedSocket.cpp src/net/UdpConnectedSocket.h src/base/Logger.h src/base/Logger.cpp src/Envcfg.h src/base/TimeStamp.cpp src/base/TimeStamp.h)
 add_executable(trafficer ${SOURCE_FILES})
 target_link_libraries(trafficer pthread)

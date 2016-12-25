@@ -6,9 +6,7 @@
 #include <sys/time.h>
 #include "TimeStamp.h"
 
-static_assert(sizeof(TimeStamp) == sizeof(int64_t), "TimeStamp is same size as int64_t");
-
-std::string TimeStamp::toString() const {
+const char* TimeStamp::toString() const {
     char buf[32] = {0};
     int64_t seconds = microSecondsSinceEpoch / kMicroSecondsPerSecond;
     int64_t microSeconds = microSecondsSinceEpoch % kMicroSecondsPerSecond;
@@ -17,7 +15,7 @@ std::string TimeStamp::toString() const {
     return buf;
 }
 
-std::string TimeStamp::toFormattedString(bool showMicroSeconds) const {
+const char* TimeStamp::toFormattedString(bool showMicroSeconds) const {
     char buf[32] = {0};
     time_t seconds = static_cast<time_t>(microSecondsSinceEpoch / kMicroSecondsPerSecond);
 

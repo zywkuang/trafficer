@@ -6,7 +6,7 @@
 #define TRAFFICER_THREAD_H
 
 #include <pthread.h>
-#include "../base/NonCopyable.h"
+#include "NonCopyable.h"
 
 class Thread : public NonCopyable{
 public:

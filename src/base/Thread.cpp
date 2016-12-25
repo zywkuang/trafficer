@@ -3,7 +3,7 @@
 //
 
 #include "Thread.h"
-#include "../base/Exception.h"
+#include "Exception.h"
 
 Thread::Thread()
     : isStarted(false),

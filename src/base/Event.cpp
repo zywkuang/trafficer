@@ -2,8 +2,9 @@
 // Created by zjl on 10/28/16.
 //
 
+#include <cstdio>
 #include "Event.h"
-#include "../base/Exception.h"
+#include "Exception.h"
 
 Event::Event()
     : flag(0),
@@ -29,7 +30,6 @@ void Event::set() {
         this->flag++;
 
     } catch (Exception e) {
-        printf("Exception Info: [%d, %s].\n", e.code(), e.what());
         throw Exception(EEVENTSET, "Event Set Exception");
     }
 }
@@ -48,7 +48,6 @@ void Event::wait() {
             this->flag = 0;
 
     } catch (Exception e) {
-        printf("Exception Info: [%d, %s].\n", e.code(), e.what());
         throw Exception(EEVENTWAIT, "Event Wait Exception");
     }
 }

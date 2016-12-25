@@ -5,7 +5,7 @@
 #ifndef TRAFFICER_MESSAGE_H
 #define TRAFFICER_MESSAGE_H
 
-#include "../base/NonCopyable.h"
+#include "NonCopyable.h"
 
 class Message : public NonCopyable{
 public:

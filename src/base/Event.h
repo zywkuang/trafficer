@@ -5,7 +5,7 @@
 #ifndef TRAFFICER_EVENT_H
 #define TRAFFICER_EVENT_H
 
-#include "../base/NonCopyable.h"
+#include "NonCopyable.h"
 #include "Mutex.h"
 
 class Event : public NonCopyable {

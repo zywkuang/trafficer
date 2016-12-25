@@ -3,7 +3,7 @@
 //
 
 #include "MessageQueue.h"
-#include "../base/Exception.h"
+#include "Exception.h"
 
 MessageQueue::MessageQueue() {
 
@@ -38,7 +38,6 @@ int MessageQueue::offerMessage(Message *msg) {
         this->event.set();
 
     } catch(Exception e) {
-        printf("Exception Info: [%d, %s].\n", e.code(), e.what());
         throw Exception(EMSGQUEUEPUSH, "MessageQueue Push Exception");
     }
 
@@ -53,7 +52,6 @@ Message* MessageQueue::pollMessage() {
         msg = this->pop();
 
     } catch (Exception e) {
-        printf("Exception Info: [%d, %s].\n", e.code(), e.what());
         throw Exception(EMSGQUEUEPOP, "MessageQueue Pop Exception");
     }
 

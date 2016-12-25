@@ -7,7 +7,7 @@
 
 
 #include <pthread.h>
-#include "../base/NonCopyable.h"
+#include "NonCopyable.h"
 
 class MutexLock : public NonCopyable {
 public:

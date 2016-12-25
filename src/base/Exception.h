@@ -8,8 +8,12 @@
 #include <exception>
 #include <string>
 
-// File Exception
-#define EFILEOPEN           00001
+// Basic Exception
+#define ENULLPOINTER        00001
+#define EFILEOPEN           00002
+#define EFILEREAD           00003
+#define EFILEWRITE          00004
+#define EATEXITREG          00005
 
 // Socket Exception
 #define ESOCKCREATE         10001
