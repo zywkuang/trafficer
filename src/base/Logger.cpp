@@ -1,10 +1,14 @@
-//
-// Created by zjl on 12/23/16.
-//
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 12/23/16
+**/
 
 #include <fcntl.h>
 #include <cstring>
 #include <cstdlib>
+#include <cstdio>
+#include <iostream>
 #include "Logger.h"
 #include "Exception.h"
 #include "TimeStamp.h"
@@ -51,24 +55,21 @@ Logger* Logger::getLoggerInstance() {
     return Logger::logger;
 }
 
-void Logger::writeLog(const char *logContent, LogLevel level, const char *filename, int line) {
+void Logger::writeLog(std::string logContent, LogLevel level, const char *filename, int line) {
     Logger *logger = Logger::getLoggerInstance();
 
     logger->writeLogToFile(logContent, level, filename, line);
 }
 
-void Logger::writeLogToFile(const char *logContent, LogLevel level, const char *filename, int line) {
-    if (logContent == NULL)
-        throw Exception(ENULLPOINTER, "Object NullPointer Exception");
-
-    MutexLockGuard(this->wMutex);
+void Logger::writeLogToFile(std::string &logContent, LogLevel level, const char *filename, int line) {
+    MutexLockGuard mlg(this->wMutex);
 
     int ret = 0;
     char logMsg[LOG_LINE_SIZE];
     TimeStamp ts = TimeStamp::now();
 
     snprintf(logMsg, LOG_LINE_SIZE, "%s\t%s\t%s:%d\t\r\n%s\r\n",
-             ts.toFormattedString(false), LogLevelName[level], filename, line, logContent);
+             ts.toFormattedString(true).c_str(), LogLevelName[level], filename, line, logContent.c_str());
 
     int totalLogLen = strlen(logMsg);
 
@@ -99,7 +100,7 @@ void Logger::writeLogToFile(const char *logContent, LogLevel level, const char *
             usedBytesForBuffer = 0;
         }
 
-        memcpy(this->logBuffer, logMsg, totalLogLen);
+        memcpy(this->logBuffer + usedBytesForBuffer, logMsg, totalLogLen);
         usedBytesForBuffer += totalLogLen;
     }
 }
@@ -111,7 +112,7 @@ void Logger::flushLog() {
 }
 
 void Logger::flushLogToFile() {
-    MutexLockGuard(this->wMutex);
+    MutexLockGuard mlg(this->wMutex);
 
     if (usedBytesForBuffer == 0)
         return;

@@ -1,6 +1,8 @@
-//
-// Created by zjl on 10/28/16.
-//
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 10/28/16
+**/
 
 #include "Mutex.h"
 #include "Exception.h"

@@ -19,8 +19,8 @@ public:
 
     }
 
-    const char* toString() const;
-    const char* toFormattedString(bool showMicroSeconds = true) const;
+    std::string toString() const;
+    std::string toFormattedString(bool showMicroSeconds = true) const;
 
     bool isValid() const {
         return microSecondsSinceEpoch > 0;

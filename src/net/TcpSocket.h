@@ -1,6 +1,8 @@
-//
-// Created by zjl on 10/27/16.
-//
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 10/28/16
+**/
 
 #ifndef TRAFFICER_TCPSOCKET_H
 #define TRAFFICER_TCPSOCKET_H
@@ -26,7 +28,7 @@ public:
     void listenServer(InetAddress &localAddr);
     TcpSocket* acceptClient();
 
-private:
+protected:
     bool bLocalSet;
     bool bIsConnected;
 

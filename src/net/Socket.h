@@ -1,6 +1,8 @@
-//
-// Created by zjl on 10/27/16.
-//
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 10/28/16
+**/
 
 #ifndef TRAFFICER_SOCKET_H
 #define TRAFFICER_SOCKET_H
@@ -42,7 +44,7 @@ public:
         this->sockfd = newFd;
     }
 
-private:
+protected:
     int sockfd;  // socket descriptor
 
     int proto;   // protocol: tcp or udp

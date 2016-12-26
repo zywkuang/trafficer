@@ -1,13 +1,16 @@
-//
-// Created by zjl on 10/26/16.
-//
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 10/28/16
+**/
 
 #include <arpa/inet.h>
-#include <assert.h>
 #include <netdb.h>
-#include <stdio.h>
+#include <cassert>
 #include <cstring>
+#include <cstdio>
 #include "InetAddress.h"
+#include "../base/Logger.h"
 
 InetAddress::InetAddress(uint16_t portNumber, bool bIpv6) {
     if (bIpv6) {
@@ -23,22 +26,22 @@ InetAddress::InetAddress(uint16_t portNumber, bool bIpv6) {
     }
 }
 
-InetAddress::InetAddress(const char *ipAddress, uint16_t portNumber, bool bIpv6) {
+InetAddress::InetAddress(std::string ipAddress, uint16_t portNumber, bool bIpv6) {
     if (bIpv6) {
         memset(&this->sa6Struct, 0, sizeof(struct sockaddr_in6));
         this->sa6Struct.sin6_family = AF_INET6;
         this->sa6Struct.sin6_port = htons(portNumber);
 
-        if (inet_pton(AF_INET6, ipAddress, &this->sa6Struct.sin6_addr) <= 0) {
-            printf("LOG ERROR: inet_pton ipv6 address.\n");
+        if (inet_pton(AF_INET6, ipAddress.c_str(), &this->sa6Struct.sin6_addr) <= 0) {
+            LOG_ERROR("Error for inet_pton ipv6 address.\n");
         }
     } else {
         memset(&this->sa4Struct, 0, sizeof(struct sockaddr_in));
         this->sa4Struct.sin_family = AF_INET;
         this->sa4Struct.sin_port = htons(portNumber);
 
-        if (inet_pton(AF_INET, ipAddress, &this->sa4Struct.sin_addr) <= 0) {
-            printf("LOG ERROR: inet_pton ipv4 address.\n");
+        if (inet_pton(AF_INET, ipAddress.c_str(), &this->sa4Struct.sin_addr) <= 0) {
+            LOG_ERROR("Error for inet_pton ipv4 address.\n");
         }
     }
 }
@@ -78,7 +81,7 @@ uint16_t InetAddress::portNetEndian() const {
     return this->sa4Struct.sin_port;
 }
 
-const char* InetAddress::toIpString() const {
+std::string InetAddress::toIpString() const {
     char buf[64] = "";
     size_t size = sizeof(buf);
     if (this->getAddressFamily() == AF_INET) {
@@ -92,7 +95,7 @@ const char* InetAddress::toIpString() const {
     return buf;
 }
 
-const char* InetAddress::toIpPortString() const {
+std::string InetAddress::toIpPortString() const {
     char buf[64] = "";
     size_t size = sizeof(buf);
     if (this->getAddressFamily() == AF_INET) {
@@ -113,7 +116,7 @@ const char* InetAddress::toIpPortString() const {
 
 static __thread char resolveBuffer[64 * 1024];
 
-bool InetAddress::resolveHostName(const char *hostname, InetAddress *result) {
+bool InetAddress::resolveHostName(std::string hostname, InetAddress *result) {
     assert(result != NULL);
 
     struct hostent hostent;
@@ -121,14 +124,15 @@ bool InetAddress::resolveHostName(const char *hostname, InetAddress *result) {
     int herrno = 0;
     memset(&hostent, 0, sizeof(struct hostent));
 
-    int ret = gethostbyname_r(hostname, &hostent, resolveBuffer, sizeof(resolveBuffer), &pHostent, &herrno);
+    int ret = gethostbyname_r(hostname.c_str(), &hostent, resolveBuffer, sizeof(resolveBuffer), &pHostent, &herrno);
     if (ret == 0 && pHostent != NULL) {
         assert(pHostent->h_addrtype == AF_INET && pHostent->h_length == sizeof(uint32_t));
         result->sa4Struct.sin_addr = *reinterpret_cast<struct in_addr*>(pHostent->h_addr_list[0]);
         return true;
     }
 
-    if (ret)
-        printf("LOG ERROR: Cannot resolve hostname %s.\n", hostname);
+    if (ret) {
+        LOG_ERROR("Cannot resolve hostname.\n");
+    }
     return false;
 }

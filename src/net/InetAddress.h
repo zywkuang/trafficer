@@ -1,18 +1,21 @@
-//
-// Created by zjl on 10/26/16.
-//
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 10/28/16
+**/
 
 #ifndef TRAFFICER_INETADDRESS_H
 #define TRAFFICER_INETADDRESS_H
 
 #include <netinet/in.h>
 #include <netinet/tcp.h>
+#include <string>
 #include "../base/Copyable.h"
 
 class InetAddress : public Copyable {
 public:
     explicit InetAddress(uint16_t portNumber = 1024, bool bIpv6 = false);
-    explicit InetAddress(const char *ipAddress, uint16_t portNumber = 1024, bool bIpv6 = false);
+    explicit InetAddress(std::string ipAddress, uint16_t portNumber = 1024, bool bIpv6 = false);
 
     explicit InetAddress(const struct sockaddr_in  &sockaddr4);
     explicit InetAddress(const struct sockaddr_in6 &sockaddr6);
@@ -26,11 +29,11 @@ public:
     uint32_t ipNetEndian() const;
     uint16_t portNetEndian() const;
 
-    const char* toIpString() const;
-    const char* toIpPortString() const;
+    std::string toIpString() const;
+    std::string toIpPortString() const;
 
     // Resolve hostname to IP address, not changing port or sin_family
-    static bool resolveHostName(const char *hostname, InetAddress *result);
+    static bool resolveHostName(std::string hostname, InetAddress *result);
 
 private:
     union {

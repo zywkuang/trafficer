@@ -1,11 +1,14 @@
-//
-// Created by zjl on 10/28/16.
-//
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 10/28/16
+**/
 
 #ifndef TRAFFICER_THREAD_H
 #define TRAFFICER_THREAD_H
 
 #include <pthread.h>
+#include <string>
 #include "NonCopyable.h"
 
 class Thread : public NonCopyable{
@@ -16,8 +19,8 @@ public:
     pthread_t getSelfId();
     pthread_t getThreadId();
 
-    const char* getThreadName();
-    void setThreadName(const char *name);
+    std::string getThreadName();
+    void setThreadName(std::string name);
 
     bool started();
     bool detached();
@@ -30,7 +33,7 @@ public:
 
 private:
     pthread_t thread_id;
-    const char* thread_name;
+    std::string thread_name;
 
     bool isStarted;
     bool isDetached;

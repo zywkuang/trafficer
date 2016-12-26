@@ -1,10 +1,13 @@
-//
-// Created by zjl on 12/23/16.
-//
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 12/23/16
+**/
 
 #ifndef TRAFFICER_LOGGER_H
 #define TRAFFICER_LOGGER_H
 
+#include <string>
 #include "NonCopyable.h"
 #include "Mutex.h"
 
@@ -18,7 +21,7 @@ class Logger : public NonCopyable {
 public:
     static const int NUM_LOG_LEVELS = 5;
     enum LogLevel {
-        DEBUG,
+        DEBUG = 0,
         INFO,
         WARN,
         ERROR,
@@ -26,8 +29,8 @@ public:
     };
 
     static Logger *getLoggerInstance();
-    static void writeLog(const char *logContent, LogLevel level, const char *filename, int line);
-    void writeLogToFile(const char *logContent, LogLevel level, const char *filename, int line);
+    static void writeLog(std::string logContent, LogLevel level, const char *filename, int line);
+    void writeLogToFile(std::string &logContent, LogLevel level, const char *filename, int line);
 
     static void flushLog();
     void flushLogToFile();

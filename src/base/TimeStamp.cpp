@@ -6,7 +6,7 @@
 #include <sys/time.h>
 #include "TimeStamp.h"
 
-const char* TimeStamp::toString() const {
+std::string TimeStamp::toString() const {
     char buf[32] = {0};
     int64_t seconds = microSecondsSinceEpoch / kMicroSecondsPerSecond;
     int64_t microSeconds = microSecondsSinceEpoch % kMicroSecondsPerSecond;
@@ -15,7 +15,7 @@ const char* TimeStamp::toString() const {
     return buf;
 }
 
-const char* TimeStamp::toFormattedString(bool showMicroSeconds) const {
+std::string TimeStamp::toFormattedString(bool showMicroSeconds) const {
     char buf[32] = {0};
     time_t seconds = static_cast<time_t>(microSecondsSinceEpoch / kMicroSecondsPerSecond);
 

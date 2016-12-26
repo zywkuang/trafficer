@@ -1,12 +1,16 @@
-//
-// Created by zjl on 10/27/16.
-//
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 10/28/16
+**/
 
 #include <fcntl.h>
 #include <unistd.h>
 #include <cstring>
+#include <cerrno>
 #include "Socket.h"
 #include "../base/Exception.h"
+#include "../base/Logger.h"
 
 Socket::Socket(bool bipv6, int proto)
     : bipv6(bipv6), proto(proto) {
@@ -77,7 +81,6 @@ int Socket::socketAccept(InetAddress &peerAddr) {
 
     int connFd = accept(this->sockfd, static_cast<sockaddr *>(static_cast<void *>(&addr)), &addrlen);
     if (connFd < 0) {
-        printf("LOG ERROR: Cannot accept new connection.\n");
         throw Exception(ESOCKACCEPT, "Accept Failure Exception");
     }
 
@@ -94,7 +97,6 @@ ssize_t Socket::socketSend(const char *payload, size_t length, int flag) {
 
     bytesSent = send(this->sockfd, payload, length, flag);
     if (bytesSent < 0) {
-        printf("LOG ERROR: Cannot send data to peer host.\n");
         switch (errno) {
             case EAGAIN:
                 throw Exception(EAGAIN, "Would Block Exception");
@@ -111,10 +113,8 @@ ssize_t Socket::socketRecv(char *buffer, size_t length, int flag) {
 
     bytesRcvd = recv(this->sockfd, buffer, length, flag);
     if (bytesRcvd < 0) {
-        printf("LOG ERROR: Cannot recv data from peer host.\n");
         throw Exception(ESOCKREAD, "Read Data Exception");
     } else if (bytesRcvd == 0) {
-        printf("LOG ERROR: Peer host disconnected.\n");
         throw Exception(ENOTCONN, "Not Connected Exception");
     }
 
@@ -127,7 +127,6 @@ ssize_t Socket::socketSendTo(const char *payload, size_t length, InetAddress &re
 
     bytesSent = sendto(this->sockfd, payload, length, flag, remoteAddr.getSockAddr(), addrlen);
     if (bytesSent < 0) {
-        printf("LOG ERROR: Cannot send data to peer host.\n");
         throw Exception(ESOCKWRITE, "Send Data Exception");
     }
 
@@ -143,7 +142,6 @@ ssize_t Socket::socketRecvFrom(char *buffer, size_t length, InetAddress &peerAdd
 
     bytesRcvd = recvfrom(this->sockfd, buffer, length, flag, static_cast<struct sockaddr *>(static_cast<void *>(&peeraddr)), &addrlen);
     if (bytesRcvd < 0) {
-        printf("LOG ERROR: Cannot recv data from peer host.\n");
         throw Exception(ESOCKREAD, "Read Data Exception");
     }
 
@@ -157,7 +155,7 @@ void Socket::setReuseAddr(bool on) {
 
     int ret = setsockopt(this->sockfd, SOL_SOCKET, SO_REUSEADDR, &optval, static_cast<socklen_t>(sizeof(optval)));
     if (ret < 0) {
-        printf("LOG ERROR: Cannot set socket option SO_REUSEADDR.\n");
+        LOG_ERROR("Cannot set socket option SO_REUSEADDR.\n");
     }
 }
 
@@ -168,11 +166,11 @@ void Socket::setReusePort(bool on) {
     int ret = setsockopt(this->sockfd, SOL_SOCKET, SO_REUSEPORT, &optval, static_cast<socklen_t>(sizeof(optval)));
 
     if (ret < 0 && on) {
-        printf("LOG ERROR: Cannot set socket option SO_REUSEPORT.\n");
+        LOG_ERROR("Cannot set socket option SO_REUSEPORT.\n");
     }
 #else
     if (on) {
-        printf("LOG ERROR: Do not support set socket option SO_REUSEPORT.\n");
+       LOG_ERROR("Don't support set socket option SO_REUSEPORT.\n");
     }
 #endif
 }
@@ -182,7 +180,7 @@ void Socket::setTcpNoDelay(bool on) {
 
     int ret = setsockopt(this->sockfd, IPPROTO_TCP, TCP_NODELAY, &optval, static_cast<socklen_t>(sizeof(optval)));
     if (ret < 0) {
-        printf("LOG ERROR: Cannot set socket option TCP_NODELAY.\n");
+        LOG_ERROR("Cannot set socket option TCP_NODELAY.\n");
     }
 }
 
@@ -191,7 +189,7 @@ void Socket::setKeepAlive(bool on) {
 
     int ret = setsockopt(this->sockfd, SOL_SOCKET, SO_KEEPALIVE, &optval, static_cast<socklen_t>(sizeof(optval)));
     if (ret < 0) {
-        printf("LOG ERROR: Cannot set socket option SO_KEEPALIVE.\n");
+        LOG_ERROR("Cannot set socket option SO_KEEPALIVE.\n");
     }
 }
 
@@ -202,7 +200,7 @@ bool Socket::resolveLocalAddr(InetAddress &localAddr) {
 
     int ret = getsockname(this->sockfd, static_cast<sockaddr *>(static_cast<void *>(&localaddr)), &addrlen);
     if (ret < 0) {
-        printf("LOG ERROR: Cannot get local hostname and information.\n");
+        LOG_ERROR("Cannot get local hostname and information.\n");
         return false;
     }
 
@@ -217,7 +215,7 @@ bool Socket::resolvePeerAddr(InetAddress &peerAddr) {
 
     int ret = getpeername(this->sockfd, static_cast<sockaddr *>(static_cast<void *>(&peeraddr)), &addrlen);
     if (ret < 0) {
-        printf("LOG ERROR: Cannot get peer hostname and information.\n");
+        LOG_ERROR("Cannot get peer hostname and information.\n");
         return false;
     }
 

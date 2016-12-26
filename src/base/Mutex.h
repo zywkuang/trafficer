@@ -1,10 +1,11 @@
-//
-// Created by zjl on 10/28/16.
-//
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 10/28/16
+**/
 
 #ifndef TRAFFICER_MUTEXLOCK_H
 #define TRAFFICER_MUTEXLOCK_H
-
 
 #include <pthread.h>
 #include "NonCopyable.h"

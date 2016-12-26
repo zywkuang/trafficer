@@ -1,11 +1,15 @@
-//
-// Created by zjl on 10/28/16.
-//
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 10/28/16
+**/
 
 #include "MessageQueue.h"
-#include "Exception.h"
+#include "../base/Exception.h"
+#include "../Envcfg.h"
+#include "../base/Logger.h"
 
-MessageQueue::MessageQueue() {
+MessageQueue::MessageQueue() : mqSize(0) {
 
 }
 
@@ -34,9 +38,13 @@ int MessageQueue::offerMessage(Message *msg) {
         return -1;
 
     try {
-        this->push(msg);
-        this->event.set();
-
+        if (mqSize >= MESSAGE_QUEUE_CAPACITY) {
+            LOG_ERROR("New message is dropped for full message queue.");
+            delete msg;
+        } else {
+            this->push(msg);
+            this->event.set();
+        }
     } catch(Exception e) {
         throw Exception(EMSGQUEUEPUSH, "MessageQueue Push Exception");
     }
@@ -50,7 +58,6 @@ Message* MessageQueue::pollMessage() {
     try {
         this->event.wait();
         msg = this->pop();
-
     } catch (Exception e) {
         throw Exception(EMSGQUEUEPOP, "MessageQueue Pop Exception");
     }

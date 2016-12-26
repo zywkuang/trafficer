@@ -1,14 +1,16 @@
-//
-// Created by zjl on 10/28/16.
-//
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 10/28/16
+**/
 
 #ifndef TRAFFICER_MESSAGEQUEUE_H
 #define TRAFFICER_MESSAGEQUEUE_H
 
 #include <queue>
 #include "Message.h"
-#include "Mutex.h"
-#include "Event.h"
+#include "../base/Mutex.h"
+#include "../base/Event.h"
 
 class MessageQueue : public NonCopyable {
 public:
@@ -22,6 +24,7 @@ private:
     void push(Message *msg);
     Message *pop();
 
+    unsigned int mqSize;
     std::queue<Message *> messageQueue;
     MutexLock mutex;
     Event event;

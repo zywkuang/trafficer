@@ -1,6 +1,8 @@
-//
-// Created by zjl on 10/28/16.
-//
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 10/28/16
+**/
 
 #include "Thread.h"
 #include "Exception.h"
@@ -26,11 +28,11 @@ pthread_t Thread::getThreadId() {
     return this->thread_id;
 }
 
-const char* Thread::getThreadName() {
+std::string Thread::getThreadName() {
     return this->thread_name;
 }
 
-void Thread::setThreadName(const char *name) {
+void Thread::setThreadName(std::string name) {
     this->thread_name = name;
 }
 

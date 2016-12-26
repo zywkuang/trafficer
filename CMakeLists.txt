@@ -23,9 +23,9 @@ set(SOURCE_FILES
         src/base/NonCopyable.h
         src/base/Event.cpp
         src/base/Event.h
-        src/base/Message.cpp
-        src/base/Message.h
-        src/base/MessageQueue.cpp
-        src/base/MessageQueue.h src/net/UdpSocket.cpp src/net/UdpSocket.h src/net/UdpConnectedSocket.cpp src/net/UdpConnectedSocket.h src/base/Logger.h src/base/Logger.cpp src/Envcfg.h src/base/TimeStamp.cpp src/base/TimeStamp.h)
+        src/msg/Message.cpp
+        src/msg/Message.h
+        src/msg/MessageQueue.cpp
+        src/msg/MessageQueue.h src/net/UdpSocket.cpp src/net/UdpSocket.h src/base/Logger.h src/base/Logger.cpp src/Envcfg.h src/base/TimeStamp.cpp src/base/TimeStamp.h src/msg/AgentRegistrationMessage.cpp src/msg/AgentRegistrationMessage.h src/msg/AgentHeartBeatMessage.cpp src/msg/AgentHeartBeatMessage.h src/msg/AgentTrafficReportMessage.cpp src/msg/AgentTrafficReportMessage.h src/msg/AgentCommandResponseMessage.cpp src/msg/AgentCommandResponseMessage.h src/msg/MccCommandRequestMessage.cpp src/msg/MccCommandRequestMessage.h src/model/AbstractTrafficModel.cpp src/model/AbstractTrafficModel.h src/base/UtilSet.cpp src/base/UtilSet.h)
 add_executable(trafficer ${SOURCE_FILES})
 target_link_libraries(trafficer pthread)

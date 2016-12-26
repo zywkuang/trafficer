@@ -1,11 +1,13 @@
-//
-// Created by zjl on 10/27/16.
-//
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 10/28/16
+**/
 
 #ifndef TRAFFICER_JSON_H
 #define TRAFFICER_JSON_H
 
-#include <sys/types.h>
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C"
