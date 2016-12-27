@@ -17,11 +17,11 @@ public:
     void setTrafficInstanceId(uint64_t tiid);
     uint64_t getTrafficInstanceId() const;
 
-    void setRole(ROLE r);
-    ROLE getRole() const;
+    void setRole(RoleType r);
+    RoleType getRole() const;
 
-    void setProtocol(PROTOCOL p);
-    PROTOCOL getProtocol() const;
+    void setProtocol(ProtocolType p);
+    ProtocolType getProtocol() const;
 
     void setBeginTimeStamp(std::string &beginTimeStamp);
     const std::string &getBeginTimeStamp() const;
@@ -55,8 +55,8 @@ public:
 
 private:
     uint64_t trafficInstanceId;
-    ROLE role;
-    PROTOCOL proto;
+    RoleType role;
+    ProtocolType proto;
     std::string beginTimeStamp;
     std::string endTimeStamp;
     uint64_t bytesTransferred;

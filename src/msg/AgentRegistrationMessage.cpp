@@ -26,7 +26,7 @@ void AgentRegistrationMessage::setHostName(std::string &hostname) {
     this->hostName = hostname;
 }
 
-const std::string AgentRegistrationMessage::getHostName() const {
+const std::string &AgentRegistrationMessage::getHostName() const {
     return this->hostName;
 }
 
@@ -34,7 +34,7 @@ void AgentRegistrationMessage::setHostAddress(std::string &hostaddress) {
     this->hostAddress = hostaddress;
 }
 
-const std::string AgentRegistrationMessage::getHostAddress() const {
+const std::string &AgentRegistrationMessage::getHostAddress() const {
     return this->hostAddress;
 }
 
@@ -42,7 +42,7 @@ void AgentRegistrationMessage::setHostSysinfo(std::string &hostsysinfo) {
     this->hostSysinfo = hostsysinfo;
 }
 
-const std::string AgentRegistrationMessage::getHostSysinfo() const {
+const std::string &AgentRegistrationMessage::getHostSysinfo() const {
     return this->hostSysinfo;
 }
 

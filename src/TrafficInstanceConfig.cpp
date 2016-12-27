@@ -8,7 +8,17 @@
 
 TrafficInstanceConfig::TrafficInstanceConfig()
         : senderHostAddress("10.0.0.1"),
-          recverHostAddress("10.0.0.2"){
+          recverHostAddress("10.0.0.2"),
+          serverHostPort(TRAFFICER_TCP_SERVER_PORT),
+          role(SENDER),
+          proto(TCP),
+          workDuration(-1),
+          reportInterval(2000),
+          updateIntervel(500),
+          sendBufSize(TRAFFIC_TCP_SENDBUF_SIZE),
+          tcpNoDelay(false),
+          tcpMss(-1),
+          trafficModel(STABLE_TRAFFIC) {
 
 }
 
@@ -24,14 +34,6 @@ const std::string &TrafficInstanceConfig::getSenderHostAddress() const {
     return this->senderHostAddress;
 }
 
-void TrafficInstanceConfig::setSenderHostPort(int senderHostPort) {
-    this->senderHostPort = senderHostPort;
-}
-
-int TrafficInstanceConfig::getSenderHostPort() const {
-    return this->senderHostPort;
-}
-
 void TrafficInstanceConfig::setRecverHostAddress(const std::string &recverHostAddress) {
     this->recverHostAddress = recverHostAddress;
 }
@@ -40,27 +42,27 @@ const std::string &TrafficInstanceConfig::getRecverHostAddress() const {
     return this->recverHostAddress;
 }
 
-void TrafficInstanceConfig::setRecverHostPort(int recverHostPort) {
-    this->recverHostPort = recverHostPort;
+void TrafficInstanceConfig::setServerHostPort(int serverHostPort) {
+    this->serverHostPort = serverHostPort;
 }
 
-int TrafficInstanceConfig::getRecverHostPort() const {
-    return this->recverHostPort;
+int TrafficInstanceConfig::getServerHostPort() const {
+    return this->serverHostPort;
 }
 
-void TrafficInstanceConfig::setProto(PROTOCOL proto) {
+void TrafficInstanceConfig::setProtocol(ProtocolType proto) {
     this->proto = proto;
 }
 
-PROTOCOL TrafficInstanceConfig::getProto() const {
+ProtocolType TrafficInstanceConfig::getProtocol() const {
     return this->proto;
 }
 
-void TrafficInstanceConfig::setRole(ROLE role) {
+void TrafficInstanceConfig::setRole(RoleType role) {
     this->role = role;
 }
 
-ROLE TrafficInstanceConfig::getRole() const {
+RoleType TrafficInstanceConfig::getRole() const {
     return this->role;
 }
 
@@ -80,6 +82,22 @@ int TrafficInstanceConfig::getReportInterval() const {
     return this->reportInterval;
 }
 
+void TrafficInstanceConfig::setSendBufSize(int sendBufSize) {
+    this->sendBufSize = sendBufSize;
+}
+
+int TrafficInstanceConfig::getSendBufSize() const {
+    return this->sendBufSize;
+}
+
+void TrafficInstanceConfig::setUpdateIntervel(int updateIntervel) {
+    this->updateIntervel = updateIntervel;
+}
+
+int TrafficInstanceConfig::getUpdateIntervel() const {
+    return this->updateIntervel;
+}
+
 void TrafficInstanceConfig::setTcpNoDelay(bool tcpNoDelay) {
     this->tcpNoDelay = tcpNoDelay;
 }
@@ -96,11 +114,11 @@ int TrafficInstanceConfig::getTcpMss() const {
     return this->tcpMss;
 }
 
-void TrafficInstanceConfig::setTrafficModel(TRAFFIC_MODEL trafficModel) {
+void TrafficInstanceConfig::setTrafficModel(TrafficModelType trafficModel) {
     this->trafficModel = trafficModel;
 }
 
-TRAFFIC_MODEL TrafficInstanceConfig::getTrafficModel() const {
+TrafficModelType TrafficInstanceConfig::getTrafficModel() const {
     return this->trafficModel;
 }
 
@@ -143,3 +161,5 @@ void TrafficInstanceConfig::setPoissonBurstTrafficBandwidth(uint64_t poissonBurs
 uint64_t TrafficInstanceConfig::getPoissonBurstTrafficBandwidth() const {
     return this->poissonBurstTrafficBandwidth;
 }
+
+

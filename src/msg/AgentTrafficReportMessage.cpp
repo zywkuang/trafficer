@@ -27,19 +27,19 @@ uint64_t AgentTrafficReportMessage::getTrafficInstanceId() const {
     return this->trafficInstanceId;
 }
 
-void AgentTrafficReportMessage::setRole(ROLE r) {
+void AgentTrafficReportMessage::setRole(RoleType r) {
     this->role = r;
 }
 
-ROLE AgentTrafficReportMessage::getRole() const {
+RoleType AgentTrafficReportMessage::getRole() const {
     return this->role;
 }
 
-void AgentTrafficReportMessage::setProtocol(PROTOCOL p) {
+void AgentTrafficReportMessage::setProtocol(ProtocolType p) {
     this->proto = p;
 }
 
-PROTOCOL AgentTrafficReportMessage::getProtocol() const {
+ProtocolType AgentTrafficReportMessage::getProtocol() const {
     return this->proto;
 }
 
@@ -130,10 +130,10 @@ void AgentTrafficReportMessage::readFromJsonString(std::string &jsonstr) {
         this->trafficInstanceId = static_cast<uint64_t>(pj->valueInt);
 
     if ((pj = cJsonGetObjectItem(json, "Role")) != NULL)
-        this->role = static_cast<ROLE>(pj->valueInt);
+        this->role = static_cast<RoleType>(pj->valueInt);
 
     if ((pj = cJsonGetObjectItem(json, "Protocol")) != NULL)
-        this->proto = static_cast<PROTOCOL>(pj->valueInt);
+        this->proto = static_cast<ProtocolType>(pj->valueInt);
 
     if ((pj = cJsonGetObjectItem(json, "BeginTimeStamp")) != NULL)
         this->beginTimeStamp = pj->valueString;

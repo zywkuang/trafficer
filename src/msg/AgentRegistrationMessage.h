@@ -19,13 +19,13 @@ public:
 
     // Optimize: change std::string to const std::string&
     void setHostName(std::string &hostname);
-    const std::string getHostName() const;
+    const std::string &getHostName() const;
 
     void setHostAddress(std::string &hostaddress);
-    const std::string getHostAddress() const;
+    const std::string &getHostAddress() const;
 
     void setHostSysinfo(std::string &hostsysinfo);
-    const std::string getHostSysinfo() const;
+    const std::string &getHostSysinfo() const;
 
     void setTcpTrafficerPort(int port);
     int getTcpTrafficerPort() const;

@@ -15,11 +15,11 @@
 class Message : public NonCopyable{
 public:
     Message();
-    Message(MESSAGE_TYPE type);
+    Message(MessageType type);
     virtual ~Message();
 
     const uint64_t getMessageId() const;
-    const MESSAGE_TYPE getMessageType() const;
+    const MessageType getMessageType() const;
     const std::string getMessageTimeStamp() const;
 
     virtual void readFromJsonString(std::string &jsonstr) = 0;
@@ -27,7 +27,7 @@ public:
 
 protected:
     uint64_t msgId;
-    MESSAGE_TYPE msgType;
+    MessageType msgType;
     std::string msgTimeStamp;
 };
 

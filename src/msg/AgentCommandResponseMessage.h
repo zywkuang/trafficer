@@ -8,8 +8,34 @@
 #define TRAFFICER_AGENTCOMMANDACKMESSAGE_H
 
 
-class AgentCommandResponseMessage {
+#include "Message.h"
 
+class AgentCommandResponseMessage : public Message {
+public:
+    AgentCommandResponseMessage();
+    ~AgentCommandResponseMessage();
+
+    void setTrafficInstanceId(uint64_t trafficInstanceId);
+    uint64_t getTrafficInstanceId() const;
+
+    void setCmdType(CommandType cmdType);
+    CommandType getCmdType() const;
+
+    void setOpSuccess(bool opSuccess);
+    bool isOpSuccess() const;
+
+    void setOpResult(const std::string &opResult);
+    const std::string &getOpResult() const;
+
+    virtual void readFromJsonString(std::string &jsonstr);
+    virtual std::string writeToJsonString() const;
+
+private:
+    uint64_t trafficInstanceId;
+    CommandType cmdType;
+
+    bool opSuccess;
+    std::string opResult;
 };
 
 

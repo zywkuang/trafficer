@@ -11,11 +11,11 @@
 Message::Message()
     : msgTimeStamp(TimeStamp::now().toFormattedString(false)),
       msgId(UtilSet::generateUUID()),
-      msgType(UNKNOWN) {
+      msgType(UNKNOWN_MESSAGE_TYPE) {
 
 }
 
-Message::Message(MESSAGE_TYPE type)
+Message::Message(MessageType type)
     : msgTimeStamp(TimeStamp::now().toFormattedString(false)),
       msgId(UtilSet::generateUUID()),
       msgType(type){
@@ -30,7 +30,7 @@ const uint64_t Message::getMessageId() const {
     return this->msgId;
 }
 
-const MESSAGE_TYPE Message::getMessageType() const {
+const MessageType Message::getMessageType() const {
     return this->msgType;
 }
 

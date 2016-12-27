@@ -19,20 +19,17 @@ public:
     void setSenderHostAddress(const std::string &senderHostAddress);
     const std::string &getSenderHostAddress() const;
 
-    void setSenderHostPort(int senderHostPort);
-    int getSenderHostPort() const;
-
     void setRecverHostAddress(const std::string &recverHostAddress);
     const std::string &getRecverHostAddress() const;
 
-    void setRecverHostPort(int recverHostPort);
-    int getRecverHostPort() const;
+    void setServerHostPort(int serverHostPort);
+    int getServerHostPort() const;
 
-    void setProto(PROTOCOL proto);
-    PROTOCOL getProto() const;
+    void setProtocol(ProtocolType proto);
+    ProtocolType getProtocol() const;
 
-    void setRole(ROLE role);
-    ROLE getRole() const;
+    void setRole(RoleType role);
+    RoleType getRole() const;
 
     void setWorkDuration(int workDuration);
     int getWorkDuration() const;
@@ -40,14 +37,20 @@ public:
     void setReportInterval(int reportInterval);
     int getReportInterval() const;
 
+    void setSendBufSize(int sendBufSize);
+    int getSendBufSize() const;
+
+    void setUpdateIntervel(int updateIntervel);
+    int getUpdateIntervel() const;
+
     void setTcpNoDelay(bool tcpNoDelay);
     bool isTcpNoDelay() const;
 
     void setTcpMss(int tcpMss);
     int getTcpMss() const;
 
-    void setTrafficModel(TRAFFIC_MODEL trafficModel);
-    TRAFFIC_MODEL getTrafficModel() const;
+    void setTrafficModel(TrafficModelType trafficModel);
+    TrafficModelType getTrafficModel() const;
 
     void setStableTrafficBandwidth(uint64_t stableTrafficBandwidth);
     uint64_t getStableTrafficBandwidth() const;
@@ -66,23 +69,26 @@ public:
 
 private:
     std::string senderHostAddress;
-    int senderHostPort;
-
     std::string recverHostAddress;
-    int recverHostPort;
 
-    PROTOCOL proto;
-    ROLE  role;
-    // -1 forever, non-negative for specific duration
-    int workDuration;
+    int serverHostPort;
+
+    RoleType  role;
+    ProtocolType proto;
+
+    // Time unit: ms
+    int workDuration; // -1 for forever, non-negative for specific duration
     int reportInterval;
+    int updateIntervel;  // Traffic sending-rate update interval
+
+    int sendBufSize; // Sender buffer size
 
     // Socket Flags: TCP_NODELAY && TCP_MAXSEG
-    bool tcpNoDelay;
-    int tcpMss;
+    bool tcpNoDelay; // false not set, true set
+    int tcpMss;  // -1 for default
 
     // Bandwidth Unit = BytePerSecond(BPS)
-    TRAFFIC_MODEL trafficModel;
+    TrafficModelType trafficModel;
 
     // Stable Traffic Model
     uint64_t stableTrafficBandwidth;
