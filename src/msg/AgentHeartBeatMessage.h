@@ -15,16 +15,16 @@ public:
     AgentHeartBeatMessage();
     ~AgentHeartBeatMessage();
 
-    void setHostName(std::string hostname);
-    std::string getHostName() const;
+    void setHostName(std::string &hostname);
+    const std::string &getHostName() const;
 
-    void setHostAddress(std::string hostaddress);
-    std::string getHostAddress() const;
+    void setHostAddress(std::string &hostaddress);
+    const std::string &getHostAddress() const;
 
-    void setHeartBeatContent(std::string hbcontent);
-    std::string getHeartBeatContent() const;
+    void setHeartBeatContent(std::string &hbcontent);
+    const std::string &getHeartBeatContent() const;
 
-    virtual void readFromJsonString(std::string jsonstr);
+    virtual void readFromJsonString(std::string &jsonstr);
     virtual std::string writeToJsonString() const;
 
 private:

@@ -26,6 +26,29 @@ set(SOURCE_FILES
         src/msg/Message.cpp
         src/msg/Message.h
         src/msg/MessageQueue.cpp
-        src/msg/MessageQueue.h src/net/UdpSocket.cpp src/net/UdpSocket.h src/base/Logger.h src/base/Logger.cpp src/Trafficer.h src/base/TimeStamp.cpp src/base/TimeStamp.h src/msg/AgentRegistrationMessage.cpp src/msg/AgentRegistrationMessage.h src/msg/AgentHeartBeatMessage.cpp src/msg/AgentHeartBeatMessage.h src/msg/AgentTrafficReportMessage.cpp src/msg/AgentTrafficReportMessage.h src/msg/AgentCommandResponseMessage.cpp src/msg/AgentCommandResponseMessage.h src/msg/MccCommandRequestMessage.cpp src/msg/MccCommandRequestMessage.h src/model/AbstractTrafficModel.cpp src/model/AbstractTrafficModel.h src/base/UtilSet.cpp src/base/UtilSet.h src/model/TrafficConfig.cpp src/model/TrafficConfig.h)
+        src/msg/MessageQueue.h
+        src/net/UdpSocket.cpp
+        src/net/UdpSocket.h
+        src/base/Logger.h
+        src/base/Logger.cpp
+        src/Trafficer.h
+        src/base/TimeStamp.cpp
+        src/base/TimeStamp.h
+        src/msg/AgentRegistrationMessage.cpp
+        src/msg/AgentRegistrationMessage.h
+        src/msg/AgentHeartBeatMessage.cpp
+        src/msg/AgentHeartBeatMessage.h
+        src/msg/AgentTrafficReportMessage.cpp
+        src/msg/AgentTrafficReportMessage.h
+        src/msg/AgentCommandResponseMessage.cpp
+        src/msg/AgentCommandResponseMessage.h
+        src/msg/MccCommandRequestMessage.cpp
+        src/msg/MccCommandRequestMessage.h
+        src/model/AbstractTrafficModel.cpp
+        src/model/AbstractTrafficModel.h
+        src/base/UtilSet.cpp src/base/UtilSet.h
+        src/TrafficInstanceConfig.cpp
+        src/TrafficInstanceConfig.h
+        )
 add_executable(trafficer ${SOURCE_FILES})
 target_link_libraries(trafficer pthread)

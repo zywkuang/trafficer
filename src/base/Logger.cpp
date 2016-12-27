@@ -64,14 +64,14 @@ void Logger::writeLog(std::string logContent, LogLevel level, const char *filena
 void Logger::writeLogToFile(std::string &logContent, LogLevel level, const char *filename, int line) {
     MutexLockGuard mlg(this->wMutex);
 
-    int ret = 0;
+    ssize_t ret = 0;
     char logMsg[LOG_LINE_SIZE];
     TimeStamp ts = TimeStamp::now();
 
     snprintf(logMsg, LOG_LINE_SIZE, "%s\t%s\t%s:%d\t\r\n%s\r\n",
              ts.toFormattedString(true).c_str(), LogLevelName[level], filename, line, logContent.c_str());
 
-    int totalLogLen = strlen(logMsg);
+    size_t totalLogLen = strlen(logMsg);
 
     if (totalLogLen > LOG_BUFFER_SIZE) {
         // Flush current log buffer
@@ -117,7 +117,7 @@ void Logger::flushLogToFile() {
     if (usedBytesForBuffer == 0)
         return;
 
-    int ret = 0;
+    ssize_t ret = 0;
     ret = write(this->fileFd, this->logBuffer, usedBytesForBuffer);
 
     if (ret == -1)

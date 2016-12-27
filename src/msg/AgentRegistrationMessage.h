@@ -18,14 +18,14 @@ public:
     ~AgentRegistrationMessage();
 
     // Optimize: change std::string to const std::string&
-    void setHostName(std::string hostname);
-    std::string getHostName() const;
+    void setHostName(std::string &hostname);
+    const std::string getHostName() const;
 
-    void setHostAddress(std::string hostaddress);
-    std::string getHostAddress() const;
+    void setHostAddress(std::string &hostaddress);
+    const std::string getHostAddress() const;
 
-    void setHostSysinfo(std::string hostsysinfo);
-    std::string getHostSysinfo() const;
+    void setHostSysinfo(std::string &hostsysinfo);
+    const std::string getHostSysinfo() const;
 
     void setTcpTrafficerPort(int port);
     int getTcpTrafficerPort() const;
@@ -33,7 +33,7 @@ public:
     void setUdpTrafficerPort(int port);
     int getUdpTrafficerPort() const;
 
-    virtual void readFromJsonString(std::string jsonstr);
+    virtual void readFromJsonString(std::string &jsonstr);
     virtual std::string writeToJsonString() const;
 
 private:

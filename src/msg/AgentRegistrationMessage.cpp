@@ -22,27 +22,27 @@ AgentRegistrationMessage::~AgentRegistrationMessage() {
 
 }
 
-void AgentRegistrationMessage::setHostName(std::string hostname) {
+void AgentRegistrationMessage::setHostName(std::string &hostname) {
     this->hostName = hostname;
 }
 
-std::string AgentRegistrationMessage::getHostName() const {
+const std::string AgentRegistrationMessage::getHostName() const {
     return this->hostName;
 }
 
-void AgentRegistrationMessage::setHostAddress(std::string hostaddress) {
+void AgentRegistrationMessage::setHostAddress(std::string &hostaddress) {
     this->hostAddress = hostaddress;
 }
 
-std::string AgentRegistrationMessage::getHostAddress() const {
+const std::string AgentRegistrationMessage::getHostAddress() const {
     return this->hostAddress;
 }
 
-void AgentRegistrationMessage::setHostSysinfo(std::string hostsysinfo) {
+void AgentRegistrationMessage::setHostSysinfo(std::string &hostsysinfo) {
     this->hostSysinfo = hostsysinfo;
 }
 
-std::string AgentRegistrationMessage::getHostSysinfo() const {
+const std::string AgentRegistrationMessage::getHostSysinfo() const {
     return this->hostSysinfo;
 }
 
@@ -62,7 +62,7 @@ int AgentRegistrationMessage::getUdpTrafficerPort() const {
     return this->udpTrafficerPort;
 }
 
-void AgentRegistrationMessage::readFromJsonString(std::string jsonstr) {
+void AgentRegistrationMessage::readFromJsonString(std::string &jsonstr) {
     JsonObject *json = cJsonParse(jsonstr.c_str());
 
     JsonObject *pj;

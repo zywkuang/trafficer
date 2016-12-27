@@ -22,7 +22,7 @@ public:
     const MESSAGE_TYPE getMessageType() const;
     const std::string getMessageTimeStamp() const;
 
-    virtual void readFromJsonString(std::string jsonstr) = 0;
+    virtual void readFromJsonString(std::string &jsonstr) = 0;
     virtual std::string writeToJsonString() const = 0;
 
 protected:

@@ -155,7 +155,7 @@ void Socket::setReuseAddr(bool on) {
 
     int ret = setsockopt(this->sockfd, SOL_SOCKET, SO_REUSEADDR, &optval, static_cast<socklen_t>(sizeof(optval)));
     if (ret < 0) {
-        LOG_ERROR("Cannot set socket option SO_REUSEADDR.\n");
+        LOG_ERROR("Cannot set socket option SO_REUSEADDR.");
     }
 }
 
@@ -170,7 +170,7 @@ void Socket::setReusePort(bool on) {
     }
 #else
     if (on) {
-       LOG_ERROR("Don't support set socket option SO_REUSEPORT.\n");
+       LOG_ERROR("Don't support set socket option SO_REUSEPORT.");
     }
 #endif
 }
@@ -180,7 +180,7 @@ void Socket::setTcpNoDelay(bool on) {
 
     int ret = setsockopt(this->sockfd, IPPROTO_TCP, TCP_NODELAY, &optval, static_cast<socklen_t>(sizeof(optval)));
     if (ret < 0) {
-        LOG_ERROR("Cannot set socket option TCP_NODELAY.\n");
+        LOG_ERROR("Cannot set socket option TCP_NODELAY.");
     }
 }
 
@@ -189,7 +189,15 @@ void Socket::setKeepAlive(bool on) {
 
     int ret = setsockopt(this->sockfd, SOL_SOCKET, SO_KEEPALIVE, &optval, static_cast<socklen_t>(sizeof(optval)));
     if (ret < 0) {
-        LOG_ERROR("Cannot set socket option SO_KEEPALIVE.\n");
+        LOG_ERROR("Cannot set socket option SO_KEEPALIVE.");
+    }
+}
+
+void Socket::setTcpMss(int mss) {
+
+    int ret = setsockopt(this->sockfd, IPPROTO_TCP, TCP_MAXSEG, &mss, static_cast<socklen_t>(sizeof(mss)));
+    if (ret < 0) {
+        LOG_ERROR("Cannot set socket option TCP_MAXSEG.");
     }
 }
 
@@ -200,7 +208,7 @@ bool Socket::resolveLocalAddr(InetAddress &localAddr) {
 
     int ret = getsockname(this->sockfd, static_cast<sockaddr *>(static_cast<void *>(&localaddr)), &addrlen);
     if (ret < 0) {
-        LOG_ERROR("Cannot get local hostname and information.\n");
+        LOG_ERROR("Cannot get local hostname and information.");
         return false;
     }
 
@@ -215,7 +223,7 @@ bool Socket::resolvePeerAddr(InetAddress &peerAddr) {
 
     int ret = getpeername(this->sockfd, static_cast<sockaddr *>(static_cast<void *>(&peeraddr)), &addrlen);
     if (ret < 0) {
-        LOG_ERROR("Cannot get peer hostname and information.\n");
+        LOG_ERROR("Cannot get peer hostname and information.");
         return false;
     }
 

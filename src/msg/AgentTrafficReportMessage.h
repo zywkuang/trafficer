@@ -8,7 +8,6 @@
 #define TRAFFICER_AGENTTRAFFICREPORTMESSAGE_H
 
 #include "Message.h"
-#include "../base/TimeStamp.h"
 
 class AgentTrafficReportMessage : public Message {
 public:
@@ -24,11 +23,11 @@ public:
     void setProtocol(PROTOCOL p);
     PROTOCOL getProtocol() const;
 
-    void setBeginTimeStamp(std::string beginTimeStamp);
-    std::string getBeginTimeStamp() const;
+    void setBeginTimeStamp(std::string &beginTimeStamp);
+    const std::string &getBeginTimeStamp() const;
 
-    void setEndTimeStamp(std::string endTimeStamp);
-    std::string getEndTimeStamp() const;
+    void setEndTimeStamp(std::string &endTimeStamp);
+    const std::string &getEndTimeStamp() const;
 
     void setBytesTransferred(uint64_t bytes);
     uint64_t getBytesTransferred() const;
@@ -51,7 +50,7 @@ public:
     void setPacketLoss(double loss);
     double getPacketLoss() const;
 
-    virtual void readFromJsonString(std::string jsonstr);
+    virtual void readFromJsonString(std::string &jsonstr);
     virtual std::string writeToJsonString() const;
 
 private:

@@ -29,6 +29,7 @@ public:
     void setReusePort(bool on);
     void setTcpNoDelay(bool on);
     void setKeepAlive(bool on);
+    void setTcpMss(int mss);
 
     ssize_t socketSend(const char *payload, size_t length, int flag = 0);
     ssize_t socketRecv(char *buffer, size_t length, int flag = 0);

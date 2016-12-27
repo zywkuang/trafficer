@@ -43,19 +43,19 @@ PROTOCOL AgentTrafficReportMessage::getProtocol() const {
     return this->proto;
 }
 
-void AgentTrafficReportMessage::setBeginTimeStamp(std::string beginTimeStamp) {
+void AgentTrafficReportMessage::setBeginTimeStamp(std::string &beginTimeStamp) {
     this->beginTimeStamp = beginTimeStamp;
 }
 
-std::string AgentTrafficReportMessage::getBeginTimeStamp() const {
+const std::string &AgentTrafficReportMessage::getBeginTimeStamp() const {
     return this->beginTimeStamp;
 }
 
-void AgentTrafficReportMessage::setEndTimeStamp(std::string endTimeStamp) {
+void AgentTrafficReportMessage::setEndTimeStamp(std::string &endTimeStamp) {
     this->endTimeStamp = endTimeStamp;
 }
 
-std::string AgentTrafficReportMessage::getEndTimeStamp() const {
+const std::string &AgentTrafficReportMessage::getEndTimeStamp() const {
     return this->endTimeStamp;
 }
 
@@ -115,7 +115,7 @@ double AgentTrafficReportMessage::getPacketLoss() const {
     return this->packetLoss;
 }
 
-void AgentTrafficReportMessage::readFromJsonString(std::string jsonstr) {
+void AgentTrafficReportMessage::readFromJsonString(std::string &jsonstr) {
     JsonObject *json = cJsonParse(jsonstr.c_str());
 
     JsonObject *pj;
@@ -150,18 +150,19 @@ void AgentTrafficReportMessage::readFromJsonString(std::string jsonstr) {
     if ((pj = cJsonGetObjectItem(json, "TrafficBandwidth")) != NULL)
         this->trafficBandwidth = pj->valueDouble;
 
-    if ((pj = cJsonGetObjectItem(json, "TrafficJitter")) != NULL)
-        this->trafficJitter = pj->valueDouble;
+    if (this->proto == UDP) {
+        if ((pj = cJsonGetObjectItem(json, "TrafficJitter")) != NULL)
+            this->trafficJitter = pj->valueDouble;
 
-    if ((pj = cJsonGetObjectItem(json, "PacketLostCount")) != NULL)
-        this->packetLostCnt = static_cast<uint64_t>(pj->valueInt);
+        if ((pj = cJsonGetObjectItem(json, "PacketLostCount")) != NULL)
+            this->packetLostCnt = static_cast<uint64_t>(pj->valueInt);
 
-    if ((pj = cJsonGetObjectItem(json, "PacketTotalCount")) != NULL)
-        this->packetLoss = static_cast<uint64_t>(pj->valueInt);
+        if ((pj = cJsonGetObjectItem(json, "PacketTotalCount")) != NULL)
+            this->packetLoss = static_cast<uint64_t>(pj->valueInt);
 
-    if ((pj = cJsonGetObjectItem(json, "PacketLoss")) != NULL)
-        this->packetLoss = pj->valueDouble;
-
+        if ((pj = cJsonGetObjectItem(json, "PacketLoss")) != NULL)
+            this->packetLoss = pj->valueDouble;
+    }
     cJsonDelete(json);
 }
 

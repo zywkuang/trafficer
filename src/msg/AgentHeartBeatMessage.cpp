@@ -11,7 +11,8 @@
 AgentHeartBeatMessage::AgentHeartBeatMessage()
     : Message(AGENT_HEART_BEAT),
       hostName("placeholder"),
-      hostAddress("0.0.0.0"){
+      hostAddress("0.0.0.0"),
+      heartBeatContent("HEART_BEAT"){
 
 }
 
@@ -19,37 +20,37 @@ AgentHeartBeatMessage::~AgentHeartBeatMessage() {
 
 }
 
-void AgentHeartBeatMessage::setHostName(std::string hostname) {
+void AgentHeartBeatMessage::setHostName(std::string &hostname) {
     this->hostName = hostname;
 }
 
-std::string AgentHeartBeatMessage::getHostName() const {
+const std::string &AgentHeartBeatMessage::getHostName() const {
     return this->hostName;
 }
 
-void AgentHeartBeatMessage::setHostAddress(std::string hostaddress) {
+void AgentHeartBeatMessage::setHostAddress(std::string &hostaddress) {
     this->hostAddress = hostaddress;
 }
 
-std::string AgentHeartBeatMessage::getHostAddress() const {
+const std::string &AgentHeartBeatMessage::getHostAddress() const {
     return this->hostAddress;
 }
 
-void AgentHeartBeatMessage::setHeartBeatContent(std::string hbcontent) {
+void AgentHeartBeatMessage::setHeartBeatContent(std::string &hbcontent) {
     this->heartBeatContent = hbcontent;
 }
 
-std::string AgentHeartBeatMessage::getHeartBeatContent() const {
+const std::string &AgentHeartBeatMessage::getHeartBeatContent() const {
     return this->heartBeatContent;
 }
 
-void AgentHeartBeatMessage::readFromJsonString(std::string jsonstr) {
+void AgentHeartBeatMessage::readFromJsonString(std::string &jsonstr) {
     JsonObject *json = cJsonParse(jsonstr.c_str());
 
     JsonObject *pj;
 
     if ((pj = cJsonGetObjectItem(json, "MsgID")) != NULL)
-        this->msgId = pj->valueInt;
+        this->msgId = static_cast<uint64_t>(pj->valueInt);
 
     if ((pj = cJsonGetObjectItem(json, "TimeStamp")) != NULL)
         this->msgTimeStamp = pj->valueString;
@@ -63,7 +64,7 @@ void AgentHeartBeatMessage::readFromJsonString(std::string jsonstr) {
     if ((pj = cJsonGetObjectItem(json, "HeartBeatContent")) != NULL)
         this->heartBeatContent = pj->valueString;
 
-    delete json;
+    cJsonDelete(json);
 }
 
 std::string AgentHeartBeatMessage::writeToJsonString() const {
@@ -81,7 +82,7 @@ std::string AgentHeartBeatMessage::writeToJsonString() const {
     }
 
     std::string jsonStr = cJsonPrintUnformatted(json);
-    delete json;
+    cJsonDelete(json);
 
     return jsonStr;
 }

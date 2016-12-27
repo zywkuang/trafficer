@@ -7,6 +7,7 @@
 #ifndef TRAFFICER_CONFIG_H
 #define TRAFFICER_CONFIG_H
 
+#define SOFTWARE_VERSION 0.1.0
 #define MACHINE_CODE 1624
 
 // Logger Configuration

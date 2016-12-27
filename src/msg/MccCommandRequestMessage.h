@@ -7,8 +7,12 @@
 #ifndef TRAFFICER_MCCCOMMANDMESSAGE_H
 #define TRAFFICER_MCCCOMMANDMESSAGE_H
 
+#include "Message.h"
 
-class MccCommandRequestMessage {
+class MccCommandRequestMessage : public Message {
+public:
+
+private:
 
 };
 
