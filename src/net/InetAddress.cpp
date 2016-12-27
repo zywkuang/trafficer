@@ -56,6 +56,10 @@ InetAddress::InetAddress(const struct sockaddr_in6 &sockaddr6)
 
 }
 
+InetAddress::~InetAddress() {
+
+}
+
 void InetAddress::setSockAddrIn6(const struct sockaddr_in6 &addr6) {
     this->sa6Struct = addr6;
 }

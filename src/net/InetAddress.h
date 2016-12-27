@@ -20,6 +20,8 @@ public:
     explicit InetAddress(const struct sockaddr_in  &sockaddr4);
     explicit InetAddress(const struct sockaddr_in6 &sockaddr6);
 
+    ~InetAddress();
+
     void setSockAddrIn6(const struct sockaddr_in6 &addr6);
 
     sa_family_t getAddressFamily() const;

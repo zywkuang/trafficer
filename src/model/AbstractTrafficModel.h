@@ -8,8 +8,19 @@
 #define TRAFFICER_ABSTRACTTRAFFICMODEL_H
 
 
-class AbstractTrafficModel {
+#include <stdint.h>
+#include "../Trafficer.h"
 
+class AbstractTrafficModel {
+public:
+    AbstractTrafficModel();
+    AbstractTrafficModel(TrafficModelType mt);
+    virtual ~AbstractTrafficModel();
+
+    virtual uint64_t getNextTrafficBandwidth() = 0;
+
+protected:
+    TrafficModelType modelType;
 };
 
 
