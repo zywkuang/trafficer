@@ -12,7 +12,7 @@
 #include "Logger.h"
 #include "Exception.h"
 #include "TimeStamp.h"
-#include "../Envcfg.h"
+#include "../Trafficer.h"
 
 const char *LogLevelName[Logger::NUM_LOG_LEVELS] = {
         "DEBUG ",

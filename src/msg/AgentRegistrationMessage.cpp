@@ -13,8 +13,8 @@ AgentRegistrationMessage::AgentRegistrationMessage()
       hostName("placeholder"),
       hostAddress("0.0.0.0"),
       hostSysinfo("Linux-x64"),
-      tcpTrafficerPort(0),
-      udpTrafficerPort(0) {
+      tcpTrafficerPort(TRAFFICER_TCP_SERVER_PORT),
+      udpTrafficerPort(TRAFFICER_UDP_SERVER_PORT) {
 
 }
 
@@ -68,7 +68,7 @@ void AgentRegistrationMessage::readFromJsonString(std::string jsonstr) {
     JsonObject *pj;
 
     if ((pj = cJsonGetObjectItem(json, "MsgID")) != NULL)
-        this->msgId = pj->valueInt;
+        this->msgId = static_cast<uint64_t >(pj->valueInt);
 
     if ((pj = cJsonGetObjectItem(json, "TimeStamp")) != NULL)
         this->msgTimeStamp = pj->valueString;
@@ -83,10 +83,10 @@ void AgentRegistrationMessage::readFromJsonString(std::string jsonstr) {
         this->hostSysinfo = pj->valueString;
 
     if ((pj = cJsonGetObjectItem(json, "TCPTrafficerPort")) != NULL)
-        this->tcpTrafficerPort = pj->valueInt;
+        this->tcpTrafficerPort = static_cast<int>(pj->valueInt);
 
     if ((pj = cJsonGetObjectItem(json, "UDPTrafficerPort")) != NULL)
-        this->udpTrafficerPort = pj->valueInt;
+        this->udpTrafficerPort = static_cast<int>(pj->valueInt);
 
     cJsonDelete(json);
 }

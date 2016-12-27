@@ -6,7 +6,7 @@
 
 #include "MessageQueue.h"
 #include "../base/Exception.h"
-#include "../Envcfg.h"
+#include "../Trafficer.h"
 #include "../base/Logger.h"
 
 MessageQueue::MessageQueue() : mqSize(0) {

@@ -10,15 +10,7 @@
 #include <stdint.h>
 #include <string>
 #include "../base/NonCopyable.h"
-
-enum MESSAGE_TYPE {
-    AGENT_REGISTERATION,
-    AGENT_HEART_BEAT,
-    AGENT_TRAFFIC_REPORT,
-    AGENT_COMMAND_RESPONSE,
-    MCC_COMMAND_REQUEST,
-    UNKNOWN,
-};
+#include "../Trafficer.h"
 
 class Message : public NonCopyable{
 public:

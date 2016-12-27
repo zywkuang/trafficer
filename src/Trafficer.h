@@ -21,4 +21,34 @@
 // Message Queue Configuration
 #define MESSAGE_QUEUE_CAPACITY 64
 
+enum MESSAGE_TYPE {
+    AGENT_REGISTERATION = 0,
+    AGENT_HEART_BEAT,
+    AGENT_TRAFFIC_REPORT,
+    AGENT_COMMAND_RESPONSE,
+    MCC_COMMAND_REQUEST,
+    UNKNOWN,
+};
+
+enum PROTOCOL {
+    TCP = 0,
+    UDP,
+    SCTP,
+    UNKNOWN,
+};
+
+enum ROLE {
+    SENDER = 0,
+    RECVER,
+    UNKNOWN,
+};
+
+enum TRAFFIC_MODEL {
+    STABLE_TRAFFIC = 0,
+    RECTANGLE_TRAFFIC,
+    POISSON_TRAFFIC,
+    CUSTOM_TRAFFIC,
+    UNKNOWN,
+};
+
 #endif //TRAFFICER_CONFIG_H

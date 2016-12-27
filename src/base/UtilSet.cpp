@@ -7,7 +7,7 @@
 #include <sys/time.h>
 #include <cstdlib>
 #include "UtilSet.h"
-#include "../Envcfg.h"
+#include "../Trafficer.h"
 
 uint64_t UtilSet::generateUUID() {
     uint64_t idval = 0;
