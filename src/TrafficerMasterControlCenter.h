@@ -1,0 +1,16 @@
+/**
+  * Organization: UESTC-KB310
+  * Author: zjl
+  * Date: 12/27/16
+**/
+
+#ifndef TRAFFICER_TRAFFICERMASTERCONTROLCENTER_H
+#define TRAFFICER_TRAFFICERMASTERCONTROLCENTER_H
+
+
+class TrafficerMasterControlCenter {
+
+};
+
+
+#endif //TRAFFICER_TRAFFICERMASTERCONTROLCENTER_H

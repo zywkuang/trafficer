@@ -49,6 +49,6 @@ set(SOURCE_FILES
         src/base/UtilSet.cpp src/base/UtilSet.h
         src/TrafficInstanceConfig.cpp
         src/TrafficInstanceConfig.h
-        src/model/StableTrafficModel.cpp src/model/StableTrafficModel.h src/model/RectangleTrafficModel.cpp src/model/RectangleTrafficModel.h src/model/PoissonTrafficModel.cpp src/model/PoissonTrafficModel.h src/model/CustomTrafficModel.cpp src/model/CustomTrafficModel.h)
+        src/model/StableTrafficModel.cpp src/model/StableTrafficModel.h src/model/RectangleTrafficModel.cpp src/model/RectangleTrafficModel.h src/model/PoissonTrafficModel.cpp src/model/PoissonTrafficModel.h src/model/CustomTrafficModel.cpp src/model/CustomTrafficModel.h src/TrafficerMasterControlCenter.cpp src/TrafficerMasterControlCenter.h src/TrafficerAgent.cpp src/TrafficerAgent.h)
 add_executable(trafficer ${SOURCE_FILES})
 target_link_libraries(trafficer pthread)
