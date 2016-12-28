@@ -22,8 +22,8 @@ public:
     std::string getThreadName();
     void setThreadName(std::string name);
 
-    bool started();
-    bool detached();
+    bool isStarted();
+    bool isDetached();
 
     void threadStart(void *arg);
     void threadJoin();
@@ -31,12 +31,12 @@ public:
 
     virtual void run() = 0;
 
-private:
+protected:
     pthread_t thread_id;
     std::string thread_name;
 
-    bool isStarted;
-    bool isDetached;
+    bool started;
+    bool detached;
 
     void *arg;
     static void* exec(void *ptr);

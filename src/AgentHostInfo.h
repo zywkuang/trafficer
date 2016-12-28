@@ -1,19 +1,19 @@
 /**
   * Organization: UESTC-KB310
   * Author: zjl
-  * Date: 12/26/16
+  * Date: 12/28/16
 **/
 
-#ifndef TRAFFICER_AGENTREGISTERMESSAGE_H
-#define TRAFFICER_AGENTREGISTERMESSAGE_H
+#ifndef TRAFFICER_AGENTHOSTINFO_H
+#define TRAFFICER_AGENTHOSTINFO_H
 
+#include <stdint.h>
 #include <string>
-#include "Message.h"
 
-class AgentRegistrationMessage : public Message {
+class AgentHostInfo {
 public:
-    AgentRegistrationMessage(uint64_t id);
-    ~AgentRegistrationMessage();
+    AgentHostInfo();
+    ~AgentHostInfo();
 
     void setHostAgentId(uint64_t id);
     uint64_t getHostAgentId() const;
@@ -21,10 +21,10 @@ public:
     void setHostName(std::string &hostname);
     const std::string &getHostName() const;
 
-    void setHostAddress(std::string &hostaddress);
+    void setHostAddress(std::string &hostAddress);
     const std::string &getHostAddress() const;
 
-    void setHostSysinfo(std::string &hostsysinfo);
+    void setHostSysinfo(std::string &hostSysinfo);
     const std::string &getHostSysinfo() const;
 
     void setTcpTrafficerPort(int port);
@@ -32,9 +32,6 @@ public:
 
     void setUdpTrafficerPort(int port);
     int getUdpTrafficerPort() const;
-
-    virtual void readFromJsonString(std::string &jsonstr);
-    virtual std::string writeToJsonString() const;
 
 private:
     uint64_t hostAgentId;
@@ -46,4 +43,4 @@ private:
 };
 
 
-#endif //TRAFFICER_AGENTREGISTERMESSAGE_H
+#endif //TRAFFICER_AGENTHOSTINFO_H

@@ -34,7 +34,7 @@ void UdpSocket::connectRemote(InetAddress &remoteAddr) {
 }
 
 ssize_t UdpSocket::sendData(const char *data, size_t length) {
-    if (this->bIsConnected == false) {
+    if (false == this->bIsConnected) {
         throw Exception(ESOCKCONNECT, "NotConnected Exception");
     }
 

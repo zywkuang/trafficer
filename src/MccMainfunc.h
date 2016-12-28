@@ -8,7 +8,7 @@
 #define TRAFFICER_TRAFFICERMASTERCONTROLCENTER_H
 
 
-class TrafficerMasterControlCenter {
+class MccMainfunc {
 
 };
 

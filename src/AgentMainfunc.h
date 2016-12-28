@@ -7,8 +7,11 @@
 #ifndef TRAFFICER_TRAFFICERAGENT_H
 #define TRAFFICER_TRAFFICERAGENT_H
 
+#include <stdint.h>
 
-class TrafficerAgent {
+class AgentMainfunc {
+
+private:
 
 };
 

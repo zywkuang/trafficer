@@ -8,14 +8,23 @@
 #include "../base/Json.h"
 #include "../base/Exception.h"
 
-MccCommandRequestMessage::MccCommandRequestMessage() :
-        Message(MCC_COMMAND_REQUEST),
-        cmdType(UNKNOWN_COMMAND_TYPE) {
+MccCommandRequestMessage::MccCommandRequestMessage(uint64_t id)
+        : Message(MCC_COMMAND_REQUEST),
+          hostMccId(id),
+          cmdType(UNKNOWN_COMMAND_TYPE) {
 
 }
 
 MccCommandRequestMessage::~MccCommandRequestMessage() {
 
+}
+
+void MccCommandRequestMessage::setHostMccId(uint64_t id) {
+    this->hostMccId = id;
+}
+
+uint64_t MccCommandRequestMessage::getHostMccId() const {
+    return this->hostMccId;
 }
 
 void MccCommandRequestMessage::setTrafficInstanceId(uint64_t trafficInstanceId) {
@@ -52,6 +61,9 @@ void MccCommandRequestMessage::readFromJsonString(std::string &jsonstr) {
 
     if ((pj = cJsonGetObjectItem(json, "TimeStamp")) != NULL)
         this->msgTimeStamp = pj->valueString;
+
+    if ((pj = cJsonGetObjectItem(json, "HostMCCID")) != NULL)
+        this->hostMccId = static_cast<uint64_t>(pj->valueInt);
 
     if ((pj = cJsonGetObjectItem(json, "TrafficInstanceID")) != NULL)
         this->trafficInstanceId = static_cast<uint64_t>(pj->valueInt);
@@ -144,6 +156,7 @@ std::string MccCommandRequestMessage::writeToJsonString() const {
         cJsonAddIntToObject(json, "MsgType", MCC_COMMAND_REQUEST);
         cJsonAddStringToObject(json, "TimeStamp", this->msgTimeStamp.c_str());
 
+        cJsonAddIntToObject(json, "HostMCCID", this->hostMccId);
         cJsonAddIntToObject(json, "TrafficInstanceID", this->trafficInstanceId);
         cJsonAddIntToObject(json, "CommandType", this->cmdType);
         cJsonAddStringToObject(json, "SenderHostAddress", this->trafficInstanceConfig.getSenderHostAddress().c_str());

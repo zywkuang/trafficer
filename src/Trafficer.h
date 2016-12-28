@@ -4,8 +4,8 @@
   * Date: 12/23/16
 **/
 
-#ifndef TRAFFICER_CONFIG_H
-#define TRAFFICER_CONFIG_H
+#ifndef TRAFFICER_H
+#define TRAFFICER_H
 
 #define SOFTWARE_VERSION 0.1.0
 #define MACHINE_CODE 1624
@@ -22,11 +22,12 @@
 #define LOG_LINE_SIZE 2048
 
 // Traffic Recver Configuration
+#define TRAFFICER_MCC_SERVRE_PORT 16109
 #define TRAFFICER_UDP_SERVER_PORT 11518
 #define TRAFFICER_TCP_SERVER_PORT 15332
 
 // Message Queue Configuration
-#define MESSAGE_QUEUE_CAPACITY 64
+#define DEFAULT_QUEUE_CAPACITY 64
 
 enum RoleType {
     SENDER = 0,
@@ -63,4 +64,4 @@ enum TrafficModelType {
     UNKNOWN_TRAFFIC_MODEL,
 };
 
-#endif //TRAFFICER_CONFIG_H
+#endif //TRAFFICER_H

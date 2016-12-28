@@ -12,8 +12,11 @@
 
 class MccCommandRequestMessage : public Message {
 public:
-    MccCommandRequestMessage();
+    MccCommandRequestMessage(uint64_t id);
     ~MccCommandRequestMessage();
+
+    void setHostMccId(uint64_t id);
+    uint64_t getHostMccId() const;
 
     void setCmdType(CommandType commandType);
     CommandType getCmdType() const;
@@ -28,6 +31,7 @@ public:
     std::string writeToJsonString() const;
 
 private:
+    uint64_t hostMccId; // mcc uuid
     uint64_t trafficInstanceId; // target traffic instance
     CommandType cmdType;
 

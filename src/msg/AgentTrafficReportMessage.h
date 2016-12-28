@@ -11,8 +11,11 @@
 
 class AgentTrafficReportMessage : public Message {
 public:
-    AgentTrafficReportMessage();
+    AgentTrafficReportMessage(uint64_t id);
     ~AgentTrafficReportMessage();
+
+    void setHostAgentId(uint64_t id);
+    uint64_t getHostAgentId() const;
 
     void setTrafficInstanceId(uint64_t tiid);
     uint64_t getTrafficInstanceId() const;
@@ -54,6 +57,8 @@ public:
     virtual std::string writeToJsonString() const;
 
 private:
+    uint64_t hostAgentId;
+
     uint64_t trafficInstanceId;
     RoleType role;
     ProtocolType proto;

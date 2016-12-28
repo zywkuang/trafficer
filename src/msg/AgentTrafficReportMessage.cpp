@@ -8,8 +8,9 @@
 #include "../base/Json.h"
 #include "../base/Exception.h"
 
-AgentTrafficReportMessage::AgentTrafficReportMessage()
+AgentTrafficReportMessage::AgentTrafficReportMessage(uint64_t id)
     : Message(AGENT_TRAFFIC_REPORT),
+      hostAgentId(id),
       role(SENDER),
       proto(TCP) {
 
@@ -17,6 +18,14 @@ AgentTrafficReportMessage::AgentTrafficReportMessage()
 
 AgentTrafficReportMessage::~AgentTrafficReportMessage() {
 
+}
+
+void AgentTrafficReportMessage::setHostAgentId(uint64_t id) {
+    this->hostAgentId = id;
+}
+
+uint64_t AgentTrafficReportMessage::getHostAgentId() const {
+    return this->hostAgentId;
 }
 
 void AgentTrafficReportMessage::setTrafficInstanceId(uint64_t tiid) {
@@ -126,6 +135,9 @@ void AgentTrafficReportMessage::readFromJsonString(std::string &jsonstr) {
     if ((pj = cJsonGetObjectItem(json, "TimeStamp")) != NULL)
         this->msgTimeStamp = pj->valueString;
 
+    if ((pj = cJsonGetObjectItem(json, "HostAgentID")) != NULL)
+        this->hostAgentId = static_cast<uint64_t>(pj->valueInt);
+
     if ((pj = cJsonGetObjectItem(json, "TrafficID")) != NULL)
         this->trafficInstanceId = static_cast<uint64_t>(pj->valueInt);
 
@@ -175,6 +187,8 @@ std::string AgentTrafficReportMessage::writeToJsonString() const {
         cJsonAddIntToObject(json, "MsgID", this->msgId);
         cJsonAddIntToObject(json, "MsgType", AGENT_TRAFFIC_REPORT);
         cJsonAddStringToObject(json, "TimeStamp", this->msgTimeStamp.c_str());
+
+        cJsonAddIntToObject(json, "HostAgentID", this->hostAgentId);
         cJsonAddIntToObject(json, "TrafficID", this->trafficInstanceId);
         cJsonAddIntToObject(json, "Role", this->role);
         cJsonAddIntToObject(json, "Protocol", this->proto);

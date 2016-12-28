@@ -8,11 +8,10 @@
 #include "../base/Json.h"
 #include "../base/Exception.h"
 
-AgentHeartBeatMessage::AgentHeartBeatMessage()
-    : Message(AGENT_HEART_BEAT),
-      hostName("placeholder"),
-      hostAddress("0.0.0.0"),
-      heartBeatContent("HEART_BEAT"){
+AgentHeartBeatMessage::AgentHeartBeatMessage(uint64_t id)
+        : Message(AGENT_HEART_BEAT),
+          hostAgentId(id),
+          heartBeatContent("HEART_BEAT") {
 
 }
 
@@ -20,20 +19,12 @@ AgentHeartBeatMessage::~AgentHeartBeatMessage() {
 
 }
 
-void AgentHeartBeatMessage::setHostName(std::string &hostname) {
-    this->hostName = hostname;
+void AgentHeartBeatMessage::setHostAgentId(uint64_t agentId) {
+    this->hostAgentId = agentId;
 }
 
-const std::string &AgentHeartBeatMessage::getHostName() const {
-    return this->hostName;
-}
-
-void AgentHeartBeatMessage::setHostAddress(std::string &hostaddress) {
-    this->hostAddress = hostaddress;
-}
-
-const std::string &AgentHeartBeatMessage::getHostAddress() const {
-    return this->hostAddress;
+uint64_t AgentHeartBeatMessage::getHostAgentId() const {
+    return this->hostAgentId;
 }
 
 void AgentHeartBeatMessage::setHeartBeatContent(std::string &hbcontent) {
@@ -55,11 +46,8 @@ void AgentHeartBeatMessage::readFromJsonString(std::string &jsonstr) {
     if ((pj = cJsonGetObjectItem(json, "TimeStamp")) != NULL)
         this->msgTimeStamp = pj->valueString;
 
-    if ((pj = cJsonGetObjectItem(json, "HostName")) != NULL)
-        this->hostName = pj->valueString;
-
-    if ((pj = cJsonGetObjectItem(json, "HostAddress")) != NULL)
-        this->hostAddress = pj->valueString;
+    if ((pj = cJsonGetObjectItem(json, "HostAgentID")) != NULL)
+        this->hostAgentId = static_cast<uint64_t>(pj->valueInt);
 
     if ((pj = cJsonGetObjectItem(json, "HeartBeatContent")) != NULL)
         this->heartBeatContent = pj->valueString;
@@ -76,8 +64,7 @@ std::string AgentHeartBeatMessage::writeToJsonString() const {
         cJsonAddIntToObject(json, "MsgID", this->msgId);
         cJsonAddIntToObject(json, "MsgType", this->msgType);
         cJsonAddStringToObject(json, "TimeStamp", this->msgTimeStamp.c_str());
-        cJsonAddStringToObject(json, "HostName", this->hostName.c_str());
-        cJsonAddStringToObject(json, "HostAddress", this->hostAddress.c_str());
+        cJsonAddIntToObject(json, "HostAgentID", this->hostAgentId);
         cJsonAddStringToObject(json, "HeartBeatContent", this->heartBeatContent.c_str());
     }
 

@@ -7,13 +7,15 @@
 #ifndef TRAFFICER_AGENTCOMMANDACKMESSAGE_H
 #define TRAFFICER_AGENTCOMMANDACKMESSAGE_H
 
-
 #include "Message.h"
 
 class AgentCommandResponseMessage : public Message {
 public:
-    AgentCommandResponseMessage();
+    AgentCommandResponseMessage(uint64_t id);
     ~AgentCommandResponseMessage();
+
+    void setHostAgentId(uint64_t id);
+    uint64_t getHostAgentId() const;
 
     void setTrafficInstanceId(uint64_t trafficInstanceId);
     uint64_t getTrafficInstanceId() const;
@@ -31,6 +33,7 @@ public:
     virtual std::string writeToJsonString() const;
 
 private:
+    uint64_t hostAgentId;
     uint64_t trafficInstanceId;
     CommandType cmdType;
 

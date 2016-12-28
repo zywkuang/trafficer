@@ -62,7 +62,7 @@ ConditionVariable::~ConditionVariable() {
 }
 
 void ConditionVariable::wait(MutexLock *lock) {
-    int ret = pthread_cond_wait(&this->condition, &(lock->mutex));
+    int ret = pthread_cond_wait(&this->condition, &lock->mutex);
 
     if (ret != 0)
         throw Exception(ECONDITIONWAIT, "Condition Wait Exception");

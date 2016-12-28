@@ -16,6 +16,8 @@
 #define EFILEREAD           00003
 #define EFILEWRITE          00004
 #define EATEXITREG          00005
+#define EFCNTLGET           00006
+#define EFCNTLSET           00007
 
 // Socket Exception
 #define ESOCKCREATE         10001
@@ -48,9 +50,9 @@
 #define EEVENTSET           50001
 #define EEVENTWAIT          50002
 
-// MessageQueue Exception
-#define EMSGQUEUEPUSH       60001
-#define EMSGQUEUEPOP        60002
+// BlockedQueue Exception
+#define EBLKQUEUEPUSH       60001
+#define EBLKQUEUEPOP        60002
 
 class Exception : public std::exception{
 public:

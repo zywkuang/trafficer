@@ -5,21 +5,31 @@
 **/
 
 #include "AgentRegistrationMessage.h"
+#include "../base/Json.h"
 #include "../base/Exception.h"
 #include "../base/TimeStamp.h"
 
-AgentRegistrationMessage::AgentRegistrationMessage()
-    : Message(AGENT_REGISTERATION),
-      hostName("placeholder"),
-      hostAddress("0.0.0.0"),
-      hostSysinfo("Linux-x64"),
-      tcpTrafficerPort(TRAFFICER_TCP_SERVER_PORT),
-      udpTrafficerPort(TRAFFICER_UDP_SERVER_PORT) {
+AgentRegistrationMessage::AgentRegistrationMessage(uint64_t id)
+     : Message(AGENT_REGISTERATION),
+       hostAgentId(id),
+       hostName("placeholder"),
+       hostAddress("0.0.0.0"),
+       hostSysinfo("Linux-x64"),
+       tcpTrafficerPort(TRAFFICER_TCP_SERVER_PORT),
+       udpTrafficerPort(TRAFFICER_UDP_SERVER_PORT){
 
 }
 
 AgentRegistrationMessage::~AgentRegistrationMessage() {
 
+}
+
+void AgentRegistrationMessage::setHostAgentId(uint64_t id) {
+    this->hostAgentId = id;
+}
+
+uint64_t AgentRegistrationMessage::getHostAgentId() const {
+    return this->hostAgentId;
 }
 
 void AgentRegistrationMessage::setHostName(std::string &hostname) {

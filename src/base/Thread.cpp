@@ -8,15 +8,15 @@
 #include "Exception.h"
 
 Thread::Thread()
-    : isStarted(false),
-      isDetached(false),
+    : started(false),
+      detached(false),
       thread_id(0),
       thread_name(NULL){
 
 }
 
 Thread::~Thread() {
-    if (isStarted && !isDetached)
+    if (started && !detached)
         this->threadDetach();
 }
 
@@ -36,12 +36,12 @@ void Thread::setThreadName(std::string name) {
     this->thread_name = name;
 }
 
-bool Thread::started() {
-    return this->isStarted;
+bool Thread::isStarted() {
+    return this->started;
 }
 
-bool Thread::detached() {
-    return this->isDetached;
+bool Thread::isDetached() {
+    return this->detached;
 }
 
 void* Thread::exec(void *ptr) {
@@ -55,7 +55,7 @@ void Thread::threadStart(void *arg) {
     if (ret != 0)
         throw Exception(ETHREADCREATE, "Thread Create Exception");
 
-    this->isStarted = true;
+    this->started = true;
 }
 
 void Thread::threadJoin() {
@@ -63,7 +63,7 @@ void Thread::threadJoin() {
     if (ret != 0)
         throw Exception(ETHREADJOIN, "Thread Join Exception");
 
-    this->isDetached = false;
+    this->detached = false;
 }
 
 void Thread::threadDetach() {
@@ -71,5 +71,5 @@ void Thread::threadDetach() {
     if (ret != 0)
         throw Exception(ETHREADDETACH, "Thread Detach Exception");
 
-    this->isDetached = true;
+    this->detached = true;
 }

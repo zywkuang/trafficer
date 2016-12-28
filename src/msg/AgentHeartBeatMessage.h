@@ -12,14 +12,11 @@
 
 class AgentHeartBeatMessage : public Message {
 public:
-    AgentHeartBeatMessage();
+    AgentHeartBeatMessage(uint64_t id);
     ~AgentHeartBeatMessage();
 
-    void setHostName(std::string &hostname);
-    const std::string &getHostName() const;
-
-    void setHostAddress(std::string &hostaddress);
-    const std::string &getHostAddress() const;
+    void setHostAgentId(uint64_t agentId);
+    uint64_t getHostAgentId() const;
 
     void setHeartBeatContent(std::string &hbcontent);
     const std::string &getHeartBeatContent() const;
@@ -28,8 +25,7 @@ public:
     virtual std::string writeToJsonString() const;
 
 private:
-    std::string hostName;
-    std::string hostAddress;
+    uint64_t hostAgentId;
     std::string heartBeatContent;
 };
 

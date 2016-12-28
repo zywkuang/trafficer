@@ -21,12 +21,8 @@ set(SOURCE_FILES
         src/base/Mutex.h
         src/base/Copyable.h
         src/base/NonCopyable.h
-        src/base/Event.cpp
-        src/base/Event.h
         src/msg/Message.cpp
         src/msg/Message.h
-        src/msg/MessageQueue.cpp
-        src/msg/MessageQueue.h
         src/net/UdpSocket.cpp
         src/net/UdpSocket.h
         src/base/Logger.h
@@ -49,6 +45,6 @@ set(SOURCE_FILES
         src/base/UtilSet.cpp src/base/UtilSet.h
         src/TrafficInstanceConfig.cpp
         src/TrafficInstanceConfig.h
-        src/model/StableTrafficModel.cpp src/model/StableTrafficModel.h src/model/RectangleTrafficModel.cpp src/model/RectangleTrafficModel.h src/model/PoissonTrafficModel.cpp src/model/PoissonTrafficModel.h src/model/CustomTrafficModel.cpp src/model/CustomTrafficModel.h src/TrafficerMasterControlCenter.cpp src/TrafficerMasterControlCenter.h src/TrafficerAgent.cpp src/TrafficerAgent.h)
+        src/model/StableTrafficModel.cpp src/model/StableTrafficModel.h src/model/RectangleTrafficModel.cpp src/model/RectangleTrafficModel.h src/model/PoissonTrafficModel.cpp src/model/PoissonTrafficModel.h src/model/CustomTrafficModel.cpp src/model/CustomTrafficModel.h src/MccMainfunc.cpp src/MccMainfunc.h src/AgentMainfunc.cpp src/AgentMainfunc.h src/MccManageServer.cpp src/MccManageServer.h src/MccMessageDispatcher.cpp src/MccMessageDispatcher.h src/MccCommandConsole.cpp src/MccCommandConsole.h src/base/BoundedBlockingQueue.h src/MccDataStore.cpp src/MccDataStore.h src/AgentDataStore.cpp src/AgentDataStore.h src/AgentHostInfo.cpp src/AgentHostInfo.h src/AgentTcpTrafficSender.cpp src/AgentTcpTrafficSender.h src/AgentTcpTrafficRecver.cpp src/AgentTcpTrafficRecver.h src/AgentUdpTrafficSender.cpp src/AgentUdpTrafficSender.h src/AgentUdpTrafficRecver.cpp src/AgentUdpTrafficRecver.h src/AgentMessageDispatcher.cpp src/AgentMessageDispatcher.h)
 add_executable(trafficer ${SOURCE_FILES})
 target_link_libraries(trafficer pthread)

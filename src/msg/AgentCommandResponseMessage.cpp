@@ -8,14 +8,23 @@
 #include "../base/Json.h"
 #include "../base/Exception.h"
 
-AgentCommandResponseMessage::AgentCommandResponseMessage()
+AgentCommandResponseMessage::AgentCommandResponseMessage(uint64_t id)
         : Message(AGENT_COMMAND_RESPONSE),
+          hostAgentId(id),
           opSuccess(false) {
 
 }
 
 AgentCommandResponseMessage::~AgentCommandResponseMessage() {
 
+}
+
+void AgentCommandResponseMessage::setHostAgentId(uint64_t id) {
+    this->hostAgentId = id;
+}
+
+uint64_t AgentCommandResponseMessage::getHostAgentId() const {
+    return this->hostAgentId;
 }
 
 uint64_t AgentCommandResponseMessage::getTrafficInstanceId() const {

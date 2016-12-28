@@ -14,6 +14,7 @@
 class UtilSet {
 public:
     static uint64_t generateUUID();
+    static void setNonBlocking(int fd, bool nonblocking);
 };
 
 
