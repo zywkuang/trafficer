@@ -4,13 +4,18 @@
   * Date: 12/26/16
 **/
 
-#include <sys/time.h>
-#include <cstdlib>
 #include <fcntl.h>
+#include <sys/time.h>
+#include <sys/utsname.h>
+#include <ifaddrs.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <cstdlib>
+#include <cstring>
 #include "UtilSet.h"
-#include "../Trafficer.h"
 #include "Logger.h"
 #include "Exception.h"
+#include "../Trafficer.h"
 
 uint64_t UtilSet::generateUUID() {
     uint64_t idval = 0;
@@ -62,4 +67,48 @@ void UtilSet::setNonBlocking(int fd, bool nonblocking) {
             throw Exception(EFCNTLSET, "Fcntl Set Exception");
         }
     }
+}
+
+std::string UtilSet::getHostName() {
+    struct utsname buf;
+    uname(&buf);
+
+    std::string hostName = buf.nodename;
+
+    return hostName;
+}
+
+std::string UtilSet::getHostSysinfo() {
+    struct utsname buf;
+    uname(&buf);
+
+    std::string sysname = buf.sysname;
+    std::string machine = buf.machine;
+    std::string sysinfo = sysname + " " + machine;
+
+    return sysinfo;
+}
+
+std::string UtilSet::getHostAddress() {
+    struct ifaddrs *pIfAddrs = NULL;
+    void *pTmpAddr = NULL;
+
+    char addrBuf[INET_ADDRSTRLEN] = "127.0.0.1";
+    getifaddrs(&pIfAddrs);
+
+    while (NULL != pIfAddrs) {
+        if (pIfAddrs->ifa_addr->sa_family == AF_INET) {
+            pTmpAddr = &((struct sockaddr_in *)pIfAddrs->ifa_addr)->sin_addr;
+
+            inet_ntop(AF_INET, pTmpAddr, addrBuf, INET_ADDRSTRLEN);
+
+            if (strcmp(pIfAddrs->ifa_name, DEFAULT_INTERFACE) == 0)
+                return addrBuf;
+        }
+
+        pIfAddrs = pIfAddrs->ifa_next;
+    }
+
+    freeifaddrs(pIfAddrs);
+    return addrBuf;
 }

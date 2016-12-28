@@ -8,6 +8,7 @@
 #define TRAFFICER_UTILSET_H
 
 #include <stdint.h>
+#include <string>
 
 #define Random(x) (rand() % x)
 
@@ -15,6 +16,9 @@ class UtilSet {
 public:
     static uint64_t generateUUID();
     static void setNonBlocking(int fd, bool nonblocking);
+    static std::string getHostName();
+    static std::string getHostSysinfo();
+    static std::string getHostAddress();
 };
 
 

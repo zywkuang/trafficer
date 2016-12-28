@@ -30,6 +30,10 @@ Socket::~Socket() {
     this->socketClose();
 }
 
+bool Socket::equalToSockfd(int otherSockfd) {
+    return this->sockfd == otherSockfd;
+}
+
 void Socket::socketConnect(InetAddress &remoteAddr) {
 
     int ret = connect(this->sockfd, remoteAddr.getSockAddr(), static_cast<socklen_t>(sizeof(struct sockaddr_in6)));

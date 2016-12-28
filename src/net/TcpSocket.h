@@ -23,6 +23,7 @@ public:
 
     // Client Function
     void connectServer(InetAddress &remoteAddr);
+    void connectServer(InetAddress &remoteAddr, InetAddress &localAddr);
 
     // Server Function
     void listenServer(InetAddress &localAddr);
@@ -32,8 +33,8 @@ protected:
     bool bLocalSet;
     bool bIsConnected;
 
-    InetAddress localAddr;
-    InetAddress peerAddr;
+    InetAddress localAddress;
+    InetAddress peerAddress;
 };
 
 #endif //TRAFFICER_TCPSOCKET_H

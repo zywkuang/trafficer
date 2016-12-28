@@ -28,7 +28,7 @@ TcpSocket::~TcpSocket() {
 
 void TcpSocket::setLocal() {
 
-    if (this->resolveLocalAddr(this->localAddr))
+    if (this->resolveLocalAddr(this->localAddress))
         this->bLocalSet = true;
     else
         this->bLocalSet = false;
@@ -36,7 +36,7 @@ void TcpSocket::setLocal() {
 
 void TcpSocket::setConnected() {
 
-    if (this->resolvePeerAddr(this->peerAddr))
+    if (this->resolvePeerAddr(this->peerAddress))
         this->bIsConnected = true;
     else
         this->bIsConnected = false;
@@ -71,6 +71,14 @@ ssize_t TcpSocket::recvData(char *buffer, int length) {
 }
 
 void TcpSocket::connectServer(InetAddress &remoteAddr) {
+    this->socketConnect(remoteAddr);
+
+    this->setLocal();
+    this->setConnected();
+}
+
+void TcpSocket::connectServer(InetAddress &remoteAddr, InetAddress &localAddr) {
+    this->socketBind(localAddr);
     this->socketConnect(remoteAddr);
 
     this->setLocal();

@@ -16,6 +16,8 @@ public:
     Socket(int sockfd, bool bipv6 = false, int proto = SOCK_STREAM);
     virtual ~Socket();
 
+    bool equalToSockfd(int otherSockfd);
+
     void socketConnect(InetAddress &remoteAddr);
     void socketBind(InetAddress &localAddr);
     void socketListen();

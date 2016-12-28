@@ -13,57 +13,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e1c041e-d296-4f97-9b05-cc8a1ee03185" name="Default" comment="Complete Code Structure.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentDataStore.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentDataStore.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentHostInfo.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentHostInfo.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentMessageDispatcher.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentMessageDispatcher.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentTcpTrafficRecver.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentTcpTrafficRecver.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentTcpTrafficSender.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentTcpTrafficSender.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentUdpTrafficRecver.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentUdpTrafficRecver.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentUdpTrafficSender.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentUdpTrafficSender.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MccCommandConsole.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MccCommandConsole.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MccDataStore.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MccDataStore.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MccManageServer.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MccManageServer.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MccMessageDispatcher.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/MccMessageDispatcher.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/base/BoundedBlockingQueue.h" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/base/Event.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/base/Event.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/msg/MessageQueue.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/msg/MessageQueue.h" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/TrafficerAgent.cpp" afterPath="$PROJECT_DIR$/src/AgentMainfunc.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/TrafficerAgent.h" afterPath="$PROJECT_DIR$/src/AgentMainfunc.h" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/TrafficerMasterControlCenter.cpp" afterPath="$PROJECT_DIR$/src/MccMainfunc.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/TrafficerMasterControlCenter.h" afterPath="$PROJECT_DIR$/src/MccMainfunc.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentManageClient.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AgentManageClient.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/base/tests/blockQueueTest.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/base/tests/genUuidTest.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/base/tests/ifethTest.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MccDataStore.cpp" afterPath="$PROJECT_DIR$/src/MccDataStore.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MccDataStore.h" afterPath="$PROJECT_DIR$/src/MccDataStore.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Trafficer.h" afterPath="$PROJECT_DIR$/src/Trafficer.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Exception.h" afterPath="$PROJECT_DIR$/src/base/Exception.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Mutex.cpp" afterPath="$PROJECT_DIR$/src/base/Mutex.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Thread.cpp" afterPath="$PROJECT_DIR$/src/base/Thread.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/Thread.h" afterPath="$PROJECT_DIR$/src/base/Thread.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/UtilSet.cpp" afterPath="$PROJECT_DIR$/src/base/UtilSet.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/base/UtilSet.h" afterPath="$PROJECT_DIR$/src/base/UtilSet.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/msg/AgentCommandResponseMessage.cpp" afterPath="$PROJECT_DIR$/src/msg/AgentCommandResponseMessage.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/msg/AgentCommandResponseMessage.h" afterPath="$PROJECT_DIR$/src/msg/AgentCommandResponseMessage.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/msg/AgentHeartBeatMessage.cpp" afterPath="$PROJECT_DIR$/src/msg/AgentHeartBeatMessage.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/msg/AgentHeartBeatMessage.h" afterPath="$PROJECT_DIR$/src/msg/AgentHeartBeatMessage.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/msg/AgentRegistrationMessage.cpp" afterPath="$PROJECT_DIR$/src/msg/AgentRegistrationMessage.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/msg/AgentRegistrationMessage.h" afterPath="$PROJECT_DIR$/src/msg/AgentRegistrationMessage.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/msg/AgentTrafficReportMessage.cpp" afterPath="$PROJECT_DIR$/src/msg/AgentTrafficReportMessage.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/msg/AgentTrafficReportMessage.h" afterPath="$PROJECT_DIR$/src/msg/AgentTrafficReportMessage.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/msg/MccCommandRequestMessage.cpp" afterPath="$PROJECT_DIR$/src/msg/MccCommandRequestMessage.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/msg/MccCommandRequestMessage.h" afterPath="$PROJECT_DIR$/src/msg/MccCommandRequestMessage.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/UdpSocket.cpp" afterPath="$PROJECT_DIR$/src/net/UdpSocket.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/Socket.cpp" afterPath="$PROJECT_DIR$/src/net/Socket.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/Socket.h" afterPath="$PROJECT_DIR$/src/net/Socket.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/TcpSocket.cpp" afterPath="$PROJECT_DIR$/src/net/TcpSocket.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/TcpSocket.h" afterPath="$PROJECT_DIR$/src/net/TcpSocket.h" />
     </list>
     <ignored path="trafficer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,31 +48,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StableTrafficModel.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/StableTrafficModel.cpp">
+      <file leaf-file-name="UtilSet.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/base/UtilSet.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="387">
+              <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+              <folding>
+                <element signature="e#74#92#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AgentHostInfo.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AgentHostInfo.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StableTrafficModel.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/StableTrafficModel.h">
+      <file leaf-file-name="AgentMainfunc.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AgentMainfunc.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-12">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UdpSocket.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/UdpSocket.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="36" column="38" lean-forward="false" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
+            <state relative-caret-position="294">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -116,68 +83,72 @@
       <file leaf-file-name="MccManageServer.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MccManageServer.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
+            <state relative-caret-position="408">
               <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MccDataStore.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Socket.h" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/net/Socket.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="18" column="22" lean-forward="false" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MccDataStore.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MccDataStore.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="163">
+              <caret line="25" column="43" lean-forward="false" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+              <folding>
+                <element signature="e#141#160#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Socket.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/net/Socket.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="441">
+              <caret line="32" column="45" lean-forward="true" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+              <folding>
+                <element signature="e#74#92#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MccDataStore.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/MccDataStore.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="513">
+              <caret line="57" column="1" lean-forward="false" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AgentCommandResponseMessage.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/msg/AgentCommandResponseMessage.cpp">
+      <file leaf-file-name="AgentHostInfo.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AgentHostInfo.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-504">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="231">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AgentCommandResponseMessage.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/msg/AgentCommandResponseMessage.h">
+      <file leaf-file-name="ifaddrs.h" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/include/ifaddrs.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-432">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PoissonTrafficModel.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/PoissonTrafficModel.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RectangleTrafficModel.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/RectangleTrafficModel.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RectangleTrafficModel.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/RectangleTrafficModel.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="450">
+              <caret line="71" column="11" lean-forward="true" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -203,13 +174,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/msg/Message.cpp" />
-        <option value="$PROJECT_DIR$/src/TrafficInstanceConfig.h" />
-        <option value="$PROJECT_DIR$/src/TrafficInstanceConfig.cpp" />
-        <option value="$PROJECT_DIR$/src/model/AbstractTrafficModel.h" />
         <option value="$PROJECT_DIR$/src/model/AbstractTrafficModel.cpp" />
         <option value="$PROJECT_DIR$/src/net/InetAddress.cpp" />
-        <option value="$PROJECT_DIR$/src/net/InetAddress.h" />
         <option value="$PROJECT_DIR$/src/model/CustomTrafficModel.h" />
         <option value="$PROJECT_DIR$/src/model/CustomTrafficModel.cpp" />
         <option value="$PROJECT_DIR$/src/model/PoissonTrafficModel.cpp" />
@@ -222,8 +188,6 @@
         <option value="$PROJECT_DIR$/src/TrafficerMasterControlCenter.h" />
         <option value="$PROJECT_DIR$/src/base/Thread.cpp" />
         <option value="$PROJECT_DIR$/src/base/Thread.h" />
-        <option value="$PROJECT_DIR$/src/base/UtilSet.h" />
-        <option value="$PROJECT_DIR$/src/base/UtilSet.cpp" />
         <option value="$PROJECT_DIR$/src/base/Exception.h" />
         <option value="$PROJECT_DIR$/src/msg/MessageQueue.cpp" />
         <option value="$PROJECT_DIR$/src/base/Event.cpp" />
@@ -247,13 +211,20 @@
         <option value="$PROJECT_DIR$/src/AgentHostInfo.cpp" />
         <option value="$PROJECT_DIR$/src/AgentDataStore.h" />
         <option value="$PROJECT_DIR$/src/AgentDataStore.cpp" />
-        <option value="$PROJECT_DIR$/src/MccDataStore.cpp" />
         <option value="$PROJECT_DIR$/src/msg/AgentTrafficReportMessage.h" />
         <option value="$PROJECT_DIR$/src/net/UdpSocket.cpp" />
-        <option value="$PROJECT_DIR$/src/Trafficer.h" />
         <option value="$PROJECT_DIR$/src/MccManageServer.cpp" />
         <option value="$PROJECT_DIR$/src/MccManageServer.h" />
+        <option value="$PROJECT_DIR$/src/net/TcpSocket.h" />
+        <option value="$PROJECT_DIR$/src/net/TcpSocket.cpp" />
+        <option value="$PROJECT_DIR$/src/net/InetAddress.h" />
+        <option value="$PROJECT_DIR$/src/base/UtilSet.h" />
+        <option value="$PROJECT_DIR$/src/Trafficer.h" />
+        <option value="$PROJECT_DIR$/src/base/UtilSet.cpp" />
+        <option value="$PROJECT_DIR$/src/net/Socket.h" />
+        <option value="$PROJECT_DIR$/src/net/Socket.cpp" />
         <option value="$PROJECT_DIR$/src/MccDataStore.h" />
+        <option value="$PROJECT_DIR$/src/MccDataStore.cpp" />
       </list>
     </option>
   </component>
@@ -346,25 +317,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="msg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trafficer" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.CidrFilesViewHelper$MyProjectTreeStructure$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="trafficer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
+              <option name="myItemId" value="base" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -383,6 +336,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="base" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -610,7 +567,7 @@
       <workItem from="1482754542102" duration="7545000" />
       <workItem from="1482801846442" duration="6442000" />
       <workItem from="1482814308870" duration="15552000" />
-      <workItem from="1482888778393" duration="21460000" />
+      <workItem from="1482888778393" duration="28481000" />
     </task>
     <task id="LOCAL-00001" summary="Update on 16-10-28">
       <created>1477635796113</created>
@@ -654,11 +611,18 @@
       <option name="project" value="LOCAL" />
       <updated>1482844966663</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Complete Code Structure.">
+      <created>1482912623307</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1482912623307</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="191290000" />
+    <option name="totallyTimeSpent" value="198311000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -675,7 +639,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23045267" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32735425" sideWeight="0.49382716" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32735425" sideWeight="0.49382716" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32735425" sideWeight="0.49382716" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32935917" sideWeight="0.36460906" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32884902" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -745,136 +709,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AgentTcpTrafficRecver.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AgentUdpTrafficSender.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AgentUdpTrafficSender.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AgentUdpTrafficRecver.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AgentUdpTrafficRecver.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/msg/AgentTrafficReportMessage.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AgentTcpTrafficRecver.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/UdpSocket.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/TcpSocket.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1041">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AgentMessageDispatcher.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AgentMessageDispatcher.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Trafficer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1248">
-          <caret line="63" column="21" lean-forward="false" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AgentMainfunc.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AgentMainfunc.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#74#100#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AgentHostInfo.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AgentHostInfo.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-600">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/MccManageServer.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1019,22 +853,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/UtilSet.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-705">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/base/UtilSet.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/AbstractTrafficModel.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1131,26 +949,182 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AgentManageClient.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AgentManageClient.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/UdpSocket.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/net/UdpSocket.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="36" column="38" lean-forward="false" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
+        <state relative-caret-position="345">
+          <caret line="33" column="1" lean-forward="true" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/TcpSocket.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="35" column="21" lean-forward="false" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/TcpSocket.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/InetAddress.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-44">
+          <caret line="12" column="29" lean-forward="true" selection-start-line="12" selection-start-column="29" selection-end-line="12" selection-end-column="29" />
+          <folding>
+            <element signature="e#139#162#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/InetAddress.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2322">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Trafficer.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/UtilSet.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" column="40" lean-forward="true" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+          <folding>
+            <element signature="e#131#150#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/ifaddrs.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="71" column="11" lean-forward="true" selection-start-line="71" selection-start-column="11" selection-end-line="71" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/base/UtilSet.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="107" column="0" lean-forward="true" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding>
+            <element signature="e#74#92#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AgentHostInfo.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AgentHostInfo.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/msg/tests/messageTest.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AgentMainfunc.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/MccManageServer.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
+        <state relative-caret-position="408">
           <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/Socket.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="18" column="22" lean-forward="false" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/Socket.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="32" column="45" lean-forward="true" selection-start-line="32" selection-start-column="45" selection-end-line="32" selection-end-column="45" />
+          <folding>
+            <element signature="e#74#92#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/MccDataStore.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="163">
+          <caret line="25" column="43" lean-forward="false" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
+          <folding>
+            <element signature="e#141#160#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MccDataStore.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="57" column="1" lean-forward="false" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="1" />
           <folding />
         </state>
       </provider>
