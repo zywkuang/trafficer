@@ -23,6 +23,7 @@ public:
     void socketListen();
     int socketAccept(InetAddress &peerAddr);
     void socketClose();
+    void socketReset();
 
     bool resolveLocalAddr(InetAddress &localAddr);
     bool resolvePeerAddr(InetAddress &peerAddr);

@@ -12,10 +12,11 @@
 
 class AgentRegistrationMessage : public Message {
 public:
-    AgentRegistrationMessage(uint64_t id);
+    AgentRegistrationMessage();
+    AgentRegistrationMessage(uint64_t agentId);
     ~AgentRegistrationMessage();
 
-    void setHostAgentId(uint64_t id);
+    void setHostAgentId(uint64_t agentId);
     uint64_t getHostAgentId() const;
 
     void setHostName(std::string &hostname);

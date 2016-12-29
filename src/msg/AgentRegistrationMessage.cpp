@@ -9,14 +9,25 @@
 #include "../base/Exception.h"
 #include "../base/TimeStamp.h"
 
-AgentRegistrationMessage::AgentRegistrationMessage(uint64_t id)
+AgentRegistrationMessage::AgentRegistrationMessage()
+        : Message(AGENT_REGISTERATION),
+          hostAgentId(0),
+          hostName("placeholder"),
+          hostAddress("0.0.0.0"),
+          hostSysinfo("Linux-x64"),
+          tcpTrafficerPort(TRAFFICER_TCP_SERVER_PORT),
+          udpTrafficerPort(TRAFFICER_UDP_SERVER_PORT) {
+
+}
+
+AgentRegistrationMessage::AgentRegistrationMessage(uint64_t agentId)
      : Message(AGENT_REGISTERATION),
-       hostAgentId(id),
+       hostAgentId(agentId),
        hostName("placeholder"),
        hostAddress("0.0.0.0"),
        hostSysinfo("Linux-x64"),
        tcpTrafficerPort(TRAFFICER_TCP_SERVER_PORT),
-       udpTrafficerPort(TRAFFICER_UDP_SERVER_PORT){
+       udpTrafficerPort(TRAFFICER_UDP_SERVER_PORT) {
 
 }
 

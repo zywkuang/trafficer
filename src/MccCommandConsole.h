@@ -8,7 +8,9 @@
 #define TRAFFICER_MCCCOMMANDCONSOLE_H
 
 
-class MccCommandConsole {
+#include "base/Thread.h"
+
+class MccCommandConsole : public Thread {
 
 };
 

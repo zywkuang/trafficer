@@ -7,7 +7,6 @@
 #ifndef TRAFFICER_MCCMESSAGEDISPATCHER_H
 #define TRAFFICER_MCCMESSAGEDISPATCHER_H
 
-
 class MccMessageDispatcher {
 
 };

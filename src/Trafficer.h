@@ -18,12 +18,15 @@
 #define TRAFFIC_UPDATE_INTERVAL 500     // MicroSeconds
 
 // Logger Configuration
-#define LOG_FILE_NAME "trafficer.log"
-#define LOG_BUFFER_SIZE 4096
 #define LOG_LINE_SIZE 2048
+#define LOG_BUFFER_SIZE 4096
+#define LOG_FILE_NAME "trafficer.log"
 
-// Traffic Recver Configuration
+// Trafficer Control Configuration
 #define TRAFFICER_MCC_SERVRE_PORT 16109
+#define TRAFFICER_MCC_CLIENT_PORT 21314
+
+// Trafficer Traffic Configuration
 #define TRAFFICER_UDP_SERVER_PORT 11518
 #define TRAFFICER_TCP_SERVER_PORT 15332
 

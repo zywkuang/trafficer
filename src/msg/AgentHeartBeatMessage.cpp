@@ -8,9 +8,16 @@
 #include "../base/Json.h"
 #include "../base/Exception.h"
 
-AgentHeartBeatMessage::AgentHeartBeatMessage(uint64_t id)
+AgentHeartBeatMessage::AgentHeartBeatMessage()
         : Message(AGENT_HEART_BEAT),
-          hostAgentId(id),
+          hostAgentId(0),
+          heartBeatContent("HEART_BEAT") {
+
+}
+
+AgentHeartBeatMessage::AgentHeartBeatMessage(uint64_t agentId)
+        : Message(AGENT_HEART_BEAT),
+          hostAgentId(agentId),
           heartBeatContent("HEART_BEAT") {
 
 }

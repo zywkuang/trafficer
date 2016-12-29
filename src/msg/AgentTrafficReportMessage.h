@@ -11,7 +11,8 @@
 
 class AgentTrafficReportMessage : public Message {
 public:
-    AgentTrafficReportMessage(uint64_t id);
+    AgentTrafficReportMessage();
+    AgentTrafficReportMessage(uint64_t agentId);
     ~AgentTrafficReportMessage();
 
     void setHostAgentId(uint64_t id);

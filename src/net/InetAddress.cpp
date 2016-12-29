@@ -72,20 +72,7 @@ const struct sockaddr* InetAddress::getSockAddr() const {
     return static_cast<const struct sockaddr*>(static_cast<const void*>(&this->sa6Struct));
 }
 
-uint16_t InetAddress::getPortNumber() const {
-    return ntohs(this->portNetEndian());
-}
-
-uint32_t InetAddress::ipNetEndian() const {
-    assert(this->getAddressFamily() == AF_INET);
-    return this->sa4Struct.sin_addr.s_addr;
-}
-
-uint16_t InetAddress::portNetEndian() const {
-    return this->sa4Struct.sin_port;
-}
-
-std::string InetAddress::toIpString() const {
+std::string InetAddress::getIpString() const {
     char buf[64] = "";
     size_t size = sizeof(buf);
     if (this->getAddressFamily() == AF_INET) {
@@ -97,6 +84,19 @@ std::string InetAddress::toIpString() const {
     }
 
     return buf;
+}
+
+uint16_t InetAddress::getPortNumber() const {
+    return ntohs(this->portNetEndian());
+}
+
+uint32_t InetAddress::ipNetEndian() const {
+    assert(this->getAddressFamily() == AF_INET);
+    return this->sa4Struct.sin_addr.s_addr;
+}
+
+uint16_t InetAddress::portNetEndian() const {
+    return this->sa4Struct.sin_port;
 }
 
 std::string InetAddress::toIpPortString() const {

@@ -8,9 +8,16 @@
 #include "../base/Json.h"
 #include "../base/Exception.h"
 
-AgentCommandResponseMessage::AgentCommandResponseMessage(uint64_t id)
+AgentCommandResponseMessage::AgentCommandResponseMessage()
         : Message(AGENT_COMMAND_RESPONSE),
-          hostAgentId(id),
+          hostAgentId(0),
+          opSuccess(false) {
+
+}
+
+AgentCommandResponseMessage::AgentCommandResponseMessage(uint64_t agentId)
+        : Message(AGENT_COMMAND_RESPONSE),
+          hostAgentId(agentId),
           opSuccess(false) {
 
 }

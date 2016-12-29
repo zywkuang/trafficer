@@ -12,7 +12,8 @@
 
 class AgentHeartBeatMessage : public Message {
 public:
-    AgentHeartBeatMessage(uint64_t id);
+    AgentHeartBeatMessage();
+    AgentHeartBeatMessage(uint64_t agentId);
     ~AgentHeartBeatMessage();
 
     void setHostAgentId(uint64_t agentId);

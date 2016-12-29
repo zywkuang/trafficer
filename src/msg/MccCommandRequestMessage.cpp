@@ -8,9 +8,16 @@
 #include "../base/Json.h"
 #include "../base/Exception.h"
 
-MccCommandRequestMessage::MccCommandRequestMessage(uint64_t id)
+MccCommandRequestMessage::MccCommandRequestMessage()
         : Message(MCC_COMMAND_REQUEST),
-          hostMccId(id),
+          hostMccId(0),
+          cmdType(UNKNOWN_COMMAND_TYPE){
+
+}
+
+MccCommandRequestMessage::MccCommandRequestMessage(uint64_t agentId)
+        : Message(MCC_COMMAND_REQUEST),
+          hostMccId(agentId),
           cmdType(UNKNOWN_COMMAND_TYPE) {
 
 }

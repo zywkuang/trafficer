@@ -14,24 +14,25 @@
 class Thread : public NonCopyable{
 public:
     Thread();
+    Thread(std::string &name);
     virtual ~Thread();
 
     pthread_t getSelfId();
     pthread_t getThreadId();
 
     std::string getThreadName();
-    void setThreadName(std::string name);
+    void setThreadName(std::string &name);
 
     bool isStarted();
     bool isDetached();
 
-    void threadStart(void *arg);
-    void threadJoin();
-    void threadDetach();
+    void start(void *arg);
+    void join();
+    void detach();
 
     virtual void run() = 0;
 
-protected:
+private:
     pthread_t thread_id;
     std::string thread_name;
 

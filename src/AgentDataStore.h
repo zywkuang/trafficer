@@ -8,11 +8,16 @@
 #define TRAFFICER_AGENTDATASTORE_H
 
 #include <stdint.h>
+#include <map>
+#include "TcpMessageConnection.h"
+#include "base/BoundedBlockingQueue.h"
 
 class AgentDataStore {
 public:
 
+
 private:
+
 
 public:
     static const uint64_t agentHostUUID;

@@ -96,6 +96,16 @@ void Socket::socketClose() {
     close(this->sockfd);
 }
 
+void Socket::socketReset() {
+    close(this->sockfd);
+
+    this->sockfd = socket((bipv6) ? AF_INET6 : AF_INET, proto, 0);
+
+    if (this->sockfd < 0) {
+        throw Exception(ESOCKCREATE, "Create Socket Exception");
+    }
+}
+
 ssize_t Socket::socketSend(const char *payload, size_t length, int flag) {
     ssize_t  bytesSent = 0;
 

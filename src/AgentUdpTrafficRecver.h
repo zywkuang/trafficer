@@ -8,7 +8,9 @@
 #define TRAFFICER_AGENTUDPTRAFFICRECVER_H
 
 
-class AgentUdpTrafficRecver {
+#include "base/Thread.h"
+
+class AgentUdpTrafficRecver : public Thread {
 
 };
 

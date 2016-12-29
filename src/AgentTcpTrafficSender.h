@@ -8,7 +8,9 @@
 #define TRAFFICER_AGENTTCPTRAFFICSENDER_H
 
 
-class AgentTcpTrafficSender {
+#include "base/Thread.h"
+
+class AgentTcpTrafficSender : public Thread {
 
 };
 

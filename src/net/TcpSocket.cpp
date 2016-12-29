@@ -42,6 +42,20 @@ void TcpSocket::setConnected() {
         this->bIsConnected = false;
 }
 
+const InetAddress& TcpSocket::getLocalAddress() {
+    if (!this->bLocalSet)
+        this->setLocal();
+
+    return this->localAddress;
+}
+
+const InetAddress& TcpSocket::getPeerAddress() {
+    if (!this->bIsConnected)
+        this->setConnected();
+
+    return this->peerAddress;
+}
+
 ssize_t TcpSocket::sendData(const char *data, int length) {
     register ssize_t s;
     register ssize_t left = length;

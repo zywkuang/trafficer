@@ -8,9 +8,17 @@
 #include "../base/Json.h"
 #include "../base/Exception.h"
 
-AgentTrafficReportMessage::AgentTrafficReportMessage(uint64_t id)
+AgentTrafficReportMessage::AgentTrafficReportMessage()
+        : Message(AGENT_TRAFFIC_REPORT),
+          hostAgentId(0),
+          role(SENDER),
+          proto(TCP)  {
+
+}
+
+AgentTrafficReportMessage::AgentTrafficReportMessage(uint64_t agentId)
     : Message(AGENT_TRAFFIC_REPORT),
-      hostAgentId(id),
+      hostAgentId(agentId),
       role(SENDER),
       proto(TCP) {
 

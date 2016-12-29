@@ -21,6 +21,9 @@ public:
     void setLocal();
     void setConnected();
 
+    const InetAddress &getLocalAddress();
+    const InetAddress &getPeerAddress();
+
     // Client Function
     void connectServer(InetAddress &remoteAddr);
     void connectServer(InetAddress &remoteAddr, InetAddress &localAddr);

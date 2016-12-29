@@ -12,10 +12,11 @@
 
 class MccCommandRequestMessage : public Message {
 public:
-    MccCommandRequestMessage(uint64_t id);
+    MccCommandRequestMessage();
+    MccCommandRequestMessage(uint64_t agentId);
     ~MccCommandRequestMessage();
 
-    void setHostMccId(uint64_t id);
+    void setHostMccId(uint64_t agentId);
     uint64_t getHostMccId() const;
 
     void setCmdType(CommandType commandType);

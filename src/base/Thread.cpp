@@ -11,13 +11,21 @@ Thread::Thread()
     : started(false),
       detached(false),
       thread_id(0),
-      thread_name(NULL){
+      thread_name("thrdx") {
+
+}
+
+Thread::Thread(std::string &name)
+        : started(false),
+          detached(false),
+          thread_id(0),
+          thread_name(name) {
 
 }
 
 Thread::~Thread() {
     if (started && !detached)
-        this->threadDetach();
+        this->detach();
 }
 
 pthread_t Thread::getSelfId() {
@@ -32,7 +40,7 @@ std::string Thread::getThreadName() {
     return this->thread_name;
 }
 
-void Thread::setThreadName(std::string name) {
+void Thread::setThreadName(std::string &name) {
     this->thread_name = name;
 }
 
@@ -48,7 +56,7 @@ void* Thread::exec(void *ptr) {
     reinterpret_cast<Thread *>(ptr)->run();
 }
 
-void Thread::threadStart(void *arg) {
+void Thread::start(void *arg) {
     this->arg = arg;
 
     int ret = pthread_create(&this->thread_id, NULL, &Thread::exec, this);
@@ -58,7 +66,7 @@ void Thread::threadStart(void *arg) {
     this->started = true;
 }
 
-void Thread::threadJoin() {
+void Thread::join() {
     int ret = pthread_join(this->thread_id, NULL);
     if (ret != 0)
         throw Exception(ETHREADJOIN, "Thread Join Exception");
@@ -66,7 +74,7 @@ void Thread::threadJoin() {
     this->detached = false;
 }
 
-void Thread::threadDetach() {
+void Thread::detach() {
     int ret = pthread_detach(this->thread_id);
     if (ret != 0)
         throw Exception(ETHREADDETACH, "Thread Detach Exception");

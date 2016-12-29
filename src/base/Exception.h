@@ -46,13 +46,11 @@
 #define ECONDITIONBROADCAST 40004
 #define ECONDITIONDESTROY   40005
 
-// Event Exception
-#define EEVENTSET           50001
-#define EEVENTWAIT          50002
-
 // BlockedQueue Exception
-#define EBLKQUEUEPUSH       60001
-#define EBLKQUEUEPOP        60002
+#define EBLKQUEUEPUSH       50001
+#define EBLKQUEUEPOP        50002
+#define EMSGSEND            50003
+#define EMSGRECV            50004
 
 class Exception : public std::exception{
 public:

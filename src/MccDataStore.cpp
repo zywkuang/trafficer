@@ -17,11 +17,11 @@ MccDataStore::~MccDataStore() {
 
 }
 
-void MccDataStore::insertAgentHostInfo(uint64_t hid, AgentHostInfo &hostinfo) {
+void MccDataStore::insertAgentHostInfo(uint64_t hid, AgentHostInfo *hostinfo) {
     MutexLockGuard mlg(&this->hostMutex);
 }
 
-const AgentHostInfo& MccDataStore::retrieveAgentHostInfo(uint64_t hid) {
+AgentHostInfo *MccDataStore::retrieveAgentHostInfo(uint64_t hid) {
     MutexLockGuard mlg(&this->hostMutex);
 }
 
@@ -29,27 +29,27 @@ void MccDataStore::removeAgentHostInfo(uint64_t hid) {
     MutexLockGuard mlg(&this->hostMutex);
 }
 
-void MccDataStore::insertAgentConnection(uint64_t conn, TcpSocket *tcpSocket) {
-    MutexLockGuard mlg(&this->connectionMutex);
+void MccDataStore::insertAgentConnection(uint64_t conn, TcpMessageConnection *messageConnection) {
+    MutexLockGuard mlg(&this->connMutex);
 }
 
-TcpSocket* MccDataStore::retrieveAgentConnection(uint64_t conn) {
-    MutexLockGuard mlg(&this->connectionMutex);
+TcpMessageConnection *MccDataStore::retrieveAgentConnection(uint64_t conn) {
+    MutexLockGuard mlg(&this->connMutex);
 }
 
 void MccDataStore::removeAgentConnection(uint64_t conn) {
-    MutexLockGuard mlg(&this->connectionMutex);
+    MutexLockGuard mlg(&this->connMutex);
 }
 
-void MccDataStore::createTrafficInstance(uint64_t tiid, TrafficInstanceConfig &instance) {
+void MccDataStore::createTrafficInstance(uint64_t tiid, TrafficInstanceConfig *instance) {
     MutexLockGuard mlg(&this->instanceMutex);
 }
 
-const TrafficInstanceConfig& MccDataStore::retrieveTrafficInstance(uint64_t tiid) const {
+TrafficInstanceConfig* MccDataStore::retrieveTrafficInstance(uint64_t tiid) const {
     MutexLockGuard mlg(&this->instanceMutex);
 }
 
-void MccDataStore::updateTrafficInstance(uint64_t tiid, TrafficInstanceConfig &newInstance) {
+void MccDataStore::updateTrafficInstance(uint64_t tiid, TrafficInstanceConfig *newInstance) {
     MutexLockGuard mlg(&this->instanceMutex);
 }
 

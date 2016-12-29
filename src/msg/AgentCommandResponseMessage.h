@@ -11,10 +11,11 @@
 
 class AgentCommandResponseMessage : public Message {
 public:
-    AgentCommandResponseMessage(uint64_t id);
+    AgentCommandResponseMessage();
+    AgentCommandResponseMessage(uint64_t agentId);
     ~AgentCommandResponseMessage();
 
-    void setHostAgentId(uint64_t id);
+    void setHostAgentId(uint64_t agentId);
     uint64_t getHostAgentId() const;
 
     void setTrafficInstanceId(uint64_t trafficInstanceId);
