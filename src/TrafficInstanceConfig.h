@@ -10,8 +10,9 @@
 #include <stdint.h>
 #include <string>
 #include "Trafficer.h"
+#include "base/Copyable.h"
 
-class TrafficInstanceConfig {
+class TrafficInstanceConfig : public Copyable {
 public:
     TrafficInstanceConfig();
     ~TrafficInstanceConfig();

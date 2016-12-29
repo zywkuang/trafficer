@@ -9,8 +9,9 @@
 
 #include <stdint.h>
 #include <string>
+#include "base/Copyable.h"
 
-class AgentHostInfo {
+class AgentHostInfo : public Copyable {
 public:
     AgentHostInfo();
     ~AgentHostInfo();

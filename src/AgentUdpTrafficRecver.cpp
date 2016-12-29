@@ -5,3 +5,15 @@
 **/
 
 #include "AgentUdpTrafficRecver.h"
+
+AgentUdpTrafficRecver::AgentUdpTrafficRecver() {
+
+}
+
+AgentUdpTrafficRecver::~AgentUdpTrafficRecver() {
+
+}
+
+int AgentUdpTrafficRecver::getRecverListenPort() const {
+
+}

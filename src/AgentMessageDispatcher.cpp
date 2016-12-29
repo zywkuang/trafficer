@@ -5,3 +5,11 @@
 **/
 
 #include "AgentMessageDispatcher.h"
+
+AgentMessageDispatcher::AgentMessageDispatcher() {
+
+}
+
+AgentMessageDispatcher::~AgentMessageDispatcher() {
+
+}

@@ -166,6 +166,7 @@ std::string MccCommandRequestMessage::writeToJsonString() const {
         cJsonAddIntToObject(json, "HostMCCID", this->hostMccId);
         cJsonAddIntToObject(json, "TrafficInstanceID", this->trafficInstanceId);
         cJsonAddIntToObject(json, "CommandType", this->cmdType);
+
         cJsonAddStringToObject(json, "SenderHostAddress", this->trafficInstanceConfig.getSenderHostAddress().c_str());
         cJsonAddStringToObject(json, "RecverHostAddress", this->trafficInstanceConfig.getRecverHostAddress().c_str());
         cJsonAddIntToObject(json, "ServerHostPort", this->trafficInstanceConfig.getServerHostPort());

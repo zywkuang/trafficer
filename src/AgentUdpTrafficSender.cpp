@@ -5,3 +5,15 @@
 **/
 
 #include "AgentUdpTrafficSender.h"
+
+AgentUdpTrafficSender::AgentUdpTrafficSender(const TrafficInstanceConfig &tic) {
+
+}
+
+AgentUdpTrafficSender::~AgentUdpTrafficSender() {
+
+}
+
+void AgentUdpTrafficSender::updateTrafficConfig(const TrafficInstanceConfig &newTic) {
+
+}

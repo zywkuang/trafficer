@@ -14,8 +14,10 @@
 #include <cstring>
 #include "UtilSet.h"
 #include "Logger.h"
+#include "TimeStamp.h"
 #include "Exception.h"
 #include "../Trafficer.h"
+
 
 uint64_t UtilSet::generateUUID() {
     uint64_t idval = 0;
@@ -111,4 +113,42 @@ std::string UtilSet::getHostAddress() {
 
     freeifaddrs(pIfAddrs);
     return addrBuf;
+}
+
+void UtilSet::delayBusyloop(uint32_t usecs) {
+    TimeStamp nowTS = TimeStamp::now();
+    TimeStamp targetTS = nowTS.addMicroSeconds(usecs);
+
+    while (true) {
+        TimeStamp tmpTs = TimeStamp::now();
+        if (tmpTs.isGreaterThan(targetTS))
+            break;
+    }
+}
+
+void UtilSet::delayNanosleep(uint32_t usecs) {
+    struct timespec requested = {0, 0};
+    struct timespec remaining;
+
+    requested.tv_nsec += usecs * 1000;
+
+    while (requested.tv_nsec >= NANOSECOND_PER_SECOND) {
+        requested.tv_sec++;
+        requested.tv_nsec -= NANOSECOND_PER_SECOND;
+    }
+
+    nanosleep(&requested, &remaining);
+}
+
+void UtilSet::delaySelect(uint32_t usecs) {
+    struct timeval tv = {0, 0};
+
+    tv.tv_usec += usecs;
+
+    while (tv.tv_usec >= MICROSECOND_PER_SECOND) {
+        tv.tv_sec++;
+        tv.tv_usec -= MICROSECOND_PER_SECOND;
+    }
+
+    select(0, NULL, NULL, NULL, &tv);
 }

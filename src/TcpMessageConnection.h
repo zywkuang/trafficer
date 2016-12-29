@@ -10,7 +10,7 @@
 #include "net/TcpSocket.h"
 #include "msg/Message.h"
 
-class TcpMessageConnection {
+class TcpMessageConnection : public NonCopyable {
 public:
     TcpMessageConnection(TcpSocket *psock);
     ~TcpMessageConnection();

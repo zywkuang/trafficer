@@ -5,3 +5,11 @@
 **/
 
 #include "MccCommandConsole.h"
+
+MccCommandConsole::MccCommandConsole() {
+
+}
+
+MccCommandConsole::~MccCommandConsole() {
+
+}

@@ -9,8 +9,15 @@
 
 
 #include "base/Thread.h"
+#include "TrafficInstanceConfig.h"
 
 class AgentTcpTrafficSender : public Thread {
+public:
+    AgentTcpTrafficSender(const TrafficInstanceConfig &tic);
+    virtual ~AgentTcpTrafficSender();
+
+    void updateTrafficConfig(const TrafficInstanceConfig &newTic);
+private:
 
 };
 

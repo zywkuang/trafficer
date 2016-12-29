@@ -11,6 +11,13 @@
 #include "base/Thread.h"
 
 class AgentTcpTrafficRecver : public Thread {
+public:
+    AgentTcpTrafficRecver();
+    virtual ~AgentTcpTrafficRecver();
+
+    int getRecverListenPort() const;
+
+private:
 
 };
 

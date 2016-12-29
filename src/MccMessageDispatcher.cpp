@@ -5,3 +5,11 @@
 **/
 
 #include "MccMessageDispatcher.h"
+
+MccMessageDispatcher::MccMessageDispatcher() {
+
+}
+
+MccMessageDispatcher::~MccMessageDispatcher() {
+
+}

@@ -16,21 +16,33 @@
 #include "base/BoundedBlockingQueue.h"
 #include "AgentTcpTrafficRecver.h"
 #include "AgentUdpTrafficRecver.h"
+#include "msg/MccCommandRequestMessage.h"
 
 class AgentManageClient : public Thread {
 public:
     AgentManageClient(std::string paddr, int pport, size_t bqSize = DEFAULT_QUEUE_CAPACITY);
     AgentManageClient(std::string paddr, int pport, std::string laddr, int lport, size_t bqSize = DEFAULT_QUEUE_CAPACITY);
-    ~AgentManageClient();
+    virtual ~AgentManageClient();
 
     void initClient();
     void cleanClient();
 
     void connectMccManageServer();
+    void unsetConnectionAlive();
+    void setConnectionAlive();
 
     virtual void run();
 
 private:
+    // Functions
+    void handleIncomingMessage(Message *msg);
+    void handleCommandRequestMessage(MccCommandRequestMessage *msg);
+
+    void handleTrafficInstanceCreate(uint64_t tiid, const TrafficInstanceConfig &tic);
+    void handleTrafficInstanceRetrieve(uint64_t tiid);
+    void handleTrafficInstanceUpdate(uint64_t tiid, const TrafficInstanceConfig &tic);
+    void handleTrafficInstanceDelete(uint64_t tiid);
+
     // Core Thread
     AgentMessageDispatcher messageDispatcher;
     AgentTcpTrafficRecver tcpTrafficRecver;
@@ -47,6 +59,9 @@ private:
     std::string peerAddress;
     int peerPort;
     size_t mqCapacity;
+
+    // State Data
+    bool bConnectionAlive;
 };
 
 

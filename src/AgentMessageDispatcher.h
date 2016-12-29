@@ -12,6 +12,9 @@
 
 class AgentMessageDispatcher : public Thread {
 public:
+    AgentMessageDispatcher();
+    virtual ~AgentMessageDispatcher();
+
 
 private:
 

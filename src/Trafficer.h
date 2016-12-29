@@ -10,6 +10,7 @@
 #define SOFTWARE_VERSION 0.1.0
 #define MACHINE_CODE 1624
 #define DEFAULT_INTERFACE "eth0"
+#define RECONNECT_INTERVAL 2
 
 // Traffic Generation Configuration
 #define TRAFFIC_TCP_SENDBUF_SIZE 16384  // Bytes

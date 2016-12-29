@@ -14,11 +14,21 @@
 
 class UtilSet {
 public:
+    // Using snowflake algorithm to generate uuid
     static uint64_t generateUUID();
+
+    // Set file descriptor non-blocking
     static void setNonBlocking(int fd, bool nonblocking);
+
+    // Retrieve basic information from os
     static std::string getHostName();
     static std::string getHostSysinfo();
     static std::string getHostAddress();
+
+    // Delay function
+    static void delayNanosleep(uint32_t usecs);
+    static void delayBusyloop(uint32_t usecs);
+    static void delaySelect(uint32_t usecs);
 };
 
 

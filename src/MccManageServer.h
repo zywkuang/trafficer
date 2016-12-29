@@ -7,7 +7,6 @@
 #ifndef TRAFFICER_MCCMANAGESERVER_H
 #define TRAFFICER_MCCMANAGESERVER_H
 
-#include <map>
 #include <stdint.h>
 #include "base/Thread.h"
 #include "net/TcpSocket.h"
@@ -17,7 +16,7 @@ class MccManageServer : public Thread {
 public:
     MccManageServer();
     MccManageServer(std::string ip, int port = TRAFFICER_MCC_SERVRE_PORT);
-    ~MccManageServer();
+    virtual ~MccManageServer();
 
     virtual void run();
 

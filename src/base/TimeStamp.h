@@ -9,6 +9,9 @@
 #include <string>
 #include "Copyable.h"
 
+#define MICROSECOND_PER_SECOND 1000000
+#define NANOSECOND_PER_SECOND 1000000000
+
 class TimeStamp : public Copyable{
 public:
     TimeStamp() : microSecondsSinceEpoch(0) {
@@ -31,7 +34,15 @@ public:
     }
 
     time_t getSecondsSinceEpoch() const {
-        return static_cast<time_t>(microSecondsSinceEpoch / kMicroSecondsPerSecond);
+        return static_cast<time_t>(microSecondsSinceEpoch / MICROSECOND_PER_SECOND);
+    }
+
+    bool isGreaterThan(TimeStamp &tm) {
+        return this->microSecondsSinceEpoch > tm.getMicroSecondsSinceEpoch();
+    }
+
+    TimeStamp addMicroSeconds(int64_t increMicroSeconds) {
+        return TimeStamp(this->microSecondsSinceEpoch + increMicroSeconds);
     }
 
     static TimeStamp now();
@@ -41,10 +52,8 @@ public:
     }
 
     static TimeStamp fromUnixTime(time_t t, int microseconds) {
-        return TimeStamp(static_cast<int64_t>(t) * kMicroSecondsPerSecond + microseconds);
+        return TimeStamp(static_cast<int64_t>(t) * MICROSECOND_PER_SECOND + microseconds);
     }
-
-    static const int kMicroSecondsPerSecond = 1000 * 1000;
 
 private:
     int64_t microSecondsSinceEpoch;

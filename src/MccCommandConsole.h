@@ -11,6 +11,9 @@
 #include "base/Thread.h"
 
 class MccCommandConsole : public Thread {
+public:
+    MccCommandConsole();
+    virtual ~MccCommandConsole();
 
 };
 

@@ -5,3 +5,15 @@
 **/
 
 #include "AgentTcpTrafficRecver.h"
+
+AgentTcpTrafficRecver::AgentTcpTrafficRecver() {
+
+}
+
+AgentTcpTrafficRecver::~AgentTcpTrafficRecver() {
+
+}
+
+int AgentTcpTrafficRecver::getRecverListenPort() const {
+
+}

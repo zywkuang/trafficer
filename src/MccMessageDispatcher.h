@@ -7,7 +7,12 @@
 #ifndef TRAFFICER_MCCMESSAGEDISPATCHER_H
 #define TRAFFICER_MCCMESSAGEDISPATCHER_H
 
-class MccMessageDispatcher {
+#include "base/Thread.h"
+
+class MccMessageDispatcher : public Thread {
+public:
+    MccMessageDispatcher();
+    virtual ~MccMessageDispatcher();
 
 };
 

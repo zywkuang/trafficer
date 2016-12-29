@@ -6,8 +6,8 @@
 
 #include <stdint.h>
 #include "TcpMessageConnection.h"
-#include "base/Exception.h"
 #include "base/Logger.h"
+#include "base/Exception.h"
 #include "msg/AgentRegistrationMessage.h"
 #include "msg/AgentHeartBeatMessage.h"
 #include "msg/AgentTrafficReportMessage.h"
@@ -29,7 +29,7 @@ TcpSocket* TcpMessageConnection::getConnSock() const {
 
 void TcpMessageConnection::sendMessageToConnection(Message *msg) {
     try {
-        uint32_t mType = static_cast<uint32_t>msg->getMessageType();
+        uint32_t mType = static_cast<uint32_t>(msg->getMessageType());
         uint32_t net_mType = htonl(mType);
 
         std::string jsonStr = msg->writeToJsonString();

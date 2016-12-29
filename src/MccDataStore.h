@@ -21,32 +21,31 @@ public:
     MccDataStore();
     ~MccDataStore();
 
-    // HostInfo
-    void insertAgentHostInfo(uint64_t hid, AgentHostInfo *hostinfo);
-    AgentHostInfo *retrieveAgentHostInfo(uint64_t hid);
+    // ID = AgentHost UUID
+    void insertAgentHostInfo(uint64_t hid, const AgentHostInfo &hostinfo);
+    const AgentHostInfo &retrieveAgentHostInfo(uint64_t hid) const;
     void removeAgentHostInfo(uint64_t hid);
 
-    // Connection
-    void insertAgentConnection(uint64_t conn, TcpMessageConnection *msgConn);
-    TcpMessageConnection *retrieveAgentConnection(uint64_t conn);
-    void removeAgentConnection(uint64_t conn);
+    // ID = TrafficInstance UUID
+    void createTrafficInstanceConfig(uint64_t tiid, const TrafficInstanceConfig &instance);
+    const TrafficInstanceConfig &retrieveTrafficInstanceConfig(uint64_t tiid) const;
+    void updateTrafficInstanceConfig(uint64_t tiid, const TrafficInstanceConfig &newInstance);
+    void deleteTrafficInstanceConfig(uint64_t tiid);
 
-    // TrafficInstanceConfig
-    void createTrafficInstance(uint64_t tiid, TrafficInstanceConfig *instance);
-    TrafficInstanceConfig *retrieveTrafficInstance(uint64_t tiid) const;
-    void updateTrafficInstance(uint64_t tiid, TrafficInstanceConfig *newInstance);
-    void deleteTrafficInstance(uint64_t tiid);
+    // ID = AgentHost UUID
+    void insertAgentConnection(uint64_t cid, TcpMessageConnection *msgConn);
+    TcpMessageConnection *retrieveAgentConnection(uint64_t cid) const;
+    void removeAgentConnection(uint64_t cid);
 
 private:
     MutexLock hostMutex;
-    std::map<uint64_t, AgentHostInfo*> agentHostInfoMap; // uint64_t <=> agentHostID
-
-    MutexLock connMutex;
-    std::map<uint64_t, TcpMessageConnection*> agentConnectionMap; // uint64_t <=> agentConnectionID
+    std::map<uint64_t, AgentHostInfo> agentHostInfoMap;
 
     MutexLock instanceMutex;
-    std::map<uint64_t, TrafficInstanceConfig*> agentTrafficInstanceMap; // uint64_t <=> trafficInstanceID
+    std::map<uint64_t, TrafficInstanceConfig> agentTrafficInstanceConfigMap;
 
+    MutexLock connMutex;
+    std::map<uint64_t, TcpMessageConnection*> agentConnectionMap;
 public:
     static const uint64_t mccHostUUID;
 };
