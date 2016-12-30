@@ -10,6 +10,9 @@
 
 #include "base/Thread.h"
 #include "TrafficInstanceConfig.h"
+#include "net/UdpSocket.h"
+#include "model/AbstractTrafficModel.h"
+#include "UdpTrafficStatistic.h"
 
 class AgentUdpTrafficSender : public Thread {
 public:
@@ -17,6 +20,17 @@ public:
     virtual ~AgentUdpTrafficSender();
 
     void updateTrafficConfig(const TrafficInstanceConfig &newTic);
+
+    virtual void run();
+
+private:
+    UdpSocket *uSock;
+
+    UdpTrafficStatistic overallTrafficStat;
+    UdpTrafficStatistic tmpTrafficStat;
+
+    AbstractTrafficModel *tModel;
+    char *sendBuf;
 };
 
 

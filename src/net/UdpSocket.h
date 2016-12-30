@@ -11,7 +11,7 @@
 
 class UdpSocket : public Socket {
 public:
-    UdpSocket(bool bIpv6);
+    UdpSocket(bool bIpv6 = false);
     virtual ~UdpSocket();
 
     ssize_t sendData(const char *data, size_t length, InetAddress &remoteAddr);
