@@ -215,6 +215,24 @@ void Socket::setTcpMss(int mss) {
     }
 }
 
+void Socket::setSendTimeout(const struct timeval &timeout) {
+    socklen_t len = sizeof(timeout);
+
+    int ret = setsockopt(this->sockfd, SOL_SOCKET, SO_SNDTIMEO, &timeout, len);
+    if (ret < 0) {
+        LOG_ERROR("Cannot set socket option SO_SNDTIMEO.");
+    }
+}
+
+void Socket::setRecvTimeout(const struct timeval &timeout) {
+    socklen_t len = sizeof(timeout);
+
+    int ret = setsockopt(this->sockfd, SOL_SOCKET, SO_RCVTIMEO, &timeout, len);
+    if (ret < 0) {
+        LOG_ERROR("Cannot set socket option SO_RCVTIMEO.");
+    }
+}
+
 bool Socket::resolveLocalAddr(InetAddress &localAddr) {
     struct sockaddr_in6 localaddr;
     memset(&localaddr, 0, sizeof(struct sockaddr_in6));

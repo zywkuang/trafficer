@@ -99,7 +99,7 @@ void AgentManageClient::handleTrafficInstanceCreate(uint64_t tiid, const Traffic
             this->dataStore->insertAgentTcpTrafficSender(tiid, patts);
 
         } else if (protocol == UDP) {
-            AgentUdpTrafficSender *pauts = new AgentUdpTrafficSender(tic);
+            AgentUdpTrafficSender *pauts = new AgentUdpTrafficSender(tic, this->messageQueue);
             pauts->start(NULL);
             pauts->detach();
             this->dataStore->insertAgentUdpTrafficSender(tiid, pauts);

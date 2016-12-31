@@ -33,6 +33,8 @@ public:
     void setTcpNoDelay(bool on);
     void setKeepAlive(bool on);
     void setTcpMss(int mss);
+    void setSendTimeout(const struct timeval &timeout);
+    void setRecvTimeout(const struct timeval &timeout);
 
     ssize_t socketSend(const char *payload, size_t length, int flag = 0);
     ssize_t socketRecv(char *buffer, size_t length, int flag = 0);
