@@ -17,7 +17,7 @@ AgentUdpTrafficSender::AgentUdpTrafficSender(const TrafficInstanceConfig &tic, B
           sendBufSize(tic.getSendBufSize()),
           workDuration(tic.getWorkDuration()),
           reportInterval(tic.getReportInterval()),
-          updateInterval(tic.getUpdateIntervel()){
+          updateInterval(tic.getUpdateIntervel()) {
 
     this->sendBuf = new char[this->sendBufSize];
     memset(this->sendBuf, 'u', static_cast<size_t>(this->sendBufSize));
@@ -30,7 +30,7 @@ AgentUdpTrafficSender::AgentUdpTrafficSender(const TrafficInstanceConfig &tic, B
 
 AgentUdpTrafficSender::~AgentUdpTrafficSender() {
     if (this->sendBuf) {
-        delete this->sendBuf;
+        delete []this->sendBuf;
         this->sendBuf = NULL;
     }
 
