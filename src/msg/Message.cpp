@@ -15,8 +15,9 @@ Message::Message()
 
 }
 
-Message::Message(MessageType type)
-    : msgTimeStamp(TimeStamp::now().toFormattedString(false)),
+Message::Message(uint64_t hostId, MessageType type)
+    : hostId(hostId),
+      msgTimeStamp(TimeStamp::now().toFormattedString(false)),
       msgId(UtilSet::generateUUID()),
       msgType(type){
 
@@ -24,16 +25,4 @@ Message::Message(MessageType type)
 
 Message::~Message() {
 
-}
-
-const uint64_t Message::getMessageId() const {
-    return this->msgId;
-}
-
-const MessageType Message::getMessageType() const {
-    return this->msgType;
-}
-
-const std::string Message::getMessageTimeStamp() const {
-    return this->msgTimeStamp;
 }

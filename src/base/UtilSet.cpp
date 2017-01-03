@@ -115,18 +115,19 @@ std::string UtilSet::getHostAddress() {
     return addrBuf;
 }
 
-void UtilSet::delayBusyloop(uint32_t usecs) {
+void UtilSet::delayBusyloop(int64_t usecs) {
     TimeStamp nowTS = TimeStamp::now();
-    TimeStamp targetTS = nowTS.addMicroSeconds(usecs);
+    TimeStamp targetTS = TimeStamp::now();
+    targetTS.addMicroSeconds(usecs);
 
     while (true) {
         TimeStamp tmpTs = TimeStamp::now();
-        if (tmpTs.isGreaterThan(targetTS))
+        if (tmpTs.isMoreThan(targetTS))
             break;
     }
 }
 
-void UtilSet::delayNanosleep(uint32_t usecs) {
+void UtilSet::delayNanosleep(int64_t usecs) {
     struct timespec requested = {0, 0};
     struct timespec remaining;
 
@@ -140,7 +141,7 @@ void UtilSet::delayNanosleep(uint32_t usecs) {
     nanosleep(&requested, &remaining);
 }
 
-void UtilSet::delaySelect(uint32_t usecs) {
+void UtilSet::delaySelect(int64_t usecs) {
     struct timeval tv = {0, 0};
 
     tv.tv_usec += usecs;

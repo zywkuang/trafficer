@@ -44,9 +44,9 @@ private:
     void handleTrafficInstanceDelete(uint64_t tiid);
 
     // Core Thread
-    AgentMessageDispatcher messageDispatcher;
-    AgentTcpTrafficRecver tcpTrafficRecver;
-    AgentUdpTrafficRecver udpTrafficRecver;
+    AgentMessageDispatcher *messageDispatcher;
+    AgentTcpTrafficRecver *tcpTrafficRecver;
+    AgentUdpTrafficRecver *udpTrafficRecver;
 
     // Key Data
     AgentDataStore *dataStore;

@@ -13,32 +13,47 @@
 class AgentRegistrationMessage : public Message {
 public:
     AgentRegistrationMessage();
-    AgentRegistrationMessage(uint64_t agentId);
     ~AgentRegistrationMessage();
 
-    void setHostAgentId(uint64_t agentId);
-    uint64_t getHostAgentId() const;
+    void setHostName(std::string &hostname) {
+        this->hostName = hostname;
+    }
+    const std::string &getHostName() const {
+        return this->hostName;
+    }
 
-    void setHostName(std::string &hostname);
-    const std::string &getHostName() const;
+    void setHostAddress(std::string &hostaddress) {
+        this->hostAddress = hostaddress;
+    }
+    const std::string &getHostAddress() const {
+        return this->hostAddress;
+    }
 
-    void setHostAddress(std::string &hostaddress);
-    const std::string &getHostAddress() const;
+    void setHostSysinfo(std::string &hostsysinfo) {
+        this->hostSysinfo = hostsysinfo;
+    }
+    const std::string &getHostSysinfo() const {
+        return this->hostSysinfo;
+    }
 
-    void setHostSysinfo(std::string &hostsysinfo);
-    const std::string &getHostSysinfo() const;
+    void setTcpTrafficerPort(int port) {
+        this->tcpTrafficerPort = port;
+    }
+    int getTcpTrafficerPort() const {
+        return this->tcpTrafficerPort;
+    }
 
-    void setTcpTrafficerPort(int port);
-    int getTcpTrafficerPort() const;
-
-    void setUdpTrafficerPort(int port);
-    int getUdpTrafficerPort() const;
+    void setUdpTrafficerPort(int port) {
+        this->udpTrafficerPort = port;
+    }
+    int getUdpTrafficerPort() const {
+        return this->udpTrafficerPort;
+    }
 
     virtual void readFromJsonString(std::string &jsonstr);
     virtual std::string writeToJsonString() const;
 
 private:
-    uint64_t hostAgentId;
     std::string hostName;
     std::string hostAddress;
     std::string hostSysinfo;

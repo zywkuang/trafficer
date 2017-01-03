@@ -13,26 +13,33 @@
 class MccCommandRequestMessage : public Message {
 public:
     MccCommandRequestMessage();
-    MccCommandRequestMessage(uint64_t agentId);
     ~MccCommandRequestMessage();
 
-    void setHostMccId(uint64_t agentId);
-    uint64_t getHostMccId() const;
+    void setCmdType(CommandType commandType) {
+        this->cmdType = commandType;
+    }
+    CommandType getCmdType() const {
+        return this->cmdType;
+    }
 
-    void setCmdType(CommandType commandType);
-    CommandType getCmdType() const;
+    void setTrafficInstanceId(uint64_t trafficInstanceId) {
+        this->trafficInstanceId = trafficInstanceId;
+    }
+    uint64_t getTrafficInstanceId() const {
+        return this->trafficInstanceId;
+    }
 
-    void setTrafficInstanceId(uint64_t trafficInstanceId);
-    uint64_t getTrafficInstanceId() const;
-
-    void setTrafficInstanceConfig(TrafficInstanceConfig &tic);
-    const TrafficInstanceConfig &getTrafficInstanceConfig() const;
+    void setTrafficInstanceConfig(TrafficInstanceConfig &tic) {
+        this->trafficInstanceConfig = tic;
+    }
+    const TrafficInstanceConfig &getTrafficInstanceConfig() const {
+        return this->trafficInstanceConfig;
+    }
 
     void readFromJsonString(std::string &jsonstr);
     std::string writeToJsonString() const;
 
 private:
-    uint64_t hostMccId; // mcc uuid
     uint64_t trafficInstanceId; // target traffic instance
     CommandType cmdType;
 

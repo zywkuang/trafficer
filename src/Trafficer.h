@@ -7,6 +7,12 @@
 #ifndef TRAFFICER_H
 #define TRAFFICER_H
 
+/**
+ * Statements:
+ * Bandwidth Unit: Byte/s - uint64_t
+ * Time Unit: us - int64_t
+ */
+
 #define SOFTWARE_VERSION 0.1.0
 #define MACHINE_CODE 1624
 #define DEFAULT_INTERFACE "eth0"
@@ -14,9 +20,10 @@
 
 // Traffic Generation Configuration
 #define TRAFFIC_TCP_SENDBUF_SIZE 16384  // Bytes
-#define TRAFFIC_UDP_SENDBUF_SIZE 1460   // Bytes
-#define TRAFFIC_REPORT_INTERVAL 2000    // MicroSeconds
-#define TRAFFIC_UPDATE_INTERVAL 500     // MicroSeconds
+#define TRAFFIC_UDP_SENDBUF_SIZE 1440   // Bytes
+#define TRAFFIC_REPORT_INTERVAL 2000000 // MicroSeconds - 2s
+#define TRAFFIC_UPDATE_INTERVAL 500000  // MicroSeconds - 0.5s
+#define TRAFFIC_UDP_SENDPKT_CNT 4
 
 // Logger Configuration
 #define LOG_LINE_SIZE 2048

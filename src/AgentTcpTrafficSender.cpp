@@ -6,7 +6,8 @@
 
 #include "AgentTcpTrafficSender.h"
 
-AgentTcpTrafficSender::AgentTcpTrafficSender(const TrafficInstanceConfig &tic) {
+AgentTcpTrafficSender::AgentTcpTrafficSender(const TrafficInstanceConfig &tic, BoundedBlockingQueue<Message*> *bmq)
+        : messageQueue(bmq) {
 
 }
 

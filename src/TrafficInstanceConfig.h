@@ -14,61 +14,154 @@
 
 class TrafficInstanceConfig : public Copyable {
 public:
-    TrafficInstanceConfig();
-    ~TrafficInstanceConfig();
+    TrafficInstanceConfig()
+            : senderHostAddress("10.0.0.1"),
+              recverHostAddress("10.0.0.2"),
+              serverHostPort(TRAFFICER_TCP_SERVER_PORT),
+              role(SENDER),
+              proto(TCP),
+              workDuration(-1),
+              reportInterval(TRAFFIC_REPORT_INTERVAL),
+              updateInterval(TRAFFIC_UPDATE_INTERVAL),
+              sendBufSize(TRAFFIC_TCP_SENDBUF_SIZE),
+              tcpNoDelay(false),
+              tcpMss(-1),
+              trafficModel(STABLE_TRAFFIC){
 
-    void setSenderHostAddress(const std::string &senderHostAddress);
-    const std::string &getSenderHostAddress() const;
+    }
+    ~TrafficInstanceConfig() {
 
-    void setRecverHostAddress(const std::string &recverHostAddress);
-    const std::string &getRecverHostAddress() const;
+    }
 
-    void setServerHostPort(int serverHostPort);
-    int getServerHostPort() const;
+    void setTrafficInstanceId(const uint64_t tiid) {
+        this->trafficInstanceId = tiid;
+    }
+    uint64_t getTrafficInstanceId() const {
+        return this->trafficInstanceId;
+    }
 
-    void setProtocol(ProtocolType proto);
-    ProtocolType getProtocol() const;
+    void setSenderHostAddress(const std::string &senderHostAddress) {
+        this->senderHostAddress = senderHostAddress;
+    }
+    const std::string &getSenderHostAddress() const {
+        return this->senderHostAddress;
+    }
 
-    void setRole(RoleType role);
-    RoleType getRole() const;
+    void setRecverHostAddress(const std::string &recverHostAddress) {
+        this->recverHostAddress = recverHostAddress;
+    }
+    const std::string &getRecverHostAddress() const {
+        return this->recverHostAddress;
+    }
 
-    void setWorkDuration(int workDuration);
-    int getWorkDuration() const;
+    void setServerHostPort(int serverHostPort) {
+        this->serverHostPort = serverHostPort;
+    }
+    int getServerHostPort() const {
+        return this->serverHostPort;
+    }
 
-    void setReportInterval(int reportInterval);
-    int getReportInterval() const;
+    void setProtocol(ProtocolType proto) {
+        this->proto = proto;
+    }
+    ProtocolType getProtocol() const {
+        return this->proto;
+    }
 
-    void setSendBufSize(int sendBufSize);
-    int getSendBufSize() const;
+    void setRole(RoleType role) {
+        this->role = role;
+    }
+    RoleType getRole() const {
+        return this->role;
+    }
 
-    void setUpdateIntervel(int updateIntervel);
-    int getUpdateIntervel() const;
+    void setWorkDuration(int64_t workDuration) {
+        this->workDuration = workDuration;
+    }
+    int64_t getWorkDuration() const {
+        return this->workDuration;
+    }
 
-    void setTcpNoDelay(bool tcpNoDelay);
-    bool isTcpNoDelay() const;
+    void setSendBufSize(size_t sendBufSize) {
+        this->sendBufSize = sendBufSize;
+    }
+    size_t getSendBufSize() const {
+        return this->sendBufSize;
+    }
 
-    void setTcpMss(int tcpMss);
-    int getTcpMss() const;
+    void setReportInterval(int64_t reportInterval) {
+        this->reportInterval = reportInterval;
+    }
+    int64_t getReportInterval() const {
+        return this->reportInterval;
+    }
 
-    void setTrafficModel(TrafficModelType trafficModel);
-    TrafficModelType getTrafficModel() const;
+    void setUpdateIntervel(int64_t updateInterval) {
+        this->updateInterval = updateInterval;
+    }
+    int64_t getUpdateInterval() const {
+        return this->updateInterval;
+    }
 
-    void setStableTrafficBandwidth(uint64_t stableTrafficBandwidth);
-    uint64_t getStableTrafficBandwidth() const;
+    void setTcpNoDelay(bool tcpNoDelay) {
+        this->tcpNoDelay = tcpNoDelay;
+    }
+    bool isTcpNoDelay() const {
+        return this->tcpNoDelay;
+    }
 
-    void setRectSupremumTrafficBandwidth(uint64_t rectSupremumTrafficBandwidth);
-    uint64_t getRectSupremumTrafficBandwidth() const;
+    void setTcpMss(int tcpMss) {
+        this->tcpMss = tcpMss;
+    }
+    int getTcpMss() const {
+        return this->tcpMss;
+    }
 
-    void setRectInfimumTrafficBandwidth(uint64_t rectInfimumTrafficBandwidth);
-    uint64_t getRectInfimumTrafficBandwidth() const;
+    void setTrafficModel(TrafficModelType trafficModel) {
+        this->trafficModel = trafficModel;
+    }
+    TrafficModelType getTrafficModel() const {
+        return this->trafficModel;
+    }
 
-    void setRectSupreProportion(double rectSupreProportion);
-    double getRectSupreProportion() const;
+    void setStableTrafficBandwidth(uint64_t stableTrafficBandwidth) {
+        this->stableTrafficBandwidth = stableTrafficBandwidth;
+    }
+    uint64_t getStableTrafficBandwidth() const {
+        return this->stableTrafficBandwidth;
+    }
 
-    void setPoissonBurstTrafficBandwidth(uint64_t poissonBurstTrafficBandwidth);
-    uint64_t getPoissonBurstTrafficBandwidth() const;
+    void setRectSupremumTrafficBandwidth(uint64_t rectSupremumTrafficBandwidth) {
+        this->rectSupremumTrafficBandwidth = rectSupremumTrafficBandwidth;
+    }
+    uint64_t getRectSupremumTrafficBandwidth() const {
+        return this->rectSupremumTrafficBandwidth;
+    }
+
+    void setRectInfimumTrafficBandwidth(uint64_t rectInfimumTrafficBandwidth) {
+        this->rectInfimumTrafficBandwidth = rectInfimumTrafficBandwidth;
+    }
+    uint64_t getRectInfimumTrafficBandwidth() const {
+        return this->rectInfimumTrafficBandwidth;
+    }
+
+    void setRectSupreProportion(double rectSupreProportion) {
+        this->rectSupreProportion = rectSupreProportion;
+    }
+    double getRectSupreProportion() const {
+        return this->rectSupreProportion;
+    }
+
+    void setPoissonBurstTrafficBandwidth(uint64_t poissonBurstTrafficBandwidth) {
+        this->poissonBurstTrafficBandwidth = poissonBurstTrafficBandwidth;
+    }
+    uint64_t getPoissonBurstTrafficBandwidth() const {
+        return this->poissonBurstTrafficBandwidth;
+    }
 
 private:
+    uint64_t trafficInstanceId;
+
     std::string senderHostAddress;
     std::string recverHostAddress;
 
@@ -77,12 +170,12 @@ private:
     RoleType  role;
     ProtocolType proto;
 
-    // Time unit: ms
-    int workDuration; // -1 for forever, non-negative for specific duration
-    int reportInterval;
-    int updateIntervel;  // Traffic sending-rate update interval
+    // Time unit: us
+    int64_t workDuration; // -1 for forever, non-negative for specific duration
+    int64_t reportInterval;
+    int64_t updateInterval;  // Traffic sending-rate update interval
 
-    int sendBufSize; // Sender buffer size
+    size_t sendBufSize; // Sender buffer size
 
     // Socket Flags: TCP_NODELAY && TCP_MAXSEG
     bool tcpNoDelay; // false not set, true set

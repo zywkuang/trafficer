@@ -7,18 +7,19 @@
 #ifndef TRAFFICER_AGENTTCPTRAFFICRECVER_H
 #define TRAFFICER_AGENTTCPTRAFFICRECVER_H
 
-
+#include "msg/Message.h"
 #include "base/Thread.h"
+#include "base/BoundedBlockingQueue.h"
 
 class AgentTcpTrafficRecver : public Thread {
 public:
-    AgentTcpTrafficRecver();
+    AgentTcpTrafficRecver(BoundedBlockingQueue<Message*> *bmq);
     virtual ~AgentTcpTrafficRecver();
 
     int getRecverListenPort() const;
 
 private:
-
+    BoundedBlockingQueue<Message*> *messageQueue;
 };
 
 

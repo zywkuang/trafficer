@@ -37,12 +37,20 @@ public:
         return static_cast<time_t>(microSecondsSinceEpoch / MICROSECOND_PER_SECOND);
     }
 
-    bool isGreaterThan(TimeStamp &tm) {
+    bool isMoreThan(TimeStamp &tm) {
         return this->microSecondsSinceEpoch > tm.getMicroSecondsSinceEpoch();
     }
 
-    TimeStamp addMicroSeconds(int64_t increMicroSeconds) {
-        return TimeStamp(this->microSecondsSinceEpoch + increMicroSeconds);
+    bool isLessThan(TimeStamp &tm) {
+        return this->microSecondsSinceEpoch < tm.getMicroSecondsSinceEpoch();
+    }
+
+    int64_t diffTimeStamp(TimeStamp &tm) {
+        return this->microSecondsSinceEpoch - tm.getMicroSecondsSinceEpoch();
+    }
+
+    void addMicroSeconds(int64_t increMicroSeconds) {
+        this->microSecondsSinceEpoch += increMicroSeconds;
     }
 
     static TimeStamp now();

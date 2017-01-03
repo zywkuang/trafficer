@@ -6,7 +6,8 @@
 
 #include "AgentTcpTrafficRecver.h"
 
-AgentTcpTrafficRecver::AgentTcpTrafficRecver() {
+AgentTcpTrafficRecver::AgentTcpTrafficRecver(BoundedBlockingQueue<Message*> *bmq)
+        : messageQueue(bmq) {
 
 }
 

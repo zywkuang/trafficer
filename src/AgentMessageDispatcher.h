@@ -9,15 +9,16 @@
 
 #include "base/BoundedBlockingQueue.h"
 #include "base/Thread.h"
+#include "msg/Message.h"
 
 class AgentMessageDispatcher : public Thread {
 public:
-    AgentMessageDispatcher();
+    AgentMessageDispatcher(BoundedBlockingQueue<Message*> *bmq);
     virtual ~AgentMessageDispatcher();
 
 
 private:
-
+    BoundedBlockingQueue<Message*> *messageQueue;
 };
 
 

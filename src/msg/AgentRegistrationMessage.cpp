@@ -8,10 +8,10 @@
 #include "../base/Json.h"
 #include "../base/Exception.h"
 #include "../base/TimeStamp.h"
+#include "../AgentDataStore.h"
 
 AgentRegistrationMessage::AgentRegistrationMessage()
-        : Message(AGENT_REGISTERATION),
-          hostAgentId(0),
+        : Message(AgentDataStore::agentHostUUID, AGENT_REGISTERATION),
           hostName("placeholder"),
           hostAddress("0.0.0.0"),
           hostSysinfo("Linux-x64"),
@@ -20,67 +20,8 @@ AgentRegistrationMessage::AgentRegistrationMessage()
 
 }
 
-AgentRegistrationMessage::AgentRegistrationMessage(uint64_t agentId)
-     : Message(AGENT_REGISTERATION),
-       hostAgentId(agentId),
-       hostName("placeholder"),
-       hostAddress("0.0.0.0"),
-       hostSysinfo("Linux-x64"),
-       tcpTrafficerPort(TRAFFICER_TCP_SERVER_PORT),
-       udpTrafficerPort(TRAFFICER_UDP_SERVER_PORT) {
-
-}
-
 AgentRegistrationMessage::~AgentRegistrationMessage() {
 
-}
-
-void AgentRegistrationMessage::setHostAgentId(uint64_t id) {
-    this->hostAgentId = id;
-}
-
-uint64_t AgentRegistrationMessage::getHostAgentId() const {
-    return this->hostAgentId;
-}
-
-void AgentRegistrationMessage::setHostName(std::string &hostname) {
-    this->hostName = hostname;
-}
-
-const std::string &AgentRegistrationMessage::getHostName() const {
-    return this->hostName;
-}
-
-void AgentRegistrationMessage::setHostAddress(std::string &hostaddress) {
-    this->hostAddress = hostaddress;
-}
-
-const std::string &AgentRegistrationMessage::getHostAddress() const {
-    return this->hostAddress;
-}
-
-void AgentRegistrationMessage::setHostSysinfo(std::string &hostsysinfo) {
-    this->hostSysinfo = hostsysinfo;
-}
-
-const std::string &AgentRegistrationMessage::getHostSysinfo() const {
-    return this->hostSysinfo;
-}
-
-void AgentRegistrationMessage::setTcpTrafficerPort(int port) {
-    this->tcpTrafficerPort = port;
-}
-
-int AgentRegistrationMessage::getTcpTrafficerPort() const {
-    return this->tcpTrafficerPort;
-}
-
-void AgentRegistrationMessage::setUdpTrafficerPort(int port) {
-    this->udpTrafficerPort = port;
-}
-
-int AgentRegistrationMessage::getUdpTrafficerPort() const {
-    return this->udpTrafficerPort;
 }
 
 void AgentRegistrationMessage::readFromJsonString(std::string &jsonstr) {
@@ -93,6 +34,9 @@ void AgentRegistrationMessage::readFromJsonString(std::string &jsonstr) {
 
     if ((pj = cJsonGetObjectItem(json, "TimeStamp")) != NULL)
         this->msgTimeStamp = pj->valueString;
+
+    if ((pj = cJsonGetObjectItem(json, "HostAgentID")) != NULL)
+        this->hostId = static_cast<uint64_t>(pj->valueInt);
 
     if ((pj = cJsonGetObjectItem(json, "HostName")) != NULL)
         this->hostName = pj->valueString;
@@ -121,6 +65,7 @@ std::string AgentRegistrationMessage::writeToJsonString() const {
         cJsonAddIntToObject(json, "MsgID", this->msgId);
         cJsonAddIntToObject(json, "MsgType", AGENT_REGISTERATION);
         cJsonAddStringToObject(json, "TimeStamp", this->msgTimeStamp.c_str());
+        cJsonAddIntToObject(json, "HostAgentID", this->hostId);
         cJsonAddStringToObject(json, "HostName", this->hostName.c_str());
         cJsonAddStringToObject(json, "HostAddress", this->hostAddress.c_str());
         cJsonAddStringToObject(json, "HostSysinfo", this->hostSysinfo.c_str());

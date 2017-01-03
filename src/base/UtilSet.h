@@ -11,6 +11,8 @@
 #include <string>
 
 #define Random(x) (rand() % x)
+#define Htonll(x) ((1==htonl(1)) ? (x) : ((uint64_t)htonl((x) & 0xFFFFFFFF) << 32) | htonl((x) >> 32))
+#define Ntohll(x) ((1==ntohl(1)) ? (x) : ((uint64_t)ntohl((x) & 0xFFFFFFFF) << 32) | ntohl((x) >> 32))
 
 class UtilSet {
 public:
@@ -26,9 +28,9 @@ public:
     static std::string getHostAddress();
 
     // Delay function
-    static void delayNanosleep(uint32_t usecs);
-    static void delayBusyloop(uint32_t usecs);
-    static void delaySelect(uint32_t usecs);
+    static void delayNanosleep(int64_t usecs);
+    static void delayBusyloop(int64_t usecs);
+    static void delaySelect(int64_t usecs);
 };
 
 

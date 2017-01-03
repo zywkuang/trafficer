@@ -10,15 +10,18 @@
 
 #include "base/Thread.h"
 #include "TrafficInstanceConfig.h"
+#include "base/BoundedBlockingQueue.h"
+#include "msg/Message.h"
 
 class AgentTcpTrafficSender : public Thread {
 public:
-    AgentTcpTrafficSender(const TrafficInstanceConfig &tic);
+    AgentTcpTrafficSender(const TrafficInstanceConfig &tic, BoundedBlockingQueue<Message*> *bmq);
     virtual ~AgentTcpTrafficSender();
 
     void updateTrafficConfig(const TrafficInstanceConfig &newTic);
 private:
 
+    BoundedBlockingQueue<Message*> *messageQueue;
 };
 
 

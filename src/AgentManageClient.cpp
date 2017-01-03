@@ -17,7 +17,10 @@ AgentManageClient::AgentManageClient(std::string paddr, int pport, size_t bqSize
           localAddress(""),
           localPort(TRAFFICER_MCC_CLIENT_PORT),
           mqCapacity(bqSize),
-          bConnectionAlive(false) {
+          bConnectionAlive(false),
+          messageDispatcher(NULL),
+          tcpTrafficRecver(NULL),
+          udpTrafficRecver(NULL){
 
 }
 
@@ -27,17 +30,39 @@ AgentManageClient::AgentManageClient(std::string paddr, int pport, std::string l
           localAddress(laddr),
           localPort(lport),
           mqCapacity(bqSize),
-          bConnectionAlive(false){
+          bConnectionAlive(false),
+          messageDispatcher(NULL),
+          tcpTrafficRecver(NULL),
+          udpTrafficRecver(NULL){
 
 }
 
 AgentManageClient::~AgentManageClient() {
 
-    if (this->dataStore != NULL)
+    if (this->dataStore != NULL) {
         delete this->dataStore;
+        this->dataStore = NULL;
+    }
 
-    if (this->messageConnection != NULL)
+    if (this->messageConnection != NULL) {
         delete this->messageConnection;
+        this->messageConnection = NULL;
+    }
+
+    if (this->messageDispatcher != NULL) {
+        delete this->messageDispatcher;
+        this->messageDispatcher = NULL;
+    }
+
+    if (this->tcpTrafficRecver != NULL) {
+        delete this->tcpTrafficRecver;
+        this->tcpTrafficRecver = NULL;
+    }
+
+    if (this->udpTrafficRecver != NULL) {
+        delete this->udpTrafficRecver;
+        this->udpTrafficRecver = NULL;
+    }
 }
 
 void AgentManageClient::unsetConnectionAlive()  {
@@ -72,13 +97,20 @@ void AgentManageClient::initClient() {
     this->dataStore = new AgentDataStore();
     this->messageConnection = NULL;
 
+    // Launch Message Dispatcher
+    this->messageDispatcher = new AgentMessageDispatcher(this->messageQueue);
+    this->messageDispatcher->start(NULL);
+    this->messageDispatcher->detach();
+
     // Launch TCP Traffic Recver
-    this->tcpTrafficRecver.start(NULL);
-    this->tcpTrafficRecver.detach();
+    this->tcpTrafficRecver = new AgentTcpTrafficRecver(this->messageQueue);
+    this->tcpTrafficRecver->start(NULL);
+    this->tcpTrafficRecver->detach();
 
     // Launch UDP Traffic Recver
-    this->udpTrafficRecver.start(NULL);
-    this->udpTrafficRecver.detach();
+    this->udpTrafficRecver = new AgentUdpTrafficRecver(this->messageQueue);
+    this->udpTrafficRecver->start(NULL);
+    this->udpTrafficRecver->detach();
 }
 
 void AgentManageClient::cleanClient() {
@@ -93,7 +125,7 @@ void AgentManageClient::handleTrafficInstanceCreate(uint64_t tiid, const Traffic
 
     if (role == SENDER) {
         if (protocol == TCP) {
-            AgentTcpTrafficSender *patts = new AgentTcpTrafficSender(tic);
+            AgentTcpTrafficSender *patts = new AgentTcpTrafficSender(tic, this->messageQueue);
             patts->start(NULL);
             patts->detach();
             this->dataStore->insertAgentTcpTrafficSender(tiid, patts);
@@ -198,7 +230,6 @@ void AgentManageClient::run() {
             if (this->bConnectionAlive) {
                 AgentRegistrationMessage *registrationMessage = new AgentRegistrationMessage();
 
-                registrationMessage->setHostAgentId(AgentDataStore::agentHostUUID);
                 registrationMessage->setHostName(AgentDataStore::agentHostName);
                 registrationMessage->setHostAddress(AgentDataStore::agentHostAddress);
                 registrationMessage->setHostSysinfo(AgentDataStore::agentHostSysinfo);

@@ -6,7 +6,8 @@
 
 #include "AgentUdpTrafficRecver.h"
 
-AgentUdpTrafficRecver::AgentUdpTrafficRecver() {
+AgentUdpTrafficRecver::AgentUdpTrafficRecver(BoundedBlockingQueue<Message*> *bmq)
+        : messageQueue(bmq) {
 
 }
 
@@ -15,5 +16,9 @@ AgentUdpTrafficRecver::~AgentUdpTrafficRecver() {
 }
 
 int AgentUdpTrafficRecver::getRecverListenPort() const {
+
+}
+
+void AgentUdpTrafficRecver::run() {
 
 }

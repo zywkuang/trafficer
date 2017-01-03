@@ -7,129 +7,17 @@
 #include "AgentTrafficReportMessage.h"
 #include "../base/Json.h"
 #include "../base/Exception.h"
+#include "../AgentDataStore.h"
 
 AgentTrafficReportMessage::AgentTrafficReportMessage()
-        : Message(AGENT_TRAFFIC_REPORT),
-          hostAgentId(0),
+        : Message(AgentDataStore::agentHostUUID, AGENT_TRAFFIC_REPORT),
           role(SENDER),
           proto(TCP)  {
 
 }
 
-AgentTrafficReportMessage::AgentTrafficReportMessage(uint64_t agentId)
-    : Message(AGENT_TRAFFIC_REPORT),
-      hostAgentId(agentId),
-      role(SENDER),
-      proto(TCP) {
-
-}
-
 AgentTrafficReportMessage::~AgentTrafficReportMessage() {
 
-}
-
-void AgentTrafficReportMessage::setHostAgentId(uint64_t id) {
-    this->hostAgentId = id;
-}
-
-uint64_t AgentTrafficReportMessage::getHostAgentId() const {
-    return this->hostAgentId;
-}
-
-void AgentTrafficReportMessage::setTrafficInstanceId(uint64_t tiid) {
-    this->trafficInstanceId = tiid;
-}
-
-uint64_t AgentTrafficReportMessage::getTrafficInstanceId() const {
-    return this->trafficInstanceId;
-}
-
-void AgentTrafficReportMessage::setRole(RoleType r) {
-    this->role = r;
-}
-
-RoleType AgentTrafficReportMessage::getRole() const {
-    return this->role;
-}
-
-void AgentTrafficReportMessage::setProtocol(ProtocolType p) {
-    this->proto = p;
-}
-
-ProtocolType AgentTrafficReportMessage::getProtocol() const {
-    return this->proto;
-}
-
-void AgentTrafficReportMessage::setBeginTimeStamp(std::string &beginTimeStamp) {
-    this->beginTimeStamp = beginTimeStamp;
-}
-
-const std::string &AgentTrafficReportMessage::getBeginTimeStamp() const {
-    return this->beginTimeStamp;
-}
-
-void AgentTrafficReportMessage::setEndTimeStamp(std::string &endTimeStamp) {
-    this->endTimeStamp = endTimeStamp;
-}
-
-const std::string &AgentTrafficReportMessage::getEndTimeStamp() const {
-    return this->endTimeStamp;
-}
-
-void AgentTrafficReportMessage::setBytesTransferred(uint64_t bytes) {
-    this->bytesTransferred = bytes;
-}
-
-uint64_t AgentTrafficReportMessage::getBytesTransferred() const {
-    return this->bytesTransferred;
-}
-
-void AgentTrafficReportMessage::setTrafficInterval(double interval) {
-    this->trafficInterval = interval;
-}
-
-double AgentTrafficReportMessage::getTrafficInterval() const {
-    return this->trafficInterval;
-}
-
-void AgentTrafficReportMessage::setTrafficBandwidth(double bandwidth) {
-    this->trafficBandwidth = bandwidth;
-}
-
-double AgentTrafficReportMessage::getTrafficBandwidth() const {
-    return this->trafficBandwidth;
-}
-
-void AgentTrafficReportMessage::setTrafficJitter(double jitter) {
-    this->trafficJitter = jitter;
-}
-
-double AgentTrafficReportMessage::getTrafficJitter() const {
-    return this->trafficJitter;
-}
-
-void AgentTrafficReportMessage::setPacketLostCnt(uint64_t lostCnt) {
-    this->packetLostCnt = lostCnt;
-}
-
-uint64_t AgentTrafficReportMessage::getPacketLostCnt() const {
-    return this->packetLostCnt;
-}
-
-void AgentTrafficReportMessage::setPacketTotalCnt(uint64_t totalCnt) {
-    this->packetTotalCnt = totalCnt;
-}
-
-uint64_t AgentTrafficReportMessage::getPacketTotalCnt() const {
-    return this->packetTotalCnt;
-}
-
-void AgentTrafficReportMessage::setPacketLoss(double loss) {
-    this->packetLoss = loss;
-}
-
-double AgentTrafficReportMessage::getPacketLoss() const {
-    return this->packetLoss;
 }
 
 void AgentTrafficReportMessage::readFromJsonString(std::string &jsonstr) {
@@ -144,7 +32,7 @@ void AgentTrafficReportMessage::readFromJsonString(std::string &jsonstr) {
         this->msgTimeStamp = pj->valueString;
 
     if ((pj = cJsonGetObjectItem(json, "HostAgentID")) != NULL)
-        this->hostAgentId = static_cast<uint64_t>(pj->valueInt);
+        this->hostId = static_cast<uint64_t>(pj->valueInt);
 
     if ((pj = cJsonGetObjectItem(json, "TrafficID")) != NULL)
         this->trafficInstanceId = static_cast<uint64_t>(pj->valueInt);
@@ -165,10 +53,10 @@ void AgentTrafficReportMessage::readFromJsonString(std::string &jsonstr) {
         this->bytesTransferred = static_cast<uint64_t>(pj->valueInt);
 
     if ((pj = cJsonGetObjectItem(json, "TrafficInterval")) != NULL)
-        this->trafficInterval = pj->valueDouble;
+        this->trafficInterval = pj->valueInt;
 
     if ((pj = cJsonGetObjectItem(json, "TrafficBandwidth")) != NULL)
-        this->trafficBandwidth = pj->valueDouble;
+        this->trafficBandwidth = static_cast<uint64_t>(pj->valueInt);
 
     if (this->proto == UDP) {
         if ((pj = cJsonGetObjectItem(json, "TrafficJitter")) != NULL)
@@ -196,21 +84,24 @@ std::string AgentTrafficReportMessage::writeToJsonString() const {
         cJsonAddIntToObject(json, "MsgType", AGENT_TRAFFIC_REPORT);
         cJsonAddStringToObject(json, "TimeStamp", this->msgTimeStamp.c_str());
 
-        cJsonAddIntToObject(json, "HostAgentID", this->hostAgentId);
+        cJsonAddIntToObject(json, "HostAgentID", this->hostId);
         cJsonAddIntToObject(json, "TrafficID", this->trafficInstanceId);
         cJsonAddIntToObject(json, "Role", this->role);
         cJsonAddIntToObject(json, "Protocol", this->proto);
         cJsonAddStringToObject(json, "BeginTimeStamp", this->beginTimeStamp.c_str());
         cJsonAddStringToObject(json, "EndTimeStamp", this->endTimeStamp.c_str());
         cJsonAddIntToObject(json, "BytesTransferred", this->bytesTransferred);
-        cJsonAddDoubleToObject(json, "TrafficInterval", this->trafficInterval);
-        cJsonAddDoubleToObject(json, "TrafficBandwidth", this->trafficBandwidth);
+        cJsonAddIntToObject(json, "TrafficInterval", this->trafficInterval);
+        cJsonAddIntToObject(json, "TrafficBandwidth", this->trafficBandwidth);
 
         if (this->proto == UDP) {
-            cJsonAddDoubleToObject(json, "TrafficJitter", this->trafficJitter);
-            cJsonAddIntToObject(json, "PacketLostCount", this->packetLostCnt);
+            if (this->role == RECVER) {
+                cJsonAddDoubleToObject(json, "TrafficJitter", this->trafficJitter);
+                cJsonAddIntToObject(json, "PacketLostCount", this->packetLostCnt);
+                cJsonAddDoubleToObject(json, "PacketLoss", this->packetLoss);
+            }
+
             cJsonAddIntToObject(json, "PacketTotalCount", this->packetTotalCnt);
-            cJsonAddDoubleToObject(json, "PacketLoss", this->packetLoss);
         }
     }
 

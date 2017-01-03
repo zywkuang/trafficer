@@ -7,14 +7,22 @@
 #ifndef TRAFFICER_AGENTUDPTRAFFICSENDER_H
 #define TRAFFICER_AGENTUDPTRAFFICSENDER_H
 
-
 #include "base/Thread.h"
-#include "TrafficInstanceConfig.h"
-#include "net/UdpSocket.h"
-#include "model/AbstractTrafficModel.h"
-#include "UdpTrafficStatistic.h"
+#include "base/TimeStamp.h"
 #include "base/BoundedBlockingQueue.h"
 #include "msg/Message.h"
+#include "net/UdpSocket.h"
+#include "model/AbstractTrafficModel.h"
+#include "TrafficInstanceConfig.h"
+
+typedef struct UdpSendTrafficStats {
+    TimeStamp beginTime;
+    TimeStamp endTime;
+    uint64_t bytesSent;
+    uint64_t packetTotal;
+    int64_t interval;
+    uint64_t bandwidth;
+} UdpSendTrafficStats;
 
 class AgentUdpTrafficSender : public Thread {
 public:
@@ -22,29 +30,30 @@ public:
     virtual ~AgentUdpTrafficSender();
 
     void updateTrafficConfig(const TrafficInstanceConfig &newTic);
-    void stop();
 
     virtual void run();
+    virtual void stop();
 
 private:
     // Internal functions
-    ssize_t sendPacket();
+    ssize_t sendPacket(uint32_t pktSN);  // Packet sequence number);
 
     // Internal variables
     bool b2Stop; // boolean variable (to stop thread?)
 
     UdpSocket *uSock;
-    uint32_t packetSequenceNumber;  // Packet sequence number
 
     char *sendBuf;
-    int sendBufSize;
+    size_t sendBufSize;
+
+    uint64_t trafficInstanceId;
 
     // Some time interval variables
-    int workDuration;
-    int reportInterval;
-    int updateInterval;
+    int64_t workDuration;
+    int64_t reportInterval;
+    int64_t updateInterval;
 
-    UdpTrafficStatistic overallTrafficStat;
+    UdpSendTrafficStats overallTrafficStat;
 
     AbstractTrafficModel *tModel;
     BoundedBlockingQueue<Message*> *messageQueue;

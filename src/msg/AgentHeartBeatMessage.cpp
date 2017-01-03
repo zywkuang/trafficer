@@ -7,39 +7,16 @@
 #include "AgentHeartBeatMessage.h"
 #include "../base/Json.h"
 #include "../base/Exception.h"
+#include "../AgentDataStore.h"
 
 AgentHeartBeatMessage::AgentHeartBeatMessage()
-        : Message(AGENT_HEART_BEAT),
-          hostAgentId(0),
-          heartBeatContent("HEART_BEAT") {
-
-}
-
-AgentHeartBeatMessage::AgentHeartBeatMessage(uint64_t agentId)
-        : Message(AGENT_HEART_BEAT),
-          hostAgentId(agentId),
+        : Message(AgentDataStore::agentHostUUID, AGENT_HEART_BEAT),
           heartBeatContent("HEART_BEAT") {
 
 }
 
 AgentHeartBeatMessage::~AgentHeartBeatMessage() {
 
-}
-
-void AgentHeartBeatMessage::setHostAgentId(uint64_t agentId) {
-    this->hostAgentId = agentId;
-}
-
-uint64_t AgentHeartBeatMessage::getHostAgentId() const {
-    return this->hostAgentId;
-}
-
-void AgentHeartBeatMessage::setHeartBeatContent(std::string &hbcontent) {
-    this->heartBeatContent = hbcontent;
-}
-
-const std::string &AgentHeartBeatMessage::getHeartBeatContent() const {
-    return this->heartBeatContent;
 }
 
 void AgentHeartBeatMessage::readFromJsonString(std::string &jsonstr) {
@@ -54,7 +31,7 @@ void AgentHeartBeatMessage::readFromJsonString(std::string &jsonstr) {
         this->msgTimeStamp = pj->valueString;
 
     if ((pj = cJsonGetObjectItem(json, "HostAgentID")) != NULL)
-        this->hostAgentId = static_cast<uint64_t>(pj->valueInt);
+        this->hostId = static_cast<uint64_t>(pj->valueInt);
 
     if ((pj = cJsonGetObjectItem(json, "HeartBeatContent")) != NULL)
         this->heartBeatContent = pj->valueString;
@@ -71,7 +48,7 @@ std::string AgentHeartBeatMessage::writeToJsonString() const {
         cJsonAddIntToObject(json, "MsgID", this->msgId);
         cJsonAddIntToObject(json, "MsgType", this->msgType);
         cJsonAddStringToObject(json, "TimeStamp", this->msgTimeStamp.c_str());
-        cJsonAddIntToObject(json, "HostAgentID", this->hostAgentId);
+        cJsonAddIntToObject(json, "HostAgentID", this->hostId);
         cJsonAddStringToObject(json, "HeartBeatContent", this->heartBeatContent.c_str());
     }
 

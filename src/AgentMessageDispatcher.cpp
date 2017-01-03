@@ -6,7 +6,8 @@
 
 #include "AgentMessageDispatcher.h"
 
-AgentMessageDispatcher::AgentMessageDispatcher() {
+AgentMessageDispatcher::AgentMessageDispatcher(BoundedBlockingQueue<Message*> *bmq)
+        : messageQueue(bmq) {
 
 }
 

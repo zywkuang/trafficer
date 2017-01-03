@@ -12,29 +12,40 @@
 class AgentCommandResponseMessage : public Message {
 public:
     AgentCommandResponseMessage();
-    AgentCommandResponseMessage(uint64_t agentId);
     ~AgentCommandResponseMessage();
 
-    void setHostAgentId(uint64_t agentId);
-    uint64_t getHostAgentId() const;
+    void setTrafficInstanceId(uint64_t trafficInstanceId) {
+        this->trafficInstanceId = trafficInstanceId;
+    }
+    uint64_t getTrafficInstanceId() const {
+        return this->trafficInstanceId;
+    }
 
-    void setTrafficInstanceId(uint64_t trafficInstanceId);
-    uint64_t getTrafficInstanceId() const;
+    void setCmdType(CommandType cmdType) {
+        this->cmdType = cmdType;
+    }
+    CommandType getCmdType() const {
+        return this->cmdType;
+    }
 
-    void setCmdType(CommandType cmdType);
-    CommandType getCmdType() const;
+    void setOpSuccess(bool opSuccess) {
+        this->opSuccess = opSuccess;
+    }
+    bool isOpSuccess() const {
+        return this->opSuccess;
+    }
 
-    void setOpSuccess(bool opSuccess);
-    bool isOpSuccess() const;
-
-    void setOpResult(const std::string &opResult);
-    const std::string &getOpResult() const;
+    void setOpResult(const std::string &opResult) {
+        this->opResult = opResult;
+    }
+    const std::string &getOpResult() const {
+        return this->opResult;
+    }
 
     virtual void readFromJsonString(std::string &jsonstr);
     virtual std::string writeToJsonString() const;
 
 private:
-    uint64_t hostAgentId;
     uint64_t trafficInstanceId;
     CommandType cmdType;
 

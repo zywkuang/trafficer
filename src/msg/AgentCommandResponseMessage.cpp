@@ -7,63 +7,16 @@
 #include "AgentCommandResponseMessage.h"
 #include "../base/Json.h"
 #include "../base/Exception.h"
+#include "../AgentDataStore.h"
 
 AgentCommandResponseMessage::AgentCommandResponseMessage()
-        : Message(AGENT_COMMAND_RESPONSE),
-          hostAgentId(0),
-          opSuccess(false) {
-
-}
-
-AgentCommandResponseMessage::AgentCommandResponseMessage(uint64_t agentId)
-        : Message(AGENT_COMMAND_RESPONSE),
-          hostAgentId(agentId),
+        : Message(AgentDataStore::agentHostUUID, AGENT_COMMAND_RESPONSE),
           opSuccess(false) {
 
 }
 
 AgentCommandResponseMessage::~AgentCommandResponseMessage() {
 
-}
-
-void AgentCommandResponseMessage::setHostAgentId(uint64_t id) {
-    this->hostAgentId = id;
-}
-
-uint64_t AgentCommandResponseMessage::getHostAgentId() const {
-    return this->hostAgentId;
-}
-
-uint64_t AgentCommandResponseMessage::getTrafficInstanceId() const {
-    return this->trafficInstanceId;
-}
-
-void AgentCommandResponseMessage::setTrafficInstanceId(uint64_t trafficInstanceId) {
-    this->trafficInstanceId = trafficInstanceId;
-}
-
-CommandType AgentCommandResponseMessage::getCmdType() const {
-    return this->cmdType;
-}
-
-void AgentCommandResponseMessage::setCmdType(CommandType cmdType) {
-    this->cmdType = cmdType;
-}
-
-bool AgentCommandResponseMessage::isOpSuccess() const {
-    return this->opSuccess;
-}
-
-void AgentCommandResponseMessage::setOpSuccess(bool opSuccess) {
-    this->opSuccess = opSuccess;
-}
-
-const std::string &AgentCommandResponseMessage::getOpResult() const {
-    return this->opResult;
-}
-
-void AgentCommandResponseMessage::setOpResult(const std::string &opResult) {
-    this->opResult = opResult;
 }
 
 void AgentCommandResponseMessage::readFromJsonString(std::string &jsonstr) {
@@ -76,6 +29,9 @@ void AgentCommandResponseMessage::readFromJsonString(std::string &jsonstr) {
 
     if ((pj = cJsonGetObjectItem(json, "TimeStamp")) != NULL)
         this->msgTimeStamp = pj->valueString;
+
+    if ((pj = cJsonGetObjectItem(json, "HostAgentID")) != NULL)
+        this->hostId = static_cast<uint64_t>(pj->valueInt);
 
     if ((pj = cJsonGetObjectItem(json, "TrafficInstanceID")) != NULL)
         this->trafficInstanceId = static_cast<uint64_t>(pj->valueInt);
@@ -105,6 +61,7 @@ std::string AgentCommandResponseMessage::writeToJsonString() const {
         cJsonAddIntToObject(json, "MsgID", this->msgId);
         cJsonAddIntToObject(json, "MsgType", AGENT_COMMAND_RESPONSE);
         cJsonAddStringToObject(json, "TimeStamp", this->msgTimeStamp.c_str());
+        cJsonAddIntToObject(json, "HostAgentID", this->hostId);
         cJsonAddIntToObject(json, "TrafficInstanceID", this->trafficInstanceId);
         cJsonAddIntToObject(json, "CommandType", this->cmdType);
 
