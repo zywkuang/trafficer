@@ -21,6 +21,8 @@
 // Traffic Generation Configuration
 #define TRAFFIC_TCP_SENDBUF_SIZE 16384  // Bytes
 #define TRAFFIC_UDP_SENDBUF_SIZE 1440   // Bytes
+#define TRAFFIC_TCP_RECVBUF_SIZE 23546  // Bytes
+#define TRAFFIC_UDP_RECVBUF_SIZE 2048   // Bytes
 #define TRAFFIC_REPORT_INTERVAL 2000000 // MicroSeconds - 2s
 #define TRAFFIC_UPDATE_INTERVAL 500000  // MicroSeconds - 0.5s
 #define TRAFFIC_UDP_SENDPKT_CNT 4

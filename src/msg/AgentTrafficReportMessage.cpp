@@ -59,17 +59,19 @@ void AgentTrafficReportMessage::readFromJsonString(std::string &jsonstr) {
         this->trafficBandwidth = static_cast<uint64_t>(pj->valueInt);
 
     if (this->proto == UDP) {
-        if ((pj = cJsonGetObjectItem(json, "TrafficJitter")) != NULL)
-            this->trafficJitter = pj->valueDouble;
+        if (this->role == RECVER) {
+            if ((pj = cJsonGetObjectItem(json, "TrafficJitter")) != NULL)
+                this->trafficJitter = pj->valueInt;
 
-        if ((pj = cJsonGetObjectItem(json, "PacketLostCount")) != NULL)
-            this->packetLostCnt = static_cast<uint64_t>(pj->valueInt);
+            if ((pj = cJsonGetObjectItem(json, "PacketOutCount")) != NULL)
+                this->packetOutCnt = static_cast<uint64_t>(pj->valueInt);
+
+            if ((pj = cJsonGetObjectItem(json, "PacketOutss")) != NULL)
+                this->packetOutss = pj->valueDouble;
+        }
 
         if ((pj = cJsonGetObjectItem(json, "PacketTotalCount")) != NULL)
-            this->packetLoss = static_cast<uint64_t>(pj->valueInt);
-
-        if ((pj = cJsonGetObjectItem(json, "PacketLoss")) != NULL)
-            this->packetLoss = pj->valueDouble;
+            this->packetTotalCnt = static_cast<uint64_t>(pj->valueInt);
     }
     cJsonDelete(json);
 }
@@ -96,9 +98,9 @@ std::string AgentTrafficReportMessage::writeToJsonString() const {
 
         if (this->proto == UDP) {
             if (this->role == RECVER) {
-                cJsonAddDoubleToObject(json, "TrafficJitter", this->trafficJitter);
-                cJsonAddIntToObject(json, "PacketLostCount", this->packetLostCnt);
-                cJsonAddDoubleToObject(json, "PacketLoss", this->packetLoss);
+                cJsonAddIntToObject(json, "TrafficJitter", this->trafficJitter);
+                cJsonAddIntToObject(json, "PacketOutCount", this->packetOutCnt);
+                cJsonAddDoubleToObject(json, "PacketOutss", this->packetOutss);
             }
 
             cJsonAddIntToObject(json, "PacketTotalCount", this->packetTotalCnt);

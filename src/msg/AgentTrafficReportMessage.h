@@ -70,18 +70,18 @@ public:
         return this->trafficBandwidth;
     }
 
-    void setTrafficJitter(double jitter) {
+    void setTrafficJitter(int64_t jitter) {
         this->trafficJitter = jitter;
     }
-    double getTrafficJitter() const {
+    int64_t getTrafficJitter() const {
         return this->trafficJitter;
     }
 
-    void setPacketLostCnt(uint64_t lostCnt) {
-        this->packetLostCnt = lostCnt;
+    void setPacketOutCnt(uint64_t lostCnt) {
+        this->packetOutCnt = lostCnt;
     }
-    uint64_t  getPacketLostCnt() const {
-        return this->packetLostCnt;
+    uint64_t  getPacketOutCnt() const {
+        return this->packetOutCnt;
     }
 
     void setPacketTotalCnt(uint64_t totalCnt) {
@@ -91,11 +91,11 @@ public:
         return this->packetTotalCnt;
     }
 
-    void setPacketLoss(double loss) {
-        this->packetLoss = loss;
+    void setPacketOutss(double loss) {
+        this->packetOutss = loss;
     }
-    double getPacketLoss() const {
-        return this->packetLoss;
+    double getPacketOutss() const {
+        return this->packetOutss;
     }
 
     virtual void readFromJsonString(std::string &jsonstr);
@@ -110,10 +110,10 @@ private:
     int64_t trafficInterval;    // us
     uint64_t bytesTransferred;  // Byte
     uint64_t trafficBandwidth;  // Byte/s
-    uint64_t packetLostCnt;
+    uint64_t packetOutCnt;
     uint64_t packetTotalCnt;
-    double packetLoss;
-    double trafficJitter;
+    int64_t trafficJitter;
+    double packetOutss;
 };
 
 

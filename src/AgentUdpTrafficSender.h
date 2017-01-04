@@ -53,7 +53,7 @@ private:
     int64_t reportInterval;
     int64_t updateInterval;
 
-    UdpSendTrafficStats overallTrafficStat;
+    UdpSendTrafficStats *overallTrafficStat;
 
     AbstractTrafficModel *tModel;
     BoundedBlockingQueue<Message*> *messageQueue;

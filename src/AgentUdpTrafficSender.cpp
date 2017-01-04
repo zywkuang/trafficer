@@ -14,13 +14,13 @@
 #include "base/UtilSet.h"
 #include "msg/AgentTrafficReportMessage.h"
 
-void resetUdpSendTrafficStats(UdpSendTrafficStats &udpts) {
-    udpts.beginTime = TimeStamp::now();
-    udpts.endTime = TimeStamp::now();
-    udpts.bytesSent = 0;
-    udpts.packetTotal = 0;
-    udpts.interval = 0;
-    udpts.bandwidth = 0;
+void resetUdpSendTrafficStats(UdpSendTrafficStats *udpts) {
+    udpts->beginTime = TimeStamp::now();
+    udpts->endTime = TimeStamp::now();
+    udpts->bytesSent = 0;
+    udpts->packetTotal = 0;
+    udpts->interval = 0;
+    udpts->bandwidth = 0;
 }
 
 AgentUdpTrafficSender::AgentUdpTrafficSender(const TrafficInstanceConfig &tic, BoundedBlockingQueue<Message*> *mq)
@@ -61,6 +61,9 @@ AgentUdpTrafficSender::AgentUdpTrafficSender(const TrafficInstanceConfig &tic, B
     this->uSock = new UdpSocket();
     InetAddress peerAddr(tic.getRecverHostAddress(), static_cast<uint16_t>(tic.getServerHostPort()));
     this->uSock->connectRemote(peerAddr);
+
+    // Initialize overall traffic statistics
+    this->overallTrafficStat = new UdpSendTrafficStats();
 }
 
 AgentUdpTrafficSender::~AgentUdpTrafficSender() {
@@ -78,21 +81,21 @@ AgentUdpTrafficSender::~AgentUdpTrafficSender() {
         delete this->uSock;
         this->uSock = NULL;
     }
+
+    if (this->overallTrafficStat) {
+        delete this->overallTrafficStat;
+        this->overallTrafficStat = NULL;
+    }
 }
 
 ssize_t AgentUdpTrafficSender::sendPacket(uint32_t pktsn) {
     uint32_t packetSendSeqno = htonl(pktsn);
     uint64_t packetSendTid = Htonll(this->trafficInstanceId);
+    uint64_t packetSendTime = Htonll(static_cast<uint64_t>(TimeStamp::now().getMicroSecondsSinceEpoch()));
 
-    struct timeval sendtv;
-    gettimeofday(&sendtv, NULL);
-    uint32_t packetSendSec = htonl(static_cast<uint32_t>(sendtv.tv_sec));
-    uint32_t packetSendUsec = htonl(static_cast<uint32_t>(sendtv.tv_usec));
-
-    memcpy(this->sendBuf, &packetSendTid, sizeof(packetSendTid));
     memcpy(this->sendBuf, &packetSendSeqno, sizeof(packetSendSeqno));
-    memcpy(this->sendBuf, &packetSendSec, sizeof(packetSendSec));
-    memcpy(this->sendBuf, &packetSendUsec, sizeof(packetSendUsec));
+    memcpy(this->sendBuf + 4, &packetSendTid, sizeof(packetSendTid));
+    memcpy(this->sendBuf + 12, &packetSendTime, sizeof(packetSendTime));
 
     ssize_t datasnd = this->uSock->sendData(this->sendBuf, this->sendBufSize);
 
@@ -165,10 +168,10 @@ void AgentUdpTrafficSender::run() {
         nextUpdateTime.addMicroSeconds(this->updateInterval);
     }
 
-    UdpSendTrafficStats reportIntervalTrafficStat;
+    UdpSendTrafficStats *reportIntervalTrafficStat = new UdpSendTrafficStats();
     resetUdpSendTrafficStats(reportIntervalTrafficStat);
 
-    UdpSendTrafficStats updateIntervalTrafficStat;
+    UdpSendTrafficStats *updateIntervalTrafficStat = new UdpSendTrafficStats();
     resetUdpSendTrafficStats(updateIntervalTrafficStat);
 
     uint64_t specificRate = this->tModel->getNextTrafficBandwidth();
@@ -186,14 +189,14 @@ void AgentUdpTrafficSender::run() {
         while (count < TRAFFIC_UDP_SENDPKT_CNT) {
             ssize_t pktBytes = this->sendPacket(packetSequenceNumber);
 
-            reportIntervalTrafficStat.bytesSent += pktBytes;
-            reportIntervalTrafficStat.packetTotal++;
+            reportIntervalTrafficStat->bytesSent += pktBytes;
+            reportIntervalTrafficStat->packetTotal++;
 
-            updateIntervalTrafficStat.bytesSent += pktBytes;
-            updateIntervalTrafficStat.packetTotal++;
+            updateIntervalTrafficStat->bytesSent += pktBytes;
+            updateIntervalTrafficStat->packetTotal++;
 
-            this->overallTrafficStat.bytesSent += pktBytes;
-            this->overallTrafficStat.packetTotal++;
+            this->overallTrafficStat->bytesSent += pktBytes;
+            this->overallTrafficStat->packetTotal++;
 
             packetSequenceNumber++;
             count++;
@@ -202,7 +205,7 @@ void AgentUdpTrafficSender::run() {
         // Check whether should execute time-delay operation to meet bandwidth demand
         nowTime = TimeStamp::now();
         int64_t tmpInterval = nowTime.diffTimeStamp(lastUpdateTime); //unit: us
-        int64_t expectInterval = static_cast<int64_t>(MICROSECOND_PER_SECOND * (static_cast<double>(updateIntervalTrafficStat.bytesSent) / specificRate));
+        int64_t expectInterval = static_cast<int64_t>(MICROSECOND_PER_SECOND * (static_cast<double>(updateIntervalTrafficStat->bytesSent) / specificRate));
         if (expectInterval > tmpInterval) {
             int64_t delayUsecs = expectInterval - tmpInterval;
             UtilSet::delayNanosleep(delayUsecs);
@@ -212,22 +215,22 @@ void AgentUdpTrafficSender::run() {
         nowTime = TimeStamp::now();
         if (nowTime.isMoreThan(nextReportTime)) {
             // Result calculation process
-            reportIntervalTrafficStat.beginTime = lastReportTime;
+            reportIntervalTrafficStat->beginTime = lastReportTime;
             std::string bt = lastReportTime.toString();
-            reportIntervalTrafficStat.endTime = nowTime;
+            reportIntervalTrafficStat->endTime = nowTime;
             std::string et = nowTime.toString();
-            reportIntervalTrafficStat.interval = nowTime.diffTimeStamp(lastReportTime);
-            reportIntervalTrafficStat.bandwidth = static_cast<uint64_t>(MICROSECOND_PER_SECOND * reportIntervalTrafficStat.bytesSent / reportIntervalTrafficStat.interval);
+            reportIntervalTrafficStat->interval = nowTime.diffTimeStamp(lastReportTime);
+            reportIntervalTrafficStat->bandwidth = static_cast<uint64_t>(MICROSECOND_PER_SECOND * reportIntervalTrafficStat->bytesSent / reportIntervalTrafficStat->interval);
 
             AgentTrafficReportMessage *reportmsg = new AgentTrafficReportMessage();
             reportmsg->setProtocol(UDP);
             reportmsg->setRole(SENDER);
             reportmsg->setBeginTimeStamp(bt);
             reportmsg->setEndTimeStamp(et);
-            reportmsg->setBytesTransferred(reportIntervalTrafficStat.bytesSent);
-            reportmsg->setTrafficInterval(reportIntervalTrafficStat.interval);
-            reportmsg->setTrafficBandwidth(reportIntervalTrafficStat.bandwidth);
-            reportmsg->setPacketTotalCnt(reportIntervalTrafficStat.packetTotal);
+            reportmsg->setBytesTransferred(reportIntervalTrafficStat->bytesSent);
+            reportmsg->setTrafficInterval(reportIntervalTrafficStat->interval);
+            reportmsg->setTrafficBandwidth(reportIntervalTrafficStat->bandwidth);
+            reportmsg->setPacketTotalCnt(reportIntervalTrafficStat->packetTotal);
 
             this->messageQueue->offer(reportmsg);
 
@@ -255,5 +258,8 @@ void AgentUdpTrafficSender::run() {
             break;
         }
     }
+
+    delete reportIntervalTrafficStat;
+    delete updateIntervalTrafficStat;
 }
 

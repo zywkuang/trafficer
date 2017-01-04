@@ -33,6 +33,10 @@ public:
         return microSecondsSinceEpoch;
     }
 
+    void setMicroSecondsSinceEpoch(int64_t mss) {
+        this->microSecondsSinceEpoch = mss;
+    }
+
     time_t getSecondsSinceEpoch() const {
         return static_cast<time_t>(microSecondsSinceEpoch / MICROSECOND_PER_SECOND);
     }
