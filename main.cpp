@@ -6,6 +6,7 @@
 
 void *thr_fn(void *arg) {
 
+
     printf("Hello Wrold, %d.\n", pthread_self());
 
     pthread_join(pthread_self(), 0);
